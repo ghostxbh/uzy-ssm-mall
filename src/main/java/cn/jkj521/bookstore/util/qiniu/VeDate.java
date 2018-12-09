@@ -1,4 +1,4 @@
-package cn.jkj521.bookstore.util;
+package cn.jkj521.bookstore.util.qiniu;
 
 
 

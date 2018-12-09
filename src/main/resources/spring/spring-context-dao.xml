@@ -28,20 +28,4 @@
         <property name="basePackage" value="cn.jkj521.bookstore.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
-    
-    <!-- redis -->
-    <bean id="jedisClientPool" class="cn.jkj521.bookstore.util.redis.JedisClientPool">
-		<property name="jedisPool" ref="jedisPool"></property>
-	</bean>
-	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-		<constructor-arg name="host" value="39.104.56.178"/>
-		<constructor-arg name="port" value="80"/>
-		<constructor-arg name="timeout" value="10000"/>
-		<constructor-arg name="password" value="123456"/>
-		<constructor-arg name="poolConfig" ref="poolConfig"/>
-	</bean>
-	<bean id="poolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
-		<property name="maxTotal" value="100"></property>
-		<property name="maxIdle" value="50"></property>
-	</bean>
 </beans>

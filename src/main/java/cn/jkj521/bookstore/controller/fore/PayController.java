@@ -1,7 +1,7 @@
 package cn.jkj521.bookstore.controller.fore;
 
 
-import cn.jkj521.bookstore.util.AlipayConfig;
+import cn.jkj521.bookstore.util.pay.AlipayConfig;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;

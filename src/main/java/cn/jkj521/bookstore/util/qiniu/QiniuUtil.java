@@ -1,4 +1,4 @@
-package cn.jkj521.bookstore.util;
+package cn.jkj521.bookstore.util.qiniu;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Properties;
 
+import cn.jkj521.bookstore.util.UpResult;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
@@ -94,7 +95,7 @@ public class QiniuUtil {
      * @param filePath
      * @throws IOException
      */
-    public static UpResult upload(String filePath,String zoneName) throws IOException {
+    public static UpResult upload(String filePath, String zoneName) throws IOException {
         Configuration conf = new Configuration(zone);
         //创建上传对象
         UploadManager uploadManager = new UploadManager(conf);
@@ -190,7 +191,7 @@ public class QiniuUtil {
     		throw new RuntimeException("文件名称或路径无后缀");
     	}
         String suffix = str.substring(index);
-    	return  UUIDGenerator.generateUUID()+"_"+VeDate.getStringDateShort().replace("-", "")+suffix;
+    	return  UUIDGenerator.generateUUID()+"_"+ VeDate.getStringDateShort().replace("-", "")+suffix;
     }
     
     /**

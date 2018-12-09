@@ -8,6 +8,7 @@ import java.util.Stack;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import cn.jkj521.bookstore.entity.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +20,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import cn.jkj521.bookstore.controller.BaseController;
-import cn.jkj521.bookstore.entity.Address;
-import cn.jkj521.bookstore.entity.Product;
-import cn.jkj521.bookstore.entity.ProductOrder;
-import cn.jkj521.bookstore.entity.ProductOrderItem;
 import cn.jkj521.bookstore.service.AddressService;
 import cn.jkj521.bookstore.service.LastIDService;
 import cn.jkj521.bookstore.service.ProductImageService;
@@ -32,7 +29,6 @@ import cn.jkj521.bookstore.service.ProductService;
 import cn.jkj521.bookstore.service.UserService;
 import cn.jkj521.bookstore.util.OrderUtil;
 import cn.jkj521.bookstore.util.PageUtil;
-import cn.yunzhf.accounting.user.entity.UzUser;
 
 /**
  * 后台管理-订单页
@@ -83,11 +79,7 @@ public class OrderController extends BaseController{
     public String goToDetailsPage(HttpSession session, Map<String, Object> map, @PathVariable Integer oid/* 订单ID */) {
         logger.info("检查管理员权限");
         Object adminId = checkAdmin(session);
-        UzUser user = (UzUser)session.getAttribute("user");
-        if(adminId == null){
-            return "admin/include/loginMessage";
-        }
-
+        User user = (User)session.getAttribute("user");
         logger.info("获取order_id为{}的订单信息",oid);
         ProductOrder order = productOrderService.get(oid);
         logger.info("获取订单详情-地址信息");

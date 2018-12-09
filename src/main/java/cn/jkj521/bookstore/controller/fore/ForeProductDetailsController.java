@@ -1,9 +1,5 @@
 package cn.jkj521.bookstore.controller.fore;
 
-import cn.jkj521.bookstore.util.QiniuUtil;
-import cn.jkj521.bookstore.util.redis.HostUtil;
-import cn.yunzhf.accounting.user.entity.UzUser;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -18,7 +14,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +52,7 @@ public class ForeProductDetailsController extends BaseController {
         
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser)session.getAttribute("user");
+            User user = (User)session.getAttribute("user");
             //User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         }/*else{

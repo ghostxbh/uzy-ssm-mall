@@ -4,7 +4,7 @@ import cn.jkj521.bookstore.dao.ProductImageMapper;
 import cn.jkj521.bookstore.entity.ProductImage;
 import cn.jkj521.bookstore.service.ProductImageService;
 import cn.jkj521.bookstore.util.PageUtil;
-import cn.jkj521.bookstore.util.QiniuUtil;
+import cn.jkj521.bookstore.util.qiniu.QiniuUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

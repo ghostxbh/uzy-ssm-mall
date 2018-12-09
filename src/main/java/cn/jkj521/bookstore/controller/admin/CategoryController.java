@@ -2,7 +2,7 @@ package cn.jkj521.bookstore.controller.admin;
 
 import cn.jkj521.bookstore.entity.*;
 import cn.jkj521.bookstore.service.*;
-import cn.jkj521.bookstore.util.QiniuUtil;
+import cn.jkj521.bookstore.util.qiniu.QiniuUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;

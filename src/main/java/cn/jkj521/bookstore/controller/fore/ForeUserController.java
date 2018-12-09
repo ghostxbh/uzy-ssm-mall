@@ -6,8 +6,7 @@ import cn.jkj521.bookstore.entity.Address;
 import cn.jkj521.bookstore.entity.User;
 import cn.jkj521.bookstore.service.AddressService;
 import cn.jkj521.bookstore.service.UserService;
-import cn.jkj521.bookstore.util.redis.HostUtil;
-import cn.yunzhf.accounting.user.entity.UzUser;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,10 +39,9 @@ public class ForeUserController extends BaseController{
     public String goToUserDetail(HttpSession session, Map<String,Object> map,HttpServletResponse response){
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        if (userId != null) {
+
         	logger.info("获取用户信息");
-            UzUser user = (UzUser)session.getAttribute("user");
-            //User user = userService.get(Integer.parseInt(userId.toString()));
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
             logger.info("获取用户信息");
             User user2 = userService.get(Integer.parseInt(userId.toString()));
@@ -66,15 +64,7 @@ public class ForeUserController extends BaseController{
             map.put("cityAddressId", cityAddress.getAddress_areaId());
             map.put("districtAddressId", districtAddressId);
             return  "fore/userDetails";
-        } else {
-        	try {
-        		response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-        		return null;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-        }
-        return "";
+
     }
     //前台天猫-用户更换头像
     @ResponseBody
@@ -116,16 +106,14 @@ public class ForeUserController extends BaseController{
         Object userId = checkUser(session);
         if (userId != null) {
         	logger.info("获取用户信息");
-            UzUser user = (UzUser)session.getAttribute("user");
-            //User user = userService.get(Integer.parseInt(userId.toString()));
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
-        	try {
-        		response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            try {
+                response.sendRedirect("/bookstore/login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         logger.info("创建用户对象");
         if (user_profile_picture_src != null && user_profile_picture_src.equals("")) {

@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import cn.jkj521.bookstore.util.QiniuUtil;
+import cn.jkj521.bookstore.util.qiniu.QiniuUtil;
 import cn.jkj521.bookstore.util.UpResult;
 import com.qiniu.common.QiniuException;
 import org.springframework.stereotype.Controller;

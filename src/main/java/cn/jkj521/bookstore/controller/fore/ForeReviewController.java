@@ -5,8 +5,7 @@ import cn.jkj521.bookstore.controller.BaseController;
 import cn.jkj521.bookstore.entity.*;
 import cn.jkj521.bookstore.service.*;
 import cn.jkj521.bookstore.util.PageUtil;
-import cn.jkj521.bookstore.util.redis.HostUtil;
-import cn.yunzhf.accounting.user.entity.UzUser;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -46,18 +45,15 @@ public class ForeReviewController extends BaseController {
 
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser)session.getAttribute("user");
-            //User user = userService.get(Integer.parseInt(userId.toString()));
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
-        }else{
-        	try {
-        		response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        } else {
+            try {
+                response.sendRedirect("/order/0/10");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        
         logger.info("获取订单项信息");
         ProductOrderItem orderItem = productOrderItemService.get(orderItem_id);
         if (orderItem == null) {
@@ -101,18 +97,15 @@ public class ForeReviewController extends BaseController {
 
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser)session.getAttribute("user");
-            //User user = userService.get(Integer.parseInt(userId.toString()));
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
-        }else{
-        	try {
-        		response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        } else {
+            try {
+                response.sendRedirect("/order/0/10");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        
         logger.info("获取订单项信息");
         ProductOrderItem orderItem = productOrderItemService.get(orderItem_id);
         if (orderItem == null) {

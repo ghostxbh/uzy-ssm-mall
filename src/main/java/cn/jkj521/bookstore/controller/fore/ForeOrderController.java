@@ -46,8 +46,7 @@ import cn.jkj521.bookstore.service.ReviewService;
 import cn.jkj521.bookstore.service.UserService;
 import cn.jkj521.bookstore.util.OrderUtil;
 import cn.jkj521.bookstore.util.PageUtil;
-import cn.jkj521.bookstore.util.redis.HostUtil;
-import cn.yunzhf.accounting.user.entity.UzUser;
+
 
 @Controller
 public class ForeOrderController extends BaseController {
@@ -84,15 +83,14 @@ public class ForeOrderController extends BaseController {
                            HttpServletResponse response) {
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        UzUser user = null;
+        User user = null;
         if (userId != null) {
             logger.info("获取用户信息");
-            user = (UzUser) session.getAttribute("user");
+            user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -153,12 +151,11 @@ public class ForeOrderController extends BaseController {
         Object userId = checkUser(session);
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -253,15 +250,13 @@ public class ForeOrderController extends BaseController {
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
 
-
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -370,15 +365,13 @@ public class ForeOrderController extends BaseController {
                                    HttpServletResponse response) {
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        UzUser user = null;
         if (userId != null) {
             logger.info("获取用户信息");
-            user = (UzUser) session.getAttribute("user");
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -397,7 +390,7 @@ public class ForeOrderController extends BaseController {
             return "redirect:/order/0/10";
         }
         logger.info("验证用户与订单是否一致");
-        if (order.getProductOrder_user().getId() != Integer.parseInt(userId.toString())) {
+        if (order.getProductOrder_user().getUser_id() != Integer.parseInt(userId.toString())) {
             logger.warn("用户与订单信息不一致，返回订单列表页");
             return "redirect:/order/0/10";
         }
@@ -432,15 +425,13 @@ public class ForeOrderController extends BaseController {
                                           HttpServletResponse response) {
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -459,7 +450,7 @@ public class ForeOrderController extends BaseController {
             return "redirect:/order/0/10";
         }
         logger.info("验证用户与订单是否一致");
-        if (order.getProductOrder_user().getId() != Integer.parseInt(userId.toString())) {
+        if (order.getProductOrder_user().getUser_id() != Integer.parseInt(userId.toString())) {
             logger.warn("用户与订单信息不一致，返回订单列表页");
             return "redirect:/order/0/10";
         }
@@ -510,20 +501,17 @@ public class ForeOrderController extends BaseController {
                                        HttpServletResponse response) {
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
         logger.info("------验证订单信息------");
         logger.info("查询订单是否存在");
         ProductOrder order = productOrderService.getByCode(order_code);
@@ -537,7 +525,7 @@ public class ForeOrderController extends BaseController {
             return "redirect:/order/0/10";
         }
         logger.info("验证用户与订单是否一致");
-        if (order.getProductOrder_user().getId() != Integer.parseInt(userId.toString())) {
+        if (order.getProductOrder_user().getUser_id() != Integer.parseInt(userId.toString())) {
             logger.warn("用户与订单信息不一致，返回订单列表页");
             return "redirect:/order/0/10";
         }
@@ -578,20 +566,17 @@ public class ForeOrderController extends BaseController {
                                        HttpServletResponse response) {
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
         logger.info("------验证订单信息------");
         logger.info("查询订单是否存在");
         ProductOrder order = productOrderService.getByCode(order_code);
@@ -605,7 +590,7 @@ public class ForeOrderController extends BaseController {
             return "redirect:/order/0/10";
         }
         logger.info("验证用户与订单是否一致");
-        if (order.getProductOrder_user().getId() != Integer.parseInt(userId.toString())) {
+        if (order.getProductOrder_user().getUser_id() != Integer.parseInt(userId.toString())) {
             logger.warn("用户与订单信息不一致，返回订单列表页");
             return "redirect:/order/0/10";
         }
@@ -642,12 +627,11 @@ public class ForeOrderController extends BaseController {
         Object userId = checkUser(session);
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
+            User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -682,17 +666,16 @@ public class ForeOrderController extends BaseController {
         JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        if (userId == null) {
+        if (userId != null) {
+            logger.info("获取用户信息");
+            User user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/bookstore/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
-            map.put("user", user);
         }
         logger.info("------验证订单信息------");
         logger.info("查询订单是否存在");
@@ -706,7 +689,7 @@ public class ForeOrderController extends BaseController {
         logger.info("验证订单状态");
 
         logger.info("验证用户与订单是否一致");
-        if (order.getProductOrder_user().getId() != Integer.parseInt(userId.toString())) {
+        if (order.getProductOrder_user().getUser_id() != Integer.parseInt(userId.toString())) {
             logger.warn("用户与订单信息不一致，返回订单列表页");
             object.put("success", false);
             object.put("url", "/order/0/10");
@@ -731,17 +714,16 @@ public class ForeOrderController extends BaseController {
     public String orderDelivery(Map<String, Object> map, HttpSession session, @PathVariable("order_code") String order_code, HttpServletResponse response) {
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        if (userId == null) {
+        if (userId != null) {
+            logger.info("获取用户信息");
+            User user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect("http://localhost:8080/AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/order/0/10");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
-            map.put("user", user);
         }
         logger.info("------验证订单信息------");
         logger.info("查询订单是否存在");
@@ -756,7 +738,7 @@ public class ForeOrderController extends BaseController {
             return "redirect:/order/0/10";
         }
         logger.info("验证用户与订单是否一致");
-        if (order.getProductOrder_user().getId() != Integer.parseInt(userId.toString())) {
+        if (order.getProductOrder_user().getUser_id() != Integer.parseInt(userId.toString())) {
             logger.warn("用户与订单信息不一致，返回订单列表页");
             return "redirect:/order/0/10";
         }
@@ -778,19 +760,16 @@ public class ForeOrderController extends BaseController {
         JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        if (userId == null) {
+        if (userId != null) {
+            logger.info("获取用户信息");
+            User user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect("http://localhost:8080/AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/order/0/10");
             } catch (IOException e) {
-
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
-
-            map.put("user", user);
         }
         logger.info("------验证订单信息------");
         logger.info("查询订单是否存在");
@@ -809,7 +788,7 @@ public class ForeOrderController extends BaseController {
             return object.toJSONString();
         }
         logger.info("验证用户与订单是否一致");
-        if (order.getProductOrder_user().getId() != Integer.parseInt(userId.toString())) {
+        if (order.getProductOrder_user().getUser_id() != Integer.parseInt(userId.toString())) {
             logger.warn("用户与订单信息不一致，返回订单列表页");
             object.put("success", false);
             object.put("url", "/order/0/10");
@@ -838,17 +817,16 @@ public class ForeOrderController extends BaseController {
         JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        if (userId == null) {
+        if (userId != null) {
+            logger.info("获取用户信息");
+            User user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/order/0/10");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
-            map.put("user", user);
         }
         logger.info("检查用户的购物车项");
         ProductOrder byCode = productOrderService.getByCode(order_code);
@@ -868,17 +846,16 @@ public class ForeOrderController extends BaseController {
         JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        if (userId == null) {
+        if (userId != null) {
+            logger.info("获取用户信息");
+            User user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect("http://localhost:8080/AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/order/0/10");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
-            map.put("user", user);
         }
         logger.info("------验证订单信息------");
         logger.info("查询订单是否存在");
@@ -897,7 +874,7 @@ public class ForeOrderController extends BaseController {
             return object.toJSONString();
         }
         logger.info("验证用户与订单是否一致");
-        if (order.getProductOrder_user().getId() != Integer.parseInt(userId.toString())) {
+        if (order.getProductOrder_user().getUser_id() != Integer.parseInt(userId.toString())) {
             logger.warn("用户与订单信息不一致，返回订单列表页");
             object.put("success", false);
             object.put("url", "/order/0/10");
@@ -925,19 +902,17 @@ public class ForeOrderController extends BaseController {
         JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        if (userId == null) {
+        if (userId != null) {
+            logger.info("获取用户信息");
+            User user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect("http://localhost:8080/AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/order/0/10");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
-            map.put("user", user);
         }
-
         JSONObject orderItemString = JSON.parseObject(orderItemMap);
         Set<String> orderItemIDSet = orderItemString.keySet();
         if (orderItemIDSet.size() > 0) {
@@ -993,18 +968,17 @@ public class ForeOrderController extends BaseController {
         JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        UzUser user = null;
-        if (userId == null) {
+        User user = null;
+        if (userId != null) {
+            logger.info("获取用户信息");
+            user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/order/0/10");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            user = (UzUser) session.getAttribute("user");
-            map.put("user", user);
         }
         Product product = productService.get(orderItem_product_id);
         if (product == null) {
@@ -1090,18 +1064,17 @@ public class ForeOrderController extends BaseController {
         JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        UzUser user = null;
-        if (userId == null) {
+        User user = null;
+        if (userId != null) {
+            logger.info("获取用户信息");
+            user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/order/0/10");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            user = (UzUser) session.getAttribute("user");
-            map.put("user", user);
         }
         JSONObject orderItemMap = JSONObject.parseObject(orderItemJSON);
         Set<String> orderItem_id = orderItemMap.keySet();
@@ -1207,7 +1180,7 @@ public class ForeOrderController extends BaseController {
             return object.toJSONString();
         } else {
             logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
+            User user = (User) session.getAttribute("user");
             map.put("user", user);
         }
 
@@ -1263,17 +1236,16 @@ public class ForeOrderController extends BaseController {
         JSONObject object = new JSONObject();
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
-        if (userId == null) {
+        if (userId != null) {
+            logger.info("获取用户信息");
+            User user = userService.get(Integer.parseInt(userId.toString()));
+            map.put("user", user);
+        } else {
             try {
-                response.sendRedirect(HostUtil.host + "AccountingOnline/user/checkLogin?url=bookstore/getsign");
-                return null;
+                response.sendRedirect("/order/0/10");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            logger.info("获取用户信息");
-            UzUser user = (UzUser) session.getAttribute("user");
-            map.put("user", user);
         }
         logger.info("检查用户的购物车项");
         List<ProductOrderItem> orderItemList = productOrderItemService.getListByUserId(Integer.valueOf(userId.toString()), null);

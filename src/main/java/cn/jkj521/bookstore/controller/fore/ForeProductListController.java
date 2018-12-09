@@ -9,8 +9,7 @@ import cn.jkj521.bookstore.entity.User;
 import cn.jkj521.bookstore.service.*;
 import cn.jkj521.bookstore.util.OrderUtil;
 import cn.jkj521.bookstore.util.PageUtil;
-import cn.jkj521.bookstore.util.redis.HostUtil;
-import cn.yunzhf.accounting.user.entity.UzUser;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
@@ -57,7 +55,7 @@ public class ForeProductListController extends BaseController {
 
         if (userId != null) {
             logger.info("获取用户信息");
-            UzUser user = (UzUser)session.getAttribute("user");
+            User user = (User)session.getAttribute("user");
             //User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         }/*else{

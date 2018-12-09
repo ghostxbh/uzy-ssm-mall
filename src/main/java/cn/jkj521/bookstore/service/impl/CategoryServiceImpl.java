@@ -4,7 +4,6 @@ import cn.jkj521.bookstore.dao.CategoryMapper;
 import cn.jkj521.bookstore.entity.Category;
 import cn.jkj521.bookstore.service.CategoryService;
 import cn.jkj521.bookstore.util.PageUtil;
-import cn.jkj521.bookstore.util.QiniuUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
