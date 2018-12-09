@@ -1,0 +1,233 @@
+nav {
+    width: 100%;
+}
+
+.header {
+    width: 1230px;
+    margin: 0 auto;
+    height: 96px;
+}
+
+.header > #mallLogo {
+    float: left;
+    padding-top: 28px;
+    width: 280px;
+    height: 64px;
+    line-height: 64px;
+    position: relative;
+}
+
+#mallLogo > a {
+    position: relative;
+    display: block;
+    width: 190px;
+    height: 54px;
+    overflow: hidden;
+}
+
+#mallLogo img {
+    width: 190px;
+    height: 54px;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.header > .shopSearchHeader {
+    float: right;
+    overflow: hidden;
+    width: 597px;
+    padding-top: 25px;
+}
+
+.shopSearchHeader > form {
+    border: solid #ff0036;
+    border-width: 3px 0 3px 3px;
+}
+
+.shopSearchHeader > form > .shopSearchInput {
+    font-family: Arial, serif;
+    position: relative;
+    height: 30px;
+}
+
+input::-webkit-input-placeholder { /* WebKit browsers*/
+    color: #666;
+    font-weight: normal;
+}
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18*/
+    color: #666;
+    font-weight: normal;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+*/
+    color: #666;
+    font-weight: normal;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10+*/
+    color: #666;
+    font-weight: normal;
+}
+
+.shopSearchInput > .searchInput {
+    font-size: 12px;
+    color: #000;
+    width: 496px;
+    height: 20px;
+    line-height: 20px;
+    padding: 5px 3px 5px 5px;
+    border: none;
+    font-weight: 900;
+    outline: none;
+    float: left;
+}
+
+.shopSearchInput > .searchBtn {
+    width: 90px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #FF0036;
+    overflow: hidden;
+    border: 0;
+    font-family: "Microsoft YaHei UI", serif;
+    float: left;
+}
+
+.shopSearchHeader > ul {
+    padding-top: 4px;
+    margin-left: -10px;
+    height: 16px;
+    overflow: hidden;
+    line-height: 16px;
+    margin-bottom: 15px;
+}
+
+.shopSearchHeader li + li {
+    border-left: 1px solid #cccccc;
+}
+
+.shopSearchHeader li {
+    float: left;
+    line-height: 1.1;
+    padding: 0 12px;
+}
+
+.shopSearchHeader li > a {
+    color: #999;
+    font-size: 12px;
+}
+
+.content {
+    width: 1230px;
+    margin: 0 auto 100px;
+    height:490px;
+}
+
+.content > .content_main {
+    border: 1px solid #D4D4D4;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.content_main > #J_AmountList > h2 {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 0 0 76px;
+    background: url(../../images/fore/WebsiteImage/TB10aO.KFXXXXcTXpXXXXXXXXXX-31-32.png) 30px 15px no-repeat #ecffdc;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial, serif;
+}
+
+.content_main > #J_AmountList > .summary_pay_done {
+    padding: 0 0 0 76px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.summary_pay_done > ul {
+    padding: 5px 0 0;
+}
+
+.summary_pay_done > ul > li {
+    font-family: Arial, serif;
+    line-height: 28px;
+    list-style: disc;
+    font-size: 12px;
+}
+
+.summary_pay_done em {
+    font-family: Arial, serif;
+    line-height: 28px;
+    font-size: 14px;
+    color: #b10000;
+    font-weight: bolder;
+    font-style: normal;
+}
+
+.content_main > #J_ButtonList {
+    margin: 13px 0 25px 76px;
+    font-family: Arial, serif;
+    font-size: 12px;
+}
+
+.content_main > #J_RemindList {
+    margin: 0 30px;
+    padding: 21px 46px 21px;
+    border-top: 1px dotted #D4D4D4;
+}
+
+#J_RemindList li.alertLi {
+    background: url(../../images/fore/WebsiteImage/TB1LF0CKFXXXXcAXFXXXXXXXXXX-21-20.png) no-repeat;
+    position: relative;
+    left: -28px;
+    padding-left: 28px;
+    line-height: 21px;
+}
+
+#J_RemindList li.alertLi > p {
+    font-family: Arial, serif;
+    font-size: 12px;
+}
+
+#J_RemindList li.alertLi span.warn {
+    color: #c30000;
+    font-weight: bold;
+}
+
+.content_main > #J_Qrcode {
+    margin: 0 30px;
+    border-top: 1px dotted #d4d4d4;
+    padding-top: 21px;
+}
+
+#J_Qrcode > .mui-tm {
+    width: 260px;
+    height: 81px;
+    position: relative;
+}
+
+.mui-tm > a {
+    color: #2d8cba;
+    margin: 0 5px;
+}
+
+.mui-tm > a > img.type2-info {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mui-tm > a > img.type2-qrcode {
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    right: 114px;
+    top: 50%;
+    margin-top: -33px;
+}

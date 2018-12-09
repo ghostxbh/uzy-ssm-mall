@@ -1,0 +1,185 @@
+.header {
+    width: 1230px;
+    margin: 0 auto;
+    height: 96px;
+}
+
+.header > #mallLogo {
+    float: left;
+    padding-top: 28px;
+    width: 280px;
+    height: 64px;
+    line-height: 64px;
+    position: relative;
+}
+
+#mallLogo > a {
+    position: relative;
+    display: block;
+    width: 190px;
+    height: 54px;
+    overflow: hidden;
+}
+
+#mallLogo img {
+    width: 190px;
+    height: 54px;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.content {
+    width: 500px;
+    margin: 30px auto ;
+    min-height: 490px;
+    padding-bottom: 60px;
+    color: #666;
+  
+}
+
+.content > .order_div {
+    position: relative;
+    left:50%;
+}
+
+.content > .order_div > img {
+    position: absolute;
+    left: 0;
+    vertical-align: top;
+}
+
+.content > .order_div > .order_name, .content > .order_div > .order_shop_name {
+    width: 600px;
+    display: inline-block;
+    color: #333;
+    font-size: 12px;
+    margin-left: 116px;
+    line-height: 25px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.content > .order_div > .order_name {
+    margin-top: 25px;    
+}
+.order_name span{
+	font-size:20px;
+}
+.order_code{
+	 margin-top: 10px; 
+}
+.content > .order_div > .order_price {
+    position: absolute;
+    right: 27px;
+    top: 30px;
+    float: right;
+}
+
+.order_price > .price_value {
+    color: #ff8208;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.content > .order_pay_div {
+    overflow: hidden;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.order_pay_div .order_pay_btn {
+    display: inline-block;
+    width: 110px;
+    height: 32px;
+    color: #fff;
+    border: 1px solid #0ae;
+    background-color: #0ae;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 2px;
+    padding: 0 20px;
+    margin: 0 auto;
+    line-height: 32px;
+}
+
+.order_pay_btn:hover {
+    background-color: #00A3D2;
+    transition: background-color 0.5s;
+    text-decoration: none;
+}
+.pay_box {
+width:450px;
+    border: 1px solid #dcdcdc;
+    padding: 10px;
+    margin-bottom:50px;
+}.payment_table {
+    width: 915px;
+    text-align: center;
+    line-height: 16px;
+    margin: 10px 0 0 20px;
+    display: inline-block;
+    vertical-align: top;
+}.payment_table td {
+    width: 142px;
+    padding: 0 50px 10px 0;
+    vertical-align: top;
+}.payment_table td a.current {
+    border: 2px solid #ff6565;
+    margin: -1px -1px 4px;
+    position: relative;
+}
+.payment_table td a {
+    border: 1px solid #eaeaea;
+    display: block;
+    margin-bottom: 5px;
+    position: relative;
+}
+a:link, a:visited {
+    text-decoration: none;
+    color: #1a66b3;
+}.payment_table td a.current span {
+    display: block;
+}
+.payment_table td a span {
+    width: 18px;
+    height: 18px;    
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: none;
+}
+.btn_big {
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+  
+  
+}
+
+.btn {
+    background-color: #ff2832;
+    height:36px;
+    line-height: 36px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 10px;
+    border-radius: 5px;
+    margin: 0 0 6px 20px;
+}
+.payment_table td a.current {
+    border: 2px solid #ff6565;
+    margin: -1px -1px 4px;
+    position: relative;
+}
+
+ .btn:hover{
+   color:#D0CDCD;
+   background:#F42424;
+ }

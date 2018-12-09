@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 加载jdbc参数配置文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!-- 装配数据源 -->
+    <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource" >
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <!-- 装配SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
+        <property name="typeAliasesPackage" value="cn.jkj521.bookstore.entity"/>
+    </bean>
+    <!-- 装配Mapper实现类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.jkj521.bookstore.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+    
+    <!-- redis -->
+    <bean id="jedisClientPool" class="cn.jkj521.bookstore.util.redis.JedisClientPool">
+		<property name="jedisPool" ref="jedisPool"></property>
+	</bean>
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="host" value="39.104.56.178"/>
+		<constructor-arg name="port" value="80"/>
+		<constructor-arg name="timeout" value="10000"/>
+		<constructor-arg name="password" value="123456"/>
+		<constructor-arg name="poolConfig" ref="poolConfig"/>
+	</bean>
+	<bean id="poolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+		<property name="maxTotal" value="100"></property>
+		<property name="maxIdle" value="50"></property>
+	</bean>
+</beans>

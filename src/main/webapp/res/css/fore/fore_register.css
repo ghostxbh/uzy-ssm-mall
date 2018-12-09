@@ -1,0 +1,201 @@
+nav {
+    width: 100%;
+}
+
+.header {
+    width: 1230px;
+    margin: 0 auto;
+    height: 96px;
+}
+
+.header > #mallLogo {
+    float: left;
+    padding-top: 28px;
+    width: 280px;
+    height: 64px;
+    line-height: 64px;
+    position: relative;
+}
+
+#mallLogo > a {
+    position: relative;
+    display: block;
+    height: 30px;
+    overflow: hidden;
+}
+
+#mallLogo img {
+    display: inline-block;
+    width: 190px;
+    height: 28px;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+#mallLogo .span_tmallRegister {
+    font-family: "Microsoft YaHei UI Light", serif;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.content {
+    color:#000;
+    position: relative;
+    width: 100%;
+    min-width: 1190px;
+    font-family: Arial, serif;
+    margin: auto auto 40px;
+}
+.form-list {
+    width: 720px;
+    margin: 0 auto;
+    font-size: 15px;
+    padding: 20px 0;
+}
+.form-item {
+    padding: 10px 0 10px  100px;
+    line-height: 10px;
+    zoom: 1;
+    clear: both;
+}
+.form-label {
+    min-width: 100px;
+    line-height: 30px;
+    text-align: right;
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.steps {
+    border-bottom: 2px solid #e6e6e6;
+    position: relative;
+}
+
+.steps_main {
+    width: 1190px;
+    margin: auto auto -1px;
+}
+.tsls{
+    font-weight: bolder;
+}
+
+.steps_tsl {
+    color: #3e3e3e;
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+    border-bottom: 3px solid #FF0036;
+    line-height: 50px;
+    height: 45px;
+    width: 200px;
+    text-align: center;
+}
+.err-input {
+    border-color: #cccccc;
+}
+.form-text {
+    border: 1px solid #ccc;
+    width: 202px;
+    height: 17px;
+    line-height: 17px;
+    padding: 9px;
+    font-size: 14px;
+    _margin-left: -3px;
+}
+
+.form-text:focus {
+    transition: border-color 0.5s;
+}
+.form_span{
+    display: none;
+    padding-left: 15px;
+    font-size: 12px;
+}
+#form_radion{
+    line-height: 10px;
+    margin: 12px 0 0 10px;
+}
+#form_radions{
+    line-height: 10px;
+    margin: 12px 0 0 10px;
+}
+/*修改bootstrap-select下拉框样式*/
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 120px;
+    margin: 0 20px 0 0;
+    position: relative;
+    bottom: 1px;
+}
+
+.btn.dropdown-toggle.btn-default {
+    font-size: 12px;
+    color: #333;
+    border-color: #ccc;
+    padding: 9px;
+    box-sizing: content-box;
+    border-radius: 0;
+}
+
+.btn-group-vertical > .btn, .btn-group > .btn {
+    height: 17px;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    line-height: 22px;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+    color: #cccccc;
+}
+
+.dropdown-menu > li > a {
+    font-size: 14px;
+}
+
+.bs-searchbox > .form-control {
+    height: 20px;
+    width: 140px;
+}
+.btn-large {
+    min-width: 140px;
+}
+.btns {
+    height: 36px;
+    padding: 0 20px;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    background: #ff0036;
+    border: 0;
+    border-radius: 3px;
+    margin-left: 110px;
+    margin-top: 20px;
+}
+
+.msg {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 230px;
+    height: 70px;
+    line-height: 70px;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    font-size: 16px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

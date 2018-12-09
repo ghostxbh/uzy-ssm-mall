@@ -1,0 +1,649 @@
+nav {
+    width: 100%;
+}
+
+.header {
+    width: 1230px;
+    margin: 0 auto;
+    height: 96px;
+}
+
+.header > #mallLogo {
+    float: left;
+    padding-top: 28px;
+    width: 280px;
+    height: 64px;
+    line-height: 64px;
+    position: relative;
+}
+
+#mallLogo > a {
+    position: relative;
+    display: block;
+    height: 54px;
+    overflow: hidden;
+}
+
+#mallLogo img {
+    display: inline-block;
+    width: 190px;
+    height:54px;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+#mallLogo .span_tmallBuyCar {
+    font-family: "Microsoft YaHei UI Light", serif;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    vertical-align: top;
+    margin-top:25px;
+}
+
+.header > .shopSearchHeader {
+    float: right;
+    overflow: hidden;
+    width: 597px;
+    padding-top: 25px;
+}
+
+.shopSearchHeader > form {
+    border: solid #ff0036;
+    border-width: 3px 0 3px 3px;
+}
+
+.shopSearchHeader > form > .shopSearchInput {
+    font-family: Arial, serif;
+    position: relative;
+    height: 30px;
+}
+
+input::-webkit-input-placeholder { /* WebKit browsers*/
+    color: #666;
+    font-weight: normal;
+}
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18*/
+    color: #666;
+    font-weight: normal;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+*/
+    color: #666;
+    font-weight: normal;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10+*/
+    color: #666;
+    font-weight: normal;
+}
+
+.shopSearchInput > .searchInput {
+    font-size: 12px;
+    color: #000;
+    width: 496px;
+    height: 20px;
+    line-height: 20px;
+    padding: 5px 3px 5px 5px;
+    border: none;
+    font-weight: 900;
+    outline: none;
+    float: left;
+}
+
+.shopSearchInput > .searchBtn {
+    width: 90px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #FF0036;
+    overflow: hidden;
+    border: 0;
+    font-family: "Microsoft YaHei UI", serif;
+    float: left;
+}
+
+.shopSearchHeader > ul {
+    padding-top: 4px;
+    margin-left: -10px;
+    height: 16px;
+    overflow: hidden;
+    line-height: 16px;
+    margin-bottom: 15px;
+}
+
+.shopSearchHeader li + li {
+    border-left: 1px solid #cccccc;
+}
+
+.shopSearchHeader li {
+    float: left;
+    line-height: 1.1;
+    padding: 0 12px;
+}
+
+.shopSearchHeader li > a {
+    color: #999;
+    font-size: 12px;
+}
+
+.content {
+    width: 1230px;
+    margin: auto;
+    min-height:530px;
+    padding-bottom: 60px;
+    color: #666;
+}
+
+.content > #crumbs {
+    overflow: hidden;
+    color: #000;
+    margin: 20px 0 10px 0;
+    height: 18px;
+}
+
+.content > #crumbs > .cart-tip {
+    font-size: 12px;
+    float: right;
+    color: gray;
+}
+
+.content > #crumbs > .cart-tip > a {
+    color: #36c;
+}
+
+.content > #empty {
+    margin-top: 10%;
+    margin-left: 15%;
+    padding: 88px 0 100px 156px;
+    background: url(../../images/fore/WebsiteImage/T1TvXUXnNjXXXXXXXX-100-100.png) no-repeat 40px 86px;
+    position: relative;
+}
+
+.content > #empty > h2 {
+    font: 700 14px/20px Arial;
+    color: #000000;
+}
+
+.content > #empty li {
+    font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+    margin-top: 12px;
+    color: #000;
+}
+
+.content > #empty a {
+    font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+    color: #36c;
+    margin-left: 3px;
+}
+
+.content > #J_FilterBar {
+    overflow: hidden;
+    font-size: 12px;
+    position: relative;
+}
+
+.content > #J_FilterBar > #J_CartSwitch {
+    overflow: hidden;
+    height: 33px;
+}
+
+.content > #J_FilterBar > #J_CartSwitch > li {
+    float: left;
+    font-weight: 700;
+    font-size: 16px;
+    height: 16px;
+    line-height: 1.1;
+    font-family: 'Hiragino Sans GB', 'Lantinghei SC', 'Microsoft Yahei', SimSun, serif;
+    text-align: center;
+    padding: 0 0 15px 0;
+    cursor: pointer;
+    margin-left: -1px;
+}
+
+.content #J_CartSwitch > li > a {
+    padding-left: 15px;
+    color: #3c3c3c;
+}
+
+.content #J_CartSwitch > li > a:hover {
+    text-decoration: none;
+}
+
+.content #J_CartSwitch > li > a > em {
+    color: #FF0036;
+    font-style: normal;
+}
+
+.content #J_CartSwitch > li > a > span {
+    color: #FF0036;
+    font-size: 14px;
+    margin: 0 30px 0 0;
+    font-weight: 400;
+    font-family: Verdana, Tahoma, arial, serif;
+}
+
+.content > #J_FilterBar > .cart-sum {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+}
+
+.content .cart-sum > .pay-text {
+    line-height: 25px;
+}
+
+.content .cart-sum > .price {
+    font-family: Arial, Verdana, serif;
+    font-weight: 700;
+    margin-right: 5px;
+    color: #FF0036;
+}
+
+.content .cart-sum > .price > #J_SmallTotal {
+    font-family: Verdana, Arial, serif;
+    padding-left: 2px;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.total-symbol {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.cart-sum .submit-btn {
+    display: inline-block;
+    width: 55px;
+    color: #FFFFFF;
+    background: #F40;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+    line-height: 25px;
+}
+
+.cart-sum .submit-btn.submit-btn-disabled {
+    background: #aaa;
+    color: #FFFFFF;
+    cursor: not-allowed;
+}
+
+.cart-sum .submit-btn:hover {
+    text-decoration: none;
+}
+
+.content > #J_FilterBar > .wrap-line {
+    background: #e6e6e6;
+    height: 2px;
+    position: relative;
+}
+
+.content > #J_FilterBar > .wrap-line > .floater {
+    width: 123px;
+    left: -1px;
+    background: #FF0036;
+    height: 2px;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+}
+
+.content > #J_CartMain {
+    width: 100%;
+    min-height: 210px;
+}
+
+#J_CartMain > thead {
+    height: 50px;
+    line-height: 50px;
+    color: #3c3c3c;
+}
+
+#J_CartMain > thead .selectAll_th {
+    text-align: left;
+    position: relative;
+    height: 50px;
+    width: 45px;
+}
+
+.selectAll_th label {
+    font-weight: normal;
+}
+
+#J_CartMain > thead .productInfo_th {
+    padding-left: 91px;
+}
+
+#J_CartMain > thead th {
+    font: 12px 'Microsoft YaHei UI';
+}
+
+#J_CartMain > tbody tr.orderItem_category {
+    position: relative;
+    height: 38px;
+    background: #FFFFFF;
+    overflow: hidden;
+}
+
+tr.orderItem_category span.shop_logo {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -3px 6px 0 20px;
+    background: url(../../images/fore/WebsiteImage/TB1boCXfmCWBuNjy0FhXXb6EVXa-800-600.png) no-repeat -20px -105px;
+}
+
+tr.orderItem_category span.category_shop {
+    font-size: 12px;
+    color: #3c3c3c;
+}
+
+#J_CartMain > tbody tr.orderItem_info {
+    border: 1px solid #cccccc;
+    background: #fcfcfc;
+    min-height: 119px;
+}
+
+#J_CartMain > tbody tr.orderItem_info.orderItem_selected {
+    background: #fff8e1;
+}
+
+tr.orderItem_info > td {
+    padding: 20px 0;
+}
+
+tr.orderItem_info > .tbody_checkbox {
+    text-align: center;
+}
+
+tr.orderItem_info .orderItem_product_image {
+}
+
+tr.orderItem_info .orderItem_product_name {
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 12px;
+    max-width: 400px;
+    max-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+tr.orderItem_info .orderItem_product_name > a {
+    color: #3c3c3c;
+}
+
+tr.orderItem_info .orderItem_product_name > a:hover {
+    color: #ff0036;
+}
+
+tr.orderItem_info .orderItem_product_price {
+    color: #3c3c3c;
+    font-weight: 700;
+    font-size: 12px;
+    font-family: Verdana, Tahoma, Arial, serif;
+}
+
+tr.orderItem_info .item_amount {
+    width: 77px;
+    height: 25px;
+    overflow: hidden;
+    position: relative;
+}
+
+tr.orderItem_info .item_amount > a {
+    display: block;
+    width: 17px;
+    height: 23px;
+    border: 1px solid #e5e5e5;
+    background: #F0F0F0;
+    text-align: center;
+    line-height: 23px;
+    color: #444;
+}
+
+tr.orderItem_info .item_amount > a:hover {
+    text-decoration: none;
+}
+
+tr.orderItem_info .item_amount > a.J_Minus {
+    float: left;
+}
+
+tr.orderItem_info .item_amount > a.J_Plus {
+    float: right;
+}
+
+tr.orderItem_info .item_amount > a.no_minus {
+    color: #e5e5e5;
+!important;
+}
+
+tr.orderItem_info .item_amount > input[type=text] {
+    width: 39px;
+    height: 15px;
+    border: 1px solid #aaaaaa;
+    color: #343434;
+    text-align: center;
+    padding: 4px 0;
+    background-color: #FFFFFF;
+    position: absolute;
+    left: 18px;
+    top: 0;
+    font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+    line-height: 15px;
+}
+
+tr.orderItem_info .orderItem_product_realPrice {
+    font-family: Verdana, Tahoma, Arial, serif;
+    font-style: normal;
+    color: #FF0036;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+tr.orderItem_info .remove_order {
+    display: block;
+    color: #3c3c3c;
+    font-size: 12px;
+    height: 15px;
+
+}
+
+tr.orderItem_info .remove_order:hover {
+    color: #FF0036;
+}
+
+.content > #J_FloatBar {
+    margin-top: 15px;
+    height: 50px;
+    overflow: hidden;
+    background: #e5e5e5;
+}
+
+#J_FloatBar > #J_SelectAll2 {
+    float: left;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 5px;
+    font: 12px tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+}
+
+#J_SelectAll2 > .cart_checkbox {
+    float: left;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+    line-height: 50px;
+}
+
+.cart_checkbox > input[type="checkbox"] + label:before {
+    margin-right: .2em;
+}
+
+#J_SelectAll2 > span {
+    float: left;
+    line-height: 50px;
+    color: #000;
+}
+
+#J_FloatBar > .operations {
+    float: left;
+    line-height: 50px;
+    height: 50px;
+}
+
+.operations > a {
+    margin-left: 25px;
+    float: left;
+    color: #3c3c3c;
+    font: 12px/50px tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif
+}
+
+.operations > a:hover {
+    color: #FF0036;
+}
+
+#J_FloatBar > .float-bar-right {
+    float: right;
+    padding-left: 20px;
+    background: #e5e5e5;
+    height: 100%;
+}
+
+.float-bar-right > #J_ShowSelectedItems {
+    cursor: pointer;
+    height: 48px;
+    color: #3c3c3c;
+    float: left;
+    font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+}
+
+#J_ShowSelectedItems > .txt {
+    float: left;
+    display: inline-block;
+    line-height: 48px;
+}
+
+#J_ShowSelectedItems > #J_SelectedItemsCount {
+    float: left;
+    display: inline-block;
+    line-height: 50px;
+    padding: 0 5px;
+    color: #FF0036;
+    font-weight: 700;
+    font-size: 18px;
+    font-style: normal;
+    font-family: tohoma, Arial, serif;
+}
+
+.float-bar-right > .price_sum {
+    padding-left: 40px;
+    height: 48px;
+    color: #3c3c3c;
+    float: left;
+}
+
+.price_sum > .txt {
+    float: left;
+    color: #3c3c3c;
+    font: 12px/48px tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif
+}
+
+.price_sum > .price {
+    color: #FF0036;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 48px;
+    font-family: Arial, serif;
+    vertical-align: middle;
+    float: left;
+    display: inline-block;
+}
+
+.price_sum > .price > #J_Total {
+    font-weight: 700;
+    font-size: 22px;
+    padding: 0 3px;
+    font-family: tohoma, Arial, serif;
+    font-style: normal;
+}
+
+#J_Total > .total_symbol {
+    font-size: 14px;
+    font-family: Verdana, serif;
+    font-weight: 400;
+    color: #FF0036;
+}
+
+.float-bar-right > .btn_area {
+    float: left;
+}
+
+.btn_area > a {
+    display: block;
+    background: #B0B0B0;
+    color: #FFF;
+    border-left: 1px solid #e7e7e7;
+    width: 119px;
+    cursor: not-allowed;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-family: "Lantinghei SC", "Microsoft YaHei UI", serif;
+    font-size: 20px;
+    border-radius: 2px;
+}
+
+.btn_area > a:hover {
+    text-decoration: none;
+}
+
+.btn_area > a.selected {
+    background: #FF0036;
+    cursor: pointer;
+}
+
+.btn_area > a.selected:hover {
+    background: #FF0026;
+}
+
+input[type="checkbox"] + label::before {
+    content: "\a0";
+    position: relative;
+    bottom: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    width: 13px;
+    height: 13px;
+    margin-right: .4em;
+    border: 1px solid #cccccc;
+    text-indent: .15em;
+    line-height: 1;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label::before {
+    background-color: #ff7874;
+    background-clip: content-box;
+    padding: 2px;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
