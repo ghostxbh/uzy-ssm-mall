@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
-<mapper namespace="cn.jkj521.bookstore.dao.CategoryMapper">
+<mapper namespace="club.aiit.bookstore.dao.CategoryMapper">
     <insert id="insertOne" parameterType="category">
         INSERT category (category_id,category_name,category_image_src)
-            VALUES (
-            null,
-            #{category.category_name},
-            #{category.category_image_src})
+        VALUES (
+        null,
+        #{category.category_name},
+        #{category.category_image_src})
     </insert>
     <update id="updateOne" parameterType="category">
         UPDATE category

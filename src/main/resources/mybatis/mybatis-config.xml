@@ -6,4 +6,16 @@
     <settings>
         <setting name="logImpl" value="LOG4J2" />
     </settings>
+    <typeAliases>
+        <typeAlias type="club.aiit.bookstore.entity.Category" alias="category"/>
+        <typeAlias type="club.aiit.bookstore.entity.Product" alias="product"/>
+        <typeAlias type="club.aiit.bookstore.entity.ProductImage" alias="productImage"/>
+        <typeAlias type="club.aiit.bookstore.entity.ProductOrder" alias="productOrder"/>
+        <typeAlias type="club.aiit.bookstore.entity.ProductOrderItem" alias="productOrderItem"/>
+        <typeAlias type="club.aiit.bookstore.entity.OrderGroup" alias="orderGroup"/>
+        <typeAlias type="club.aiit.bookstore.entity.Property" alias="property"/>
+        <typeAlias type="club.aiit.bookstore.entity.PropertyValue" alias="propertyValue"/>
+        <typeAlias type="club.aiit.bookstore.entity.Review" alias="review"/>
+        <typeAlias type="club.aiit.bookstore.entity.User" alias="user"/>
+    </typeAliases>
 </configuration>

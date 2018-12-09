@@ -2,22 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
-<mapper namespace="cn.jkj521.bookstore.dao.AddressMapper">
-    <resultMap id="address" type="cn.jkj521.bookstore.entity.Address">
+<mapper namespace="club.aiit.bookstore.dao.AddressMapper">
+    <resultMap id="address" type="club.aiit.bookstore.entity.Address">
         <id property="address_areaId" column="address_areaId"/>
         <result property="address_name" column="address_name"/>
-        <association property="address_regionId" javaType="cn.jkj521.bookstore.entity.Address">
+        <association property="address_regionId" javaType="club.aiit.bookstore.entity.Address">
             <id property="address_areaId" column="address_regionId"/>
         </association>
     </resultMap>
-    <insert id="insertOne" parameterType="address">
+    <insert id="insertOne" parameterType="club.aiit.bookstore.entity.Address">
         INSERT address(address_areaId,address_name,address_regionId)
-            VALUES (
-            #{address.address_areaId},
-            #{address.address_name},
-            #{address.address_regionId})
+        VALUES (
+        #{address.address_areaId},
+        #{address.address_name},
+        #{address.address_regionId})
     </insert>
-    <update id="updateOne" parameterType="address">
+    <update id="updateOne" parameterType="club.aiit.bookstore.entity.Address">
         UPDATE address
         <set>
             <if test="address.address_name != null">address_name = #{address.address_name}</if>
@@ -27,7 +27,7 @@
         </where>
     </update>
 
-    <select id="select" resultMap="address">
+    <select id="select" resultMap="club.aiit.bookstore.entity.Address">
         SELECT address_areaId,address_name,address_regionId FROM address
         <where>
             <if test="address_name != null">

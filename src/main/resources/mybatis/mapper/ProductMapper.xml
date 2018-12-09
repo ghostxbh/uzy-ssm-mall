@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
-<mapper namespace="cn.jkj521.bookstore.dao.ProductMapper">
+<mapper namespace="club.aiit.bookstore.dao.ProductMapper">
     <resultMap id="productMap" type="product">
         <id property="product_id" column="product_id"/>
         <result property="product_name" column="product_name"/>
@@ -11,22 +11,23 @@
         <result property="product_sale_price" column="product_sale_price"/>
         <result property="product_create_date" column="product_create_date"/>
         <result property="product_isEnabled" column="product_isEnabled"/>
-        <association property="product_category" javaType="cn.jkj521.bookstore.entity.Category">
+        <association property="product_category" javaType="club.aiit.bookstore.entity.Category">
             <id property="category_id" column="product_category_id"/>
         </association>
     </resultMap>
 
     <insert id="insertOne" parameterType="product">
-        INSERT product (product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id)
-            VALUES(
-            null,
-            #{product.product_name},
-            #{product.product_title},
-            #{product.product_price},
-            #{product.product_sale_price},
-            #{product.product_create_date},
-            #{product.product_isEnabled},
-            #{product.product_category.category_id})
+        INSERT product
+        (product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id)
+        VALUES(
+        null,
+        #{product.product_name},
+        #{product.product_title},
+        #{product.product_price},
+        #{product.product_sale_price},
+        #{product.product_create_date},
+        #{product.product_isEnabled},
+        #{product.product_category.category_id})
     </insert>
     <update id="updateOne" parameterType="product">
         UPDATE product
@@ -58,10 +59,12 @@
     </delete>
 
     <select id="select" resultMap="productMap">
-        SELECT product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id
+        SELECT
+        product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id
         <if test="orderUtil != null">
             <if test='orderUtil.orderBy == "product_sale_count"'>
-            ,(SELECT SUM(productOrderItem_number) FROM productOrderItem WHERE productOrderItem_product_id = product_id) AS #{orderUtil.orderBy}
+                ,(SELECT SUM(productOrderItem_number) FROM productOrderItem WHERE productOrderItem_product_id =
+                product_id) AS #{orderUtil.orderBy}
             </if>
         </if>
         FROM product
@@ -69,7 +72,9 @@
             <if test="product != null">
                 <if test="product.product_name != null">product_name LIKE concat('%',#{product.product_name},'%')</if>
                 <if test="product.product_price != null">and product_sale_price &lt;= #{product.product_price}</if>
-                <if test="product.product_sale_price != null">and product_sale_price &gt;= #{product.product_sale_price}</if>
+                <if test="product.product_sale_price != null">and product_sale_price &gt;=
+                    #{product.product_sale_price}
+                </if>
                 <if test="product.product_category != null">
                     <if test="product.product_category.category_id != null">and product_category_id =
                         #{product.product_category.category_id}
@@ -122,20 +127,24 @@
             </if>
             <if test="product_isEnabled_array != null">
                 and product_isEnabled IN
-                <foreach collection="product_isEnabled_array" index="index" item="item" open="(" separator="," close=")">
+                <foreach collection="product_isEnabled_array" index="index" item="item" open="(" separator=","
+                         close=")">
                     #{item}
                 </foreach>
             </if>
         </where>
         <if test="orderUtil != null">
-            ORDER BY ${orderUtil.orderBy}<if test="orderUtil.isDesc">desc </if>
+            ORDER BY ${orderUtil.orderBy}
+            <if test="orderUtil.isDesc">desc</if>
         </if>
         <if test="pageUtil != null">
             LIMIT #{pageUtil.pageStart},#{pageUtil.count}
         </if>
     </select>
     <select id="selectOne" resultMap="productMap" parameterType="int">
-        SELECT product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id FROM product
+        SELECT
+        product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id
+        FROM product
         <where>
             product_id = #{product_id}
         </where>
@@ -168,7 +177,9 @@
             <if test="product != null">
                 <if test="product.product_name != null">product_name LIKE concat('%',#{product.product_name},'%')</if>
                 <if test="product.product_price != null">and product_sale_price &lt;= #{product.product_price}</if>
-                <if test="product.product_sale_price != null">and product_sale_price &gt;= #{product.product_sale_price}</if>
+                <if test="product.product_sale_price != null">and product_sale_price &gt;=
+                    #{product.product_sale_price}
+                </if>
                 <if test="product.product_category != null">
                     <if test="product.product_category.category_id != null">and product_category_id =
                         #{product.product_category.category_id}
@@ -204,7 +215,8 @@
                 </foreach>
             </if>
             <if test="product_isEnabled_array != null">and product_isEnabled IN
-                <foreach collection="product_isEnabled_array" index="index" item="item" open="(" separator="," close=")">
+                <foreach collection="product_isEnabled_array" index="index" item="item" open="(" separator=","
+                         close=")">
                     #{item}
                 </foreach>
             </if>

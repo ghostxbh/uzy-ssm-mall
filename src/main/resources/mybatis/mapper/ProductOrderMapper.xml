@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
-<mapper namespace="cn.jkj521.bookstore.dao.ProductOrderMapper">
+<mapper namespace="club.aiit.bookstore.dao.ProductOrderMapper">
     <resultMap id="productOrderMap" type="productOrder">
         <id property="productOrder_id" column="productorder_id"/>
         <result property="productOrder_code" column="productorder_code"/>
@@ -14,10 +14,10 @@
         <result property="productOrder_delivery_date" column="productorder_delivery_date"/>
         <result property="productOrder_confirm_date" column="productorder_confirm_date"/>
         <result property="productOrder_status" column="productorder_status"/>
-        <association property="productOrder_address" javaType="cn.jkj521.bookstore.entity.Address">
+        <association property="productOrder_address" javaType="club.aiit.bookstore.entity.Address">
             <id property="address_areaId" column="productorder_address"/>
         </association>
-        <association property="productOrder_user" javaType="cn.yunzhf.accounting.user.entity.UzUser">
+        <association property="productOrder_user" javaType="club.aiit.bookstore.entity.User">
             <id property="id" column="productorder_user_id"/>
         </association>
     </resultMap>

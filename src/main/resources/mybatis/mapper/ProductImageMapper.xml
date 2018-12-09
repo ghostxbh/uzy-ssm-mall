@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
-<mapper namespace="cn.jkj521.bookstore.dao.ProductImageMapper">
+<mapper namespace="club.aiit.bookstore.dao.ProductImageMapper">
     <resultMap id="imageMap" type="productImage">
         <id property="productImage_id" column="productimage_id"/>
         <result property="productImage_type" column="productimage_type"/>
         <result property="productImage_src" column="productimage_src"/>
-        <association property="productImage_product" javaType="cn.jkj521.bookstore.entity.Product">
+        <association property="productImage_product" javaType="club.aiit.bookstore.entity.Product">
             <id property="product_id" column="productimage_product_id"/>
         </association>
     </resultMap>

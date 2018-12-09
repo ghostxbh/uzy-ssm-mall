@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
-<mapper namespace="cn.jkj521.bookstore.dao.UserMapper">
+<mapper namespace="club.aiit.bookstore.dao.UserMapper">
     <resultMap id="userMap" type="user">
         <id property="user_id" column="user_id"/>
         <result property="user_name" column="user_name"/>
@@ -12,27 +12,28 @@
         <result property="user_gender" column="user_gender"/>
         <result property="user_birthday" column="user_birthday"/>
         <result property="user_profile_picture_src" column="user_profile_picture_src"/>
-        <association property="user_address" javaType="cn.jkj521.bookstore.entity.Address">
+        <association property="user_address" javaType="club.aiit.bookstore.entity.Address">
             <id property="address_areaId" column="user_address"/>
         </association>
-        <association property="user_homeplace" javaType="cn.jkj521.bookstore.entity.Address">
+        <association property="user_homeplace" javaType="club.aiit.bookstore.entity.Address">
             <id property="address_areaId" column="user_homeplace"/>
         </association>
     </resultMap>
 
     <insert id="insertOne" parameterType="user">
-        INSERT INTO user(user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace)
-            VALUES (
-            null,
-            #{user.user_name},
-            #{user.user_nickname},
-            #{user.user_password},
-            #{user.user_realname},
-            #{user.user_gender},
-            #{user.user_birthday},
-            #{user.user_profile_picture_src},
-            #{user.user_address.address_areaId},
-            #{user.user_homeplace.address_areaId})
+        INSERT INTO
+        user(user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace)
+        VALUES (
+        null,
+        #{user.user_name},
+        #{user.user_nickname},
+        #{user.user_password},
+        #{user.user_realname},
+        #{user.user_gender},
+        #{user.user_birthday},
+        #{user.user_profile_picture_src},
+        #{user.user_address.address_areaId},
+        #{user.user_homeplace.address_areaId})
     </insert>
 
     <update id="updateOne" parameterType="user">
@@ -69,11 +70,14 @@
     </delete>
 
     <select id="select" resultMap="userMap">
-        SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
+        SELECT
+        user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace
+        FROM user
         <if test="user != null">
             <where>
                 <if test="user.user_name != null">
-                    (user_name LIKE concat('%',#{user.user_name},'%') or user_nickname LIKE concat('%',#{user.user_name},'%'))
+                    (user_name LIKE concat('%',#{user.user_name},'%') or user_nickname LIKE
+                    concat('%',#{user.user_name},'%'))
                 </if>
                 <if test="user.user_gender != null">
                     and user_gender = #{user.user_gender}
@@ -81,20 +85,25 @@
             </where>
         </if>
         <if test="orderUtil != null">
-            ORDER BY ${orderUtil.orderBy}<if test="orderUtil.isDesc">desc </if>
+            ORDER BY ${orderUtil.orderBy}
+            <if test="orderUtil.isDesc">desc</if>
         </if>
         <if test="pageUtil != null">
             LIMIT #{pageUtil.pageStart},#{pageUtil.count}
         </if>
     </select>
     <select id="selectOne" resultMap="userMap" parameterType="int">
-        SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
+        SELECT
+        user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace
+        FROM user
         <where>
             user_id = #{user_id}
         </where>
     </select>
     <select id="selectByLogin" resultMap="userMap">
-        SELECT user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace FROM user
+        SELECT
+        user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace
+        FROM user
         <where>
             user_name = #{user_name} and user_password = #{user_password}
         </where>
@@ -104,7 +113,8 @@
         <if test="user != null">
             <where>
                 <if test="user.user_name != null">
-                    (user_name LIKE concat('%',#{user.user_name},'%') or user_nickname LIKE concat('%',#{user.user_name},'%'))
+                    (user_name LIKE concat('%',#{user.user_name},'%') or user_nickname LIKE
+                    concat('%',#{user.user_name},'%'))
                 </if>
                 <if test="user.user_gender != null">
                     and user_gender = #{user.user_gender}
