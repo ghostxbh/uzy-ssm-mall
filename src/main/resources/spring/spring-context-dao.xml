@@ -21,11 +21,11 @@
         <property name="dataSource" ref="datasource"/>
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
-        <property name="typeAliasesPackage" value="cn.jkj521.bookstore.entity"/>
+        <property name="typeAliasesPackage" value="club.aiit.bookstore.entity"/>
     </bean>
     <!-- 装配Mapper实现类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="cn.jkj521.bookstore.dao"/>
+        <property name="basePackage" value="club.aiit.bookstore.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 </beans>

@@ -27,7 +27,7 @@
         </where>
     </update>
 
-    <select id="select" resultMap="club.aiit.bookstore.entity.Address">
+    <select id="select" resultMap="address">
         SELECT address_areaId,address_name,address_regionId FROM address
         <where>
             <if test="address_name != null">

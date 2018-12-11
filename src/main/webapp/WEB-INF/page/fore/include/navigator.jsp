@@ -24,10 +24,10 @@
   .headimg{
   margin-left:10px;margin-right: 4px; height: 39px; width: 39px;border-radius: 50px;float:left;
   }
-  
+
    .hidep{
    width:100px;
- 
+
    }
 </style>
 <script>
@@ -53,7 +53,7 @@ function getRootPath() {
     });
     $(document).ready(function(){
     	var username = "${requestScope.user.name}";
-    	
+
     	if(username == null ||username == ""){
     		//alert("2");
     		$.ajax({
@@ -75,19 +75,19 @@ function getRootPath() {
     		   			     $("#out").append("<div class='personal-content'><img src='images/tou.png' class='headimg'><div class='personal-account' style='float:left;'><p>账号："+ username+"</p> "+
     		   			     "<p class='hidep'><a href='http://localhost:8080/AccountingOnline/page/index#flag=bookstore' style='margin-left:18px;border:none;background:#fff;font-size:12px; color:#333;'>个人设置</a></p>"+
     		   			     "<p><a href='http://www.jkj521.cn/AccountingOnline/logout' style='float:right;border:none;background:#fff;font-size:12px; color:#333;'>退出</a></p></div> </div>")
-    		   			   
+
     				   }
     			   }
     		   })
 		    		   $('#out').mouseover(function(){
-				   	    	 $('.personal-content').show(); 
+				   	    	 $('.personal-content').show();
 				   	   })
 				   	   $('#out').mouseleave(function(){
 				   	    	$('.personal-content').hide();
 				   	   })
 		    	}
     });
-   
+
 </script>
 <div id="nav">
     <div class="nav_main">
@@ -95,17 +95,14 @@ function getRootPath() {
             <c:choose>
                 <c:when test="${requestScope.user.name==null}">
                     <em>Ding，欢迎来优账云财税书店</em>
-                     <a href="http://www.jkj521.cn/AccountingOnline/user/checkLogin?url=bookstore/getsign" style="color:#FA0808">请登录</a>
-                    <a href="http://www.jkj521.cn/AccountingOnline/page/reg">免费注册</a>
+                    <a href="/bookstore/login" style="color:#FA0808">请登录</a>
+                    <a href="/bookstore/register">免费注册</a>
                 </c:when>
                 <c:otherwise>
                     <em>Hi，</em>
-                   <a href="${pageContext.request.contextPath}/userDetails" class="userName"
-                       target="_blank">${requestScope.user.name}</a>
-                    <a href="http://www.jkj521.cn/AccountingOnline/logout">退出</a> 
+                    <a href="${pageContext.request.contextPath}/userDetails" class="userName" target="_blank">${requestScope.user.name}</a>
+                    <a href="/bookstore/login/logout">退出</a>
                     <div id="out" style="display:none;"><img src='images/tou.png' class='headimg' style="margin-top:18px;"></div>
-                      
-                    
                 </c:otherwise>
             </c:choose>
         </p>

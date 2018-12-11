@@ -38,11 +38,11 @@
         <filter-name>HttpPutFormContentFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+
      <!-- 登录拦截器 -->
     <filter>
 		<filter-name>myFilter</filter-name>
-		<filter-class>cn.jkj521.bookstore.util.MyFilter</filter-class>
+		<filter-class>club.aiit.bookstore.util.MyFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>myFilter</filter-name>

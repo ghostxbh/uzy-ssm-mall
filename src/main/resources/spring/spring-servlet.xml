@@ -12,7 +12,7 @@
     <!-- 初始化配置 -->
     <mvc:annotation-driven/>
     <!-- 装配Controller -->
-    <context:component-scan base-package="cn.jkj521.bookstore.controller"/>
+    <context:component-scan base-package="club.aiit.bookstore.controller"/>
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/page/"/>

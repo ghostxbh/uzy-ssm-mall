@@ -10,7 +10,7 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
     <!-- 装配Service -->
-    <context:component-scan base-package="cn.jkj521.bookstore.service"/>
+    <context:component-scan base-package="club.aiit.bookstore.service"/>
     <!-- 事务配置 -->
     <tx:annotation-driven/>
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

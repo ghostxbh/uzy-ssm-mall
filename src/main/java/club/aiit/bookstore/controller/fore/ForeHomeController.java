@@ -47,7 +47,7 @@ public class ForeHomeController extends BaseController {
         //SessionMap
         System.out.println("bookindex:"+ session.getId());
         Object userId = checkUser(session);
-        
+
         if (userId != null) {
         	System.out.println(userId.toString());
             logger.info("获取用户信息");
