@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration status="error">
+    <!-- 先定义所有的appender -->
+    <appenders>
+        <!-- 输出控制台配置 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- 控制台只输出debug及以上级别的信息 -->
+            <ThresholdFilter level="debug" />
+            <!-- 输出日志的格式 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </Console>
+    </appenders>
+    <!-- 然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    <loggers>
+        <!-- 定义logger的日志级别 -->
+        <root level="trace">
+            <!-- 定义对日志信息如何处理 -->
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+</configuration>

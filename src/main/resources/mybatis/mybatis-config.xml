@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J2" />
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.uzykj.mall.entity.Category" alias="category"/>
+        <typeAlias type="com.uzykj.mall.entity.Product" alias="product"/>
+        <typeAlias type="com.uzykj.mall.entity.ProductImage" alias="productImage"/>
+        <typeAlias type="com.uzykj.mall.entity.ProductOrder" alias="productOrder"/>
+        <typeAlias type="com.uzykj.mall.entity.ProductOrderItem" alias="productOrderItem"/>
+        <typeAlias type="com.uzykj.mall.entity.OrderGroup" alias="orderGroup"/>
+        <typeAlias type="com.uzykj.mall.entity.Property" alias="property"/>
+        <typeAlias type="com.uzykj.mall.entity.PropertyValue" alias="propertyValue"/>
+        <typeAlias type="com.uzykj.mall.entity.Review" alias="review"/>
+        <typeAlias type="com.uzykj.mall.entity.User" alias="user"/>
+    </typeAliases>
+</configuration>
