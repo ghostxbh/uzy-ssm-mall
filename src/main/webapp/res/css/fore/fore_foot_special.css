@@ -1,0 +1,66 @@
+/*尾部样式*/
+.footer-copyright {
+    border-top: 0;
+    background: #FFF;
+    text-align: left;
+    min-height: 177px;
+}
+.footer {
+    overflow: hidden;
+    width: 1190px;
+    margin: 0 auto;
+    font: 12px/1.5 arial, "\5b8b\4f53";
+}
+
+.footer > p {
+    color: #ffffff;
+    padding: 5px 0;
+    line-height: 25px;
+    margin: 0;
+    font-family: Arial, serif;
+}
+
+.footer a {
+    color: #000000;
+    margin-right: 3px;
+    text-decoration: none;
+    font-family: Arial, serif;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.noneStyle {
+    display: none;
+}
+
+.copyright {
+    width: 990px;
+    color: #666;
+    line-height: 25px;
+}
+
+.copyright > a {
+    color: #999;
+    margin-right: 65px;
+    font-family: Arial, serif;
+}
+
+.copyright img {
+    position: relative;
+    bottom: 2px;
+    vertical-align: middle;
+    border: 0;
+}
+
+.copyright > b {
+    font-weight: 400;
+    color: #999;
+    font-family: Arial, serif;
+}
+
+.footertwo > a {
+    margin-right: 10px;
+    font-family: Arial, serif;
+}

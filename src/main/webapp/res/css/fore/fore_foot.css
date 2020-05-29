@@ -1,0 +1,71 @@
+/*尾部样式*/
+.footer-copyright {
+    min-width: 1230px;
+    border-top: 2px solid #FF0036;
+    background: #000;
+    text-align: center;
+    min-height: 50px;
+    line-height:50px;
+     color: #a4a4a4;
+    font: 12px/1.5 "Microsoft YaHei UI", arial, "\5b8b\4f53";
+}
+
+.footer-copyright > .footer {
+    overflow: hidden;
+    width: 1230px;
+    margin: 0 auto;
+     color: #a4a4a4;
+   text-align: center;
+} 
+.copyright {
+    min-width: 1230px;
+    color: #a4a4a4;
+    line-height: 55px;
+     text-align: center;
+} 
+/* .footer > p {
+    color: #ffffff;
+    padding: 5px 0;
+    line-height: 25px;
+    margin: 0;
+}
+
+.footer a {
+    color: #FFFFFF;
+    margin-right: 3px;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+. noneStyle {
+    display: none;
+}
+
+.copyright {
+    width: 990px;
+    color: #a4a4a4;
+    line-height: 55px;
+} 
+
+ .copyright > a {
+    color: #999;
+    margin-right: 65px;
+}
+
+.copyright img {
+    position: relative;
+    bottom: 2px;
+    vertical-align: middle;
+    border: 0;
+}
+
+.copyright > b {
+    font-weight: 400;
+    color: #686868;
+}
+
+.footertwo > a {
+    margin-right: 10px;
+} */

@@ -1,0 +1,76 @@
+.banner_footer {
+    border-top: 1px solid #D1D7DC;
+    padding: 0;
+}
+
+.banner_footer > .tmall-ensure {
+    background: url(../../images/fore/WebsiteImage/TB14dANRXXXXXbdXXXXXXXXXXXX-1190-100.jpg);
+    width: 1190px;
+    height: 100px;
+    margin: 25px auto;
+}
+
+.tmall-ensure > a {
+    float: left;
+    display: block;
+    width: 297px;
+    height: 100px;
+    text-indent: -1000em;
+}
+
+.banner_footer > .tmall-desc {
+    background: url(../../images/fore/WebsiteImage/TB1dl28RXXXXXbzaFXXXXXXXXXX-136-50.png) 45px bottom no-repeat;
+    background-size: 68px 25px;
+    width: 1190px;
+    padding-top: 22px;
+    height: 190px;
+    margin: auto;
+    border-top: 1px solid #ededed;
+}
+
+.tmall-desc > dl {
+    float: left;
+    width: 186px;
+    padding-left: 52px;
+}
+
+.tmall-desc > dl > dt {
+    color: #646464;
+    font-size: 16px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+}
+
+.tmall-desc > dl > dd {
+    text-align: left;
+}
+
+.tmall-desc > dl > dd > a {
+    font-size: 12px;
+    display: block;
+    width: 100px;
+    overflow: hidden;
+    text-align: left;
+    height: 20px;
+    line-height: 20px;
+    color: #8b8b8b;
+}
+
+.tmall-desc > dl > dd > .join {
+    display: block;
+    width: 105px;
+    height: 105px;
+    line-height: 105px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.context_buy_form {
+    display: inline-block;
+}
+
+.context_buyCar_form {
+    display: inline-block;
+}

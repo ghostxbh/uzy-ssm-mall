@@ -1,0 +1,267 @@
+nav {
+    width: 100%;
+}
+
+.header {
+    width: 1230px;
+    margin: 0 auto;
+    height: 96px;
+}
+
+.header > #mallLogo {
+    float: left;
+    padding-top: 28px;
+    width: 280px;
+    height: 64px;
+    line-height: 64px;
+    position: relative;
+}
+
+#mallLogo > a {
+    position: relative;
+    display: block;
+    height: 30px;
+    overflow: hidden;
+}
+
+#mallLogo img {
+    display: inline-block;
+    width: 190px;
+    height: 28px;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+#mallLogo .span_tmallRegister {
+    font-family: "Microsoft YaHei UI Light", serif;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.content {
+    color:#333;
+    position: relative;
+    width: 1190px;
+    min-height: 550px;
+    font-family: Arial, serif;
+    margin: 40px auto;
+}
+ .mt-menu {
+     float: left;
+     min-height:500px ;
+     margin-right: 20px;
+}
+ .mt-avatar img{
+     width: 100px;
+     height: 100px;
+     vertical-align:middle;
+ }
+.mt-menu-tree {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+.sns-tab {
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid #cccccc;
+}
+.sns-tab span{
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.sns-main {
+    margin: 35px;
+}
+#profile{
+    min-width: 860px;
+    float: left;
+    border: 1px solid #ccc;
+}
+#content_info{
+    min-height:600px;
+    margin: 20px auto 0;
+}
+#tips-box {
+    font-size: 15px;
+}
+#form_radion{
+    font-size: 10px;
+}
+.form-item {
+    padding: 10px 0;
+    line-height: 5px;
+    zoom: 1;
+    clear: both;
+    font-size: 12px;
+    text-align: left;
+}
+.form-label {
+    float: left;
+    font-size: 13px;
+    min-width: 100px;
+    line-height: 34px;
+    text-align: right;
+    font-weight: normal;
+    margin-left: 0;
+    padding-right: 10px;
+}
+.tsls{
+    float: left;
+    min-width: 90px;
+    line-height: 37px;
+    text-align: right;
+    font-weight: bolder;
+}
+.err-input {
+    border-color: #cccccc;
+}
+.form-text {
+    border: 1px solid #ccc;
+    width: 240px;
+    height: 10px;
+    line-height: 17px;
+    padding: 9px;
+    font-size: 14px;
+    _margin-left: -3px;
+}
+.form_span{
+    display: none;
+    padding-left: 15px;
+    font-size: 12px;
+}
+
+input[type=radio] {
+    line-height: 10px;
+    margin: 10px 0 0 10px;
+    cursor: pointer;
+}
+.last-item {
+    border-bottom: 1px solid #cccccc;
+
+}
+.font_we{
+    font-size: 14px;
+    font-family: Arial, serif;
+    color: #333333;
+    font-weight: normal;
+}
+
+/*修改bootstrap-select下拉框样式*/
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 120px;
+    margin: 0 20px 0 0;
+    position: relative;
+    top: 1px;
+}
+
+.btn.dropdown-toggle.btn-default {
+    font-size: 12px;
+    color: #333;
+    border-color: #ccc;
+    padding: 6px;
+    box-sizing: content-box;
+    border-radius: 0;
+}
+
+.btn-group-vertical > .btn, .btn-group > .btn {
+    height: 17px;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+    color: #cccccc;
+}
+
+.dropdown-menu > li > a {
+    font-size: 14px;
+}
+
+.bs-searchbox > .form-control {
+    height: 20px;
+    width: 140px;
+}
+
+.steps{
+    height: 46px;
+    border-bottom: 2px solid #e6e6e6;
+    position: relative;
+}
+
+.steps_tsl{
+    color: #3e3e3e;
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 300px;
+    display: inline-block;
+    border-bottom: 3px solid #FF0036;
+    height: 45px;
+    width: 200px;
+    text-align: center;
+}
+
+.btn-large {
+    min-width: 140px;
+}
+.btns {
+    height: 36px;
+    padding: 0 20px;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    background: #ff0036;
+    border: 0;
+    border-radius: 3px;
+    margin-left: 110px;
+    margin-top: 20px;
+}
+
+.form-item img{
+    width: 100px;
+    height: 100px;
+}
+
+
+.details_picList {
+    font-size: 0;
+    padding: 0;
+    margin: 0 0 0 10px;
+}
+
+.details_picList_fileUpload {
+    position: relative;
+    display: inline-block;
+    list-style: none;
+    padding: 1px;
+    margin: 0 5px 10px;
+}
+#user_profile_picture_src{
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    right: 100px;
+    opacity: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+   cursor: pointer;
+    z-index: 999;
+}
+
+.radio_value {
+    position: relative;
+    bottom: 2px;
+    padding: 0 2px;
+}
+
+#header_image {
+    border-radius: 5px;
+}

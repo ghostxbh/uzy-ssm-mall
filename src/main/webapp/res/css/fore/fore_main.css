@@ -1,0 +1,87 @@
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, nav, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+input {
+    outline: none;
+}
+
+body {
+    min-width: 1230px;
+}
+
+li {
+    list-style: none;
+}
+
+a:focus {
+    text-decoration: none;
+}
+
+/*分页工具样式*/
+#pageDiv {
+    width: 100%;
+    margin: 20px 0;
+    text-align: right;
+}
+
+#pageDiv > ul {
+    margin-left: -20px;
+    display: inline-block;
+    height: 32px;
+    margin-bottom: 0;
+    padding: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#pageDiv li {
+    width: 35px;
+    height: 35px;
+    float: left;
+    list-style: none;
+    border: 1px solid #ddd;
+    margin: 0 1px;
+}
+
+#pageDiv li:hover {
+    border: 1px solid #FF0036;
+    text-decoration: none;
+}
+
+#pageDiv li > a {
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    line-height: 35px;
+    color: #666;
+    cursor: pointer;
+}
+
+#pageDiv li > a:hover {
+    color: #FF0036;
+}
+
+#pageDiv li.disabled > a {
+    color: #dddddd;
+    cursor: default;
+}
+
+#pageDiv li.pageThis {
+    border: 1px solid #FF0036;
+    background-color: #FF0036;
+}
+
+#pageDiv .pageThis > a {
+    color: #fff;
+}
+
+#pageDiv .pageThis > a:hover {
+    color: #fff;
+}
