@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.CategoryMapper">
+    <insert id="insertOne" parameterType="category">
+        INSERT category (category_id,category_name,category_image_src)
+        VALUES (
+        null,
+        #{category.category_name},
+        #{category.category_image_src})
+    </insert>
+    <update id="updateOne" parameterType="category">
+        UPDATE category
+        <set>
+            <if test="category.category_name != null">category_name = #{category.category_name},</if>
+            <if test="category.category_image_src != null">category_image_src = #{category.category_image_src}</if>
+        </set>
+        <where>
+            category_id = #{category.category_id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.ArrayList">
+        delete from category
+        <where>
+            <if test="category_id_list != null">
+                category_id IN
+                <foreach collection="category_id_list" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </delete>
+
+    <select id="select" resultType="category">
+        SELECT category_id,category_name,category_image_src FROM category
+        <where>
+            <if test="category_name != null">category_name LIKE concat('%',#{category_name},'%')</if>
+        </where>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectOne" parameterType="int" resultType="category">
+        SELECT category_id,category_name,category_image_src FROM category
+        <where>
+            category_id = #{category_id}
+        </where>
+    </select>
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(category_id) FROM category
+        <where>
+            <if test="category_name != null">category_name LIKE concat('%',#{category_name},'%')</if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.UserMapper">
+    <resultMap id="userMap" type="user">
+        <id property="user_id" column="user_id"/>
+        <result property="user_name" column="user_name"/>
+        <result property="user_nickname" column="user_nickname"/>
+        <result property="user_password" column="user_password"/>
+        <result property="user_realname" column="user_realname"/>
+        <result property="user_gender" column="user_gender"/>
+        <result property="user_birthday" column="user_birthday"/>
+        <result property="user_profile_picture_src" column="user_profile_picture_src"/>
+        <association property="user_address" javaType="com.uzykj.mall.entity.Address">
+            <id property="address_areaId" column="user_address"/>
+        </association>
+        <association property="user_homeplace" javaType="com.uzykj.mall.entity.Address">
+            <id property="address_areaId" column="user_homeplace"/>
+        </association>
+    </resultMap>
+
+    <insert id="insertOne" parameterType="user">
+        INSERT INTO
+        user(user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace)
+        VALUES (
+        null,
+        #{user.user_name},
+        #{user.user_nickname},
+        #{user.user_password},
+        #{user.user_realname},
+        #{user.user_gender},
+        #{user.user_birthday},
+        #{user.user_profile_picture_src},
+        #{user.user_address.address_areaId},
+        #{user.user_homeplace.address_areaId})
+    </insert>
+
+    <update id="updateOne" parameterType="user">
+        UPDATE user
+        <set>
+            <if test="user.user_password != null">user_password = #{user.user_password},</if>
+            <if test="user.user_nickname != null">user_nickname = #{user.user_nickname},</if>
+            <if test="user.user_realname != null">user_realname = #{user.user_realname},</if>
+            <if test="user.user_gender != null">user_gender = #{user.user_gender},</if>
+            <if test="user.user_birthday != null">user_birthday = #{user.user_birthday},</if>
+            <if test="user.user_profile_picture_src != null">
+                user_profile_picture_src = #{user.user_profile_picture_src},
+            </if>
+            <if test="user.user_address != null">
+                user_address = #{user.user_address.address_areaId},
+            </if>
+        </set>
+        <where>
+            user_id = #{user.user_id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from user
+        <where>
+            <if test="user_id_list != null">
+                user_id in (
+                <foreach collection="user_id_list" item="item" separator=",">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+    </delete>
+
+    <select id="select" resultMap="userMap">
+        SELECT
+        user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace
+        FROM user
+        <if test="user != null">
+            <where>
+                <if test="user.user_name != null">
+                    (user_name LIKE concat('%',#{user.user_name},'%') or user_nickname LIKE
+                    concat('%',#{user.user_name},'%'))
+                </if>
+                <if test="user.user_gender != null">
+                    and user_gender = #{user.user_gender}
+                </if>
+            </where>
+        </if>
+        <if test="orderUtil != null">
+            ORDER BY ${orderUtil.orderBy}
+            <if test="orderUtil.isDesc">desc</if>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectOne" resultMap="userMap" parameterType="int">
+        SELECT
+        user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace
+        FROM user
+        <where>
+            user_id = #{user_id}
+        </where>
+    </select>
+    <select id="selectByLogin" resultMap="userMap">
+        SELECT
+        user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace
+        FROM user
+        <where>
+            user_name = #{user_name} and user_password = #{user_password}
+        </where>
+    </select>
+    <select id="selectTotal" resultType="int" parameterType="string">
+        SELECT COUNT(user_id) FROM user
+        <if test="user != null">
+            <where>
+                <if test="user.user_name != null">
+                    (user_name LIKE concat('%',#{user.user_name},'%') or user_nickname LIKE
+                    concat('%',#{user.user_name},'%'))
+                </if>
+                <if test="user.user_gender != null">
+                    and user_gender = #{user.user_gender}
+                </if>
+            </where>
+        </if>
+    </select>
+</mapper>

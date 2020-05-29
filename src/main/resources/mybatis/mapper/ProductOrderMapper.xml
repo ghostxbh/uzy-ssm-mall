@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.ProductOrderMapper">
+    <resultMap id="productOrderMap" type="productOrder">
+        <id property="productOrder_id" column="productorder_id"/>
+        <result property="productOrder_code" column="productorder_code"/>
+        <result property="productOrder_detail_address" column="productorder_detail_address"/>
+        <result property="productOrder_post" column="productorder_post"/>
+        <result property="productOrder_receiver" column="productorder_receiver"/>
+        <result property="productOrder_mobile" column="productorder_mobile"/>
+        <result property="productOrder_pay_date" column="productorder_pay_date"/>
+        <result property="productOrder_delivery_date" column="productorder_delivery_date"/>
+        <result property="productOrder_confirm_date" column="productorder_confirm_date"/>
+        <result property="productOrder_status" column="productorder_status"/>
+        <association property="productOrder_address" javaType="com.uzykj.mall.entity.Address">
+            <id property="address_areaId" column="productorder_address"/>
+        </association>
+        <association property="productOrder_user" javaType="com.uzykj.mall.entity.User">
+            <id property="user_id" column="productorder_user_id"/>
+        </association>
+    </resultMap>
+
+    <insert id="insertOne" parameterType="productOrder">
+        INSERT productorder
+        (productorder_id,productorder_code,productorder_detail_address,productorder_post,productorder_receiver,productorder_mobile,productorder_pay_date,productorder_delivery_date,productorder_confirm_date,productorder_status,productorder_address,productorder_user_id)
+        VALUES (
+        null,
+        #{productOrder.productOrder_code},
+        #{productOrder.productOrder_detail_address},
+        #{productOrder.productOrder_post},
+        #{productOrder.productOrder_receiver},
+        #{productOrder.productOrder_mobile},
+        #{productOrder.productOrder_pay_date},
+        #{productOrder.productOrder_delivery_date},
+        #{productOrder.productOrder_confirm_date},
+        #{productOrder.productOrder_status},
+        #{productOrder.productOrder_address.address_areaId},
+        #{productOrder.productOrder_user.user_id})
+    </insert>
+    <update id="updateOne" parameterType="productOrder">
+        UPDATE productorder
+        <set>
+            <if test="productOrder.productOrder_address != null">
+                productorder_address = #{productOrder.productOrder_address},
+            </if>
+            <if test="productOrder.productOrder_detail_address != null">
+                productorder_detail_address = #{productOrder.productOrder_detail_address},
+            </if>
+            <if test="productOrder.productOrder_post != null">
+                productorder_post = #{productOrder.productOrder_post},
+            </if>
+            <if test="productOrder.productOrder_status != null">
+                productorder_status = #{productOrder.productOrder_status},
+            </if>
+            <if test="productOrder.productOrder_pay_date != null">
+                productorder_pay_date = #{productOrder.productOrder_pay_date},
+            </if>
+            <if test="productOrder.productOrder_delivery_date != null">
+                productorder_delivery_date = #{productOrder.productOrder_delivery_date},
+            </if>
+            <if test="productOrder.productOrder_confirm_date != null">
+                productorder_confirm_date = #{productOrder.productOrder_confirm_date}
+            </if>
+        </set>
+        <where>
+            productorder_id = #{productOrder.productOrder_id}
+        </where>
+    </update>
+
+    <delete id="deleteList" parameterType="java.util.ArrayList">
+        DELETE FROM productorder
+        <where>
+            <if test="productOrder_id_list != null">
+                productorder_id IN
+                <foreach collection="productOrder_id_list" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+    </delete>
+
+    <select id="select" resultMap="productOrderMap">
+        SELECT
+        productorder_id,productorder_code,productorder_detail_address,productorder_post,productorder_receiver,productorder_mobile,productorder_pay_date,productorder_delivery_date,productorder_confirm_date,productorder_status,productorder_address,productorder_user_id
+        FROM productorder
+        <where>
+            1 = 1
+            <if test="productOrder != null">
+                <if test="productOrder.productOrder_code != null">and productorder_code LIKE
+                    concat('%',#{productOrder.productOrder_code},'%')
+                </if>
+                <if test="productOrder.productOrder_post != null">and productorder_post LIKE
+                    concat('%',#{productOrder.productOrder_post},'%')
+                </if>
+                <if test="productOrder.productOrder_user != null">and productorder_user_id =
+                    #{productOrder.productOrder_user.user_id}
+                </if>
+            </if>
+            <if test="productOrder_status_array != null">
+                and productorder_status IN
+                <foreach collection="productOrder_status_array" index="index" item="item" open="(" separator=","
+                         close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        <if test="orderUtil != null">
+            ORDER BY ${orderUtil.orderBy}
+            <if test="orderUtil.isDesc">desc</if>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+
+    <select id="selectByUserId" resultMap="productOrderMap">
+        SELECT
+        productorder_id,productorder_code,productorder_detail_address,productorder_post,productorder_receiver,productorder_mobile,productorder_pay_date,productorder_delivery_date,productorder_confirm_date,productorder_status,productorder_address,productorder_user_id
+        FROM productorder
+        <where>
+            <if test="user_id != null">
+                productorder_user_id = #{user_id}
+            </if>
+        </where>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+
+    <select id="selectOne" resultMap="productOrderMap" parameterType="int">
+        SELECT
+        productorder_id,productorder_code,productorder_detail_address,productorder_post,productorder_receiver,productorder_mobile,productorder_pay_date,productorder_delivery_date,productorder_confirm_date,productorder_status,productorder_address,productorder_user_id
+        FROM productorder
+        <where>
+            productorder_id = #{productOrder_id}
+        </where>
+    </select>
+    <select id="selectByCode" resultMap="productOrderMap" parameterType="string">
+        SELECT
+        productorder_id,productorder_code,productorder_detail_address,productorder_post,productorder_receiver,productorder_mobile,productorder_pay_date,productorder_delivery_date,productorder_confirm_date,productorder_status,productorder_address,productorder_user_id
+        FROM productorder
+        <where>
+            productorder_code = #{productOrder_code}
+        </where>
+    </select>
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(productorder_id) FROM productorder
+        <where>
+            <if test="productOrder != null">
+                <if test="productOrder.productOrder_code">productorder_code LIKE
+                    concat('%',#{productOrder.productOrder_code},'%')
+                </if>
+                <if test="productOrder.productOrder_post">and productorder_post LIKE
+                    concat('%',#{productOrder.productOrder_post},'%')
+                </if>
+                <if test="productOrder.productOrder_user != null">and productorder_user_id =
+                    #{productOrder.productOrder_user.user_id}
+                </if>
+            </if>
+            <if test="productOrder_status_array != null">and productorder_status IN
+                <foreach collection="productOrder_status_array" index="index" item="item" open="(" separator=","
+                         close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getTotalByDate" resultType="orderGroup">
+        SELECT
+        productorder_pay_date,count(productorder_id) as productorder_count ,productorder_status from productorder
+        <where>
+            productorder_pay_date BETWEEN #{beginDate} AND #{endDate}
+        </where>
+        GROUP BY DATE_FORMAT(productorder_pay_date,'%Y-%m-%d'),productorder_status
+    </select>
+</mapper>

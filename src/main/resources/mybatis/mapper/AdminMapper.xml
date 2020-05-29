@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.AdminMapper">
+    <insert id="insertOne" parameterType="com.uzykj.mall.entity.Admin">
+        INSERT admin(admin_id,admin_name,admin_nickname,admin_password,admin_profile_picture_src)
+        VALUES (
+        null,
+        #{admin.admin_id},
+        #{admin.admin_name},
+        #{admin.admin_nickname},
+        #{admin.admin_password},
+        #{admin.admin_profile_picture_src})
+    </insert>
+    <update id="updateOne" parameterType="com.uzykj.mall.entity.Admin">
+        UPDATE admin
+        <set>
+            <if test="admin.admin_profile_picture_src != null">admin_profile_picture_src =
+                #{admin.admin_profile_picture_src},
+            </if>
+            <if test="admin.admin_nickname != null">admin_nickname = #{admin.admin_nickname},</if>
+            <if test="admin.admin_password != null">admin_password = #{admin.admin_password}</if>
+        </set>
+        <where>
+            admin_id = #{admin.admin_id}
+        </where>
+    </update>
+
+    <select id="select" resultType="com.uzykj.mall.entity.Admin">
+        SELECT admin_id,admin_name,admin_nickname,admin_profile_picture_src FROM admin
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.index},#{pageUtil.count}
+        </if>
+        <where>
+            <if test="admin_name != null">
+                admin_name LIKE concat('%',#{admin_name},'%')
+            </if>
+        </where>
+    </select>
+    <select id="selectOne" resultType="com.uzykj.mall.entity.Admin" parameterType="int">
+        SELECT admin_id,admin_name,admin_nickname,admin_profile_picture_src FROM admin
+        <where>
+            <if test="admin_id != null">
+                admin_id = #{admin_id}
+            </if>
+            <if test="admin_name != null">
+                admin_name = #{admin_name}
+            </if>
+        </where>
+    </select>
+    <select id="selectByLogin" resultType="com.uzykj.mall.entity.Admin">
+        SELECT admin_id FROM admin
+        <where>
+            admin_name = #{admin_name} and admin_password = #{admin_password}
+        </where>
+    </select>
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(admin_id) FROM admin
+        <where>
+            <if test="admin_name != null">admin_name LIKE concat('%',#{admin_name},'%')</if>
+        </where>
+    </select>
+</mapper>

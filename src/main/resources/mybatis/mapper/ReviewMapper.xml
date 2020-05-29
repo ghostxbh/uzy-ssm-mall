@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.ReviewMapper">
+    <resultMap id="reviewMap" type="review">
+        <id column="review_id" property="review_id"/>
+        <result column="review_content" property="review_content"/>
+        <result column="review_createDate" property="review_createDate"/>
+        <association property="review_user" javaType="com.uzykj.mall.entity.User">
+            <id property="user_id" column="review_user_id"/>
+        </association>
+        <association property="review_product" javaType="com.uzykj.mall.entity.Product">
+            <id property="product_id" column="review_product_id"/>
+        </association>
+        <association property="review_orderItem" javaType="com.uzykj.mall.entity.ProductOrderItem">
+            <id property="productOrderItem_id" column="review_orderItem_id"/>
+        </association>
+    </resultMap>
+
+    <insert id="insertOne" parameterType="review">
+        INSERT review (review_id,review_content,review_createDate,review_user_id,review_product_id,review_orderItem_id)
+        VALUES (
+        null,
+        #{review.review_content},
+        #{review.review_createDate},
+        #{review.review_user.user_id},
+        #{review.review_product.product_id},
+        #{review.review_orderItem.productOrderItem_id})
+    </insert>
+    <update id="updateOne" parameterType="review">
+        UPDATE review
+        <set>
+            <if test="review.review_content != null">review_content = #{review.review_content},</if>
+            <if test="review.review_createDate != null">review_createDate = #{review.review_createDate}</if>
+        </set>
+        <where>
+            review_id = #{review.review_id}
+        </where>
+    </update>
+    <delete id="deleteList" parameterType="java.util.ArrayList">
+        DELETE FROM review
+        <where>
+            review_id IN
+            <foreach collection="review_id_list" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </delete>
+    <select id="select" resultMap="reviewMap">
+        SELECT review_id,review_content,review_createDate,review_user_id,review_product_id FROM review
+        <if test="review != null">
+            <where>
+                <if test="review.review_content != null">review_content = #{review.review_content}</if>
+            </where>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectByUserId" resultMap="reviewMap">
+        SELECT review_id,review_content,review_createDate,review_user_id,review_product_id FROM review
+        <where>
+            review_user_id = #{user_id}
+        </where>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectByProductId" resultMap="reviewMap">
+        SELECT review_id,review_content,review_createDate,review_user_id,review_product_id FROM review
+        <where>
+            review_product_id = #{product_id}
+        </where>
+        ORDER BY review_id desc
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectOne" resultMap="reviewMap" parameterType="int">
+        SELECT review_id,review_content,review_createDate,review_user_id,review_product_id FROM review
+        <where>
+            review_id = #{review_id}
+        </where>
+    </select>
+    <select id="selectTotal" resultType="int" parameterType="review">
+        SELECT COUNT(review_id) FROM review
+        <if test="review != null">
+            <where>
+                <if test="review.review_content != null">review_content = #{review.review_content}</if>
+            </where>
+        </if>
+    </select>
+    <select id="selectTotalByUserId" resultType="int" parameterType="int">
+        SELECT COUNT(review_id) FROM review
+        <where>
+            review_user_id = #{user_id}
+        </where>
+    </select>
+    <select id="selectTotalByProductId" resultType="int" parameterType="int">
+        SELECT COUNT(review_id) FROM review
+        <where>
+            review_product_id = #{product_id}
+        </where>
+    </select>
+    <select id="selectTotalByOrderItemId" resultType="int" parameterType="int">
+        SELECT COUNT(review_id) FROM review
+        <where>
+            review_orderItem_id = #{productOrderItem_id}
+        </where>
+    </select>
+
+</mapper>

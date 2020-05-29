@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.AddressMapper">
+    <resultMap id="address" type="com.uzykj.mall.entity.Address">
+        <id property="address_areaId" column="address_areaId"/>
+        <result property="address_name" column="address_name"/>
+        <association property="address_regionId" javaType="com.uzykj.mall.entity.Address">
+            <id property="address_areaId" column="address_regionId"/>
+        </association>
+    </resultMap>
+    <insert id="insertOne" parameterType="com.uzykj.mall.entity.Address">
+        INSERT address(address_areaId,address_name,address_regionId)
+        VALUES (
+        #{address.address_areaId},
+        #{address.address_name},
+        #{address.address_regionId})
+    </insert>
+    <update id="updateOne" parameterType="com.uzykj.mall.entity.Address">
+        UPDATE address
+        <set>
+            <if test="address.address_name != null">address_name = #{address.address_name}</if>
+        </set>
+        <where>
+            address_areaId = #{address.address_areaId}
+        </where>
+    </update>
+
+    <select id="select" resultMap="address">
+        SELECT address_areaId,address_name,address_regionId FROM address
+        <where>
+            <if test="address_name != null">
+                address_name LIKE concat('%',#{address_name},'%')
+            </if>
+            <if test="address_regionId != null">
+                and address_regionId = #{address_regionId} and address_areaId != address_regionId
+            </if>
+        </where>
+    </select>
+    <select id="selectOne" resultMap="address" parameterType="string">
+        SELECT address_areaId,address_name,address_regionId FROM address
+        <where>
+            address_areaId = #{address_areaId}
+        </where>
+    </select>
+    <select id="selectRoot" resultMap="address">
+        SELECT address_areaId,address_name,address_regionId FROM address
+        <where>
+            address_areaId = address_regionId
+        </where>
+    </select>
+</mapper>

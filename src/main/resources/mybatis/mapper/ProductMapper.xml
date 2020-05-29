@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.ProductMapper">
+    <resultMap id="productMap" type="product">
+        <id property="product_id" column="product_id"/>
+        <result property="product_name" column="product_name"/>
+        <result property="product_title" column="product_title"/>
+        <result property="product_price" column="product_price"/>
+        <result property="product_sale_price" column="product_sale_price"/>
+        <result property="product_create_date" column="product_create_date"/>
+        <result property="product_isEnabled" column="product_isEnabled"/>
+        <association property="product_category" javaType="com.uzykj.mall.entity.Category">
+            <id property="category_id" column="product_category_id"/>
+        </association>
+    </resultMap>
+
+    <insert id="insertOne" parameterType="product">
+        INSERT product
+        (product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id)
+        VALUES(
+        null,
+        #{product.product_name},
+        #{product.product_title},
+        #{product.product_price},
+        #{product.product_sale_price},
+        #{product.product_create_date},
+        #{product.product_isEnabled},
+        #{product.product_category.category_id})
+    </insert>
+    <update id="updateOne" parameterType="product">
+        UPDATE product
+        <set>
+            <if test="product.product_name != null">product_name = #{product.product_name},</if>
+            <if test="product.product_title != null">product_title = #{product.product_title},</if>
+            <if test="product.product_price != null">product_price = #{product.product_price},</if>
+            <if test="product.product_sale_price != null">product_sale_price = #{product.product_sale_price},</if>
+            <if test="product.product_isEnabled != null">product_isEnabled = #{product.product_isEnabled},</if>
+            <if test="product.product_category != null">
+                product_category_id = #{product.product_category.category_id}
+            </if>
+        </set>
+        <where>
+            product_id = #{product.product_id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.ArrayList">
+        delete from product
+        <where>
+            <if test="product_id_list != null">
+                product_id IN
+                <foreach collection="product_id_list" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </delete>
+
+    <select id="select" resultMap="productMap">
+        SELECT
+        product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id
+        <if test="orderUtil != null">
+            <if test='orderUtil.orderBy == "product_sale_count"'>
+                ,(SELECT SUM(productOrderItem_number) FROM productOrderItem WHERE productOrderItem_product_id =
+                product_id) AS #{orderUtil.orderBy}
+            </if>
+        </if>
+        FROM product
+        <where>
+            <if test="product != null">
+                <if test="product.product_name != null">product_name LIKE concat('%',#{product.product_name},'%')</if>
+                <if test="product.product_price != null">and product_sale_price &lt;= #{product.product_price}</if>
+                <if test="product.product_sale_price != null">and product_sale_price &gt;=
+                    #{product.product_sale_price}
+                </if>
+                <if test="product.product_category != null">
+                    <if test="product.product_category.category_id != null">and product_category_id =
+                        #{product.product_category.category_id}
+                    </if>
+                </if>
+            </if>
+            <if test="product_isEnabled_array != null">
+                and product_isEnabled IN
+                <foreach collection="product_isEnabled_array" index="index" item="item" open="(" separator=","
+                         close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        <if test="orderUtil != null">
+            ORDER BY ${orderUtil.orderBy}
+            <if test="orderUtil.isDesc">desc</if>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectMoreList" resultMap="productMap">
+        SELECT
+        product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id
+        <if test="orderUtil != null">
+            <if test='orderUtil.orderBy == "product_sale_count"'>
+                ,(SELECT SUM(productOrderItem_number) FROM productOrderItem WHERE productOrderItem_product_id =
+                product_id) AS #{orderUtil.orderBy}
+            </if>
+        </if>
+        FROM product
+        <where>
+            <if test="product != null">
+                <if test="product.product_price != null">and product_sale_price &lt;= #{product.product_price}</if>
+                <if test="product.product_sale_price != null">and product_sale_price &gt;=
+                    #{product.product_sale_price}
+                </if>
+                <if test="product.product_category != null">
+                    <if test="product.product_category.category_id != null">and product_category_id =
+                        #{product.product_category.category_id}
+                    </if>
+                </if>
+            </if>
+            <if test="product_name_split != null">
+                and
+                <foreach collection="product_name_split" index="index" item="item" open="(" separator="and" close=")">
+                    product_name LIKE concat('%',#{item},'%')
+                </foreach>
+            </if>
+            <if test="product_isEnabled_array != null">
+                and product_isEnabled IN
+                <foreach collection="product_isEnabled_array" index="index" item="item" open="(" separator=","
+                         close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        <if test="orderUtil != null">
+            ORDER BY ${orderUtil.orderBy}
+            <if test="orderUtil.isDesc">desc</if>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectOne" resultMap="productMap" parameterType="int">
+        SELECT
+        product_id,product_name,product_title,product_price,product_sale_price,product_create_date,product_isEnabled,product_category_id
+        FROM product
+        <where>
+            product_id = #{product_id}
+        </where>
+    </select>
+    <select id="selectTitle" resultType="product">
+        SELECT product_id,product_title FROM product
+        <where>
+            <if test="product != null">
+                <if test="product.product_name != null">product_name LIKE concat('%',#{product.product_name},'%')</if>
+                <if test="product.product_price != null">and product_sale_price &lt;= #{product.product_price}</if>
+                <if test="product.product_sale_price != null">and product_sale_price &gt;=
+                    #{product.product_sale_price}
+                </if>
+                <if test="product.product_category != null">
+                    <if test="product.product_category.category_id != null">and product_category_id =
+                        #{product.product_category.category_id}
+                    </if>
+                </if>
+            </if>
+            and product_isEnabled != 1
+        </where>
+        ORDER BY product_id desc
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(product_id) FROM product
+        <where>
+            <if test="product != null">
+                <if test="product.product_name != null">product_name LIKE concat('%',#{product.product_name},'%')</if>
+                <if test="product.product_price != null">and product_sale_price &lt;= #{product.product_price}</if>
+                <if test="product.product_sale_price != null">and product_sale_price &gt;=
+                    #{product.product_sale_price}
+                </if>
+                <if test="product.product_category != null">
+                    <if test="product.product_category.category_id != null">and product_category_id =
+                        #{product.product_category.category_id}
+                    </if>
+                </if>
+            </if>
+            <if test="product_isEnabled_array != null">and product_isEnabled IN
+                <foreach collection="product_isEnabled_array" index="index" item="item" open="(" separator=","
+                         close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="selectMoreListTotal" resultType="int">
+        SELECT COUNT(product_id) FROM product
+        <where>
+            <if test="product != null">
+                <if test="product.product_price != null">and product_sale_price &lt;= #{product.product_price}</if>
+                <if test="product.product_sale_price != null">and product_sale_price &gt;=
+                    #{product.product_sale_price}
+                </if>
+                <if test="product.product_category != null">
+                    <if test="product.product_category.category_id != null">and product_category_id =
+                        #{product.product_category.category_id}
+                    </if>
+                </if>
+            </if>
+            <if test="product_name_split != null">
+                and
+                <foreach collection="product_name_split" index="index" item="item" open="(" separator="and" close=")">
+                    product_name LIKE concat('%',#{item},'%')
+                </foreach>
+            </if>
+            <if test="product_isEnabled_array != null">and product_isEnabled IN
+                <foreach collection="product_isEnabled_array" index="index" item="item" open="(" separator=","
+                         close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

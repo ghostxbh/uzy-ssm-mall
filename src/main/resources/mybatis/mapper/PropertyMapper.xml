@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.PropertyMapper">
+    <resultMap id="propertyMap" type="property">
+        <id property="property_id" column="property_id"/>
+        <result property="property_name" column="property_name"/>
+        <association property="property_category" javaType="com.uzykj.mall.entity.Category">
+            <id property="category_id" column="property_category_id"/>
+        </association>
+    </resultMap>
+
+    <insert id="insertOne" parameterType="property">
+        INSERT property (property_id,property_name,property_category_id)
+        VALUES(
+        null,
+        #{property.property_name},
+        #{property.property_category_id})
+    </insert>
+    <insert id="insertList" parameterType="list">
+        INSERT property (property_id,property_name,property_category_id)
+        VALUES
+        <foreach collection="property_list" index="index" item="property" separator=",">
+            (null,
+            #{property.property_name},
+            #{property.property_category_id})
+        </foreach>
+    </insert>
+    <update id="updateOne" parameterType="property">
+        UPDATE property
+        <set>
+            <if test="property.property_name != null">property_name = #{property.property_name}</if>
+        </set>
+        <where>
+            property_id = #{property.property_id}
+        </where>
+    </update>
+
+    <delete id="deleteList" parameterType="java.util.ArrayList">
+        DELETE FROM property
+        <where>
+            <if test="property_id_list != null">
+                property_id IN
+                <foreach collection="property_id_list" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </delete>
+
+    <select id="select" resultMap="propertyMap">
+        SELECT property_id,property_name,property_category_id FROM property
+        <if test="property != null">
+            <where>
+                <if test="property.property_name != null">property_name LIKE concat('%',#{property.property_name},'%')
+                </if>
+                <if test="property.property_category != null">
+                    <if test="property.property_category.category_id != null">property_category_id =
+                        #{property.property_category.category_id}
+                    </if>
+                </if>
+            </where>
+        </if>
+        <if test="pageUtil != null">
+            LIMIT #{pageUtil.pageStart},#{pageUtil.count}
+        </if>
+    </select>
+    <select id="selectOne" resultMap="propertyMap" parameterType="int">
+        SELECT property_id,property_name,property_category_id FROM property
+        <where>
+            property_id = #{property_id}
+        </where>
+    </select>
+    <select id="selectTotal" resultType="int" parameterType="property">
+        SELECT property_id,property_name,property_category_id FROM property
+        <if test="property != null">
+            <where>
+                <where>
+                    <if test="property.property_name != null">property_name LIKE
+                        concat('%',#{property.property_name},'%')
+                    </if>
+                    <if test="property.property_category != null">
+                        <if test="property.property_category.category_id != null">property_category_id =
+                            #{property.property_category.category_id}
+                        </if>
+                    </if>
+                </where>
+            </where>
+        </if>
+    </select>
+</mapper>
