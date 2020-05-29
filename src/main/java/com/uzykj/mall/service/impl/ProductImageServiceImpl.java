@@ -47,9 +47,10 @@ public class ProductImageServiceImpl implements ProductImageService {
     @Override
     public List<ProductImage> getList(Integer product_id, Byte productImage_type, PageUtil pageUtil) {
         List<ProductImage> imageList = productImageMapper.select(product_id, productImage_type, pageUtil);
-        for (ProductImage image : imageList) {
-//            image.setProductImage_src(QiniuUtil.getFileUrl(image.getProductImage_src(),QiniuUtil.BOOKSTORE_DOMAIN));
-        }
+        // TODO 当前未使用七牛
+        /*for (ProductImage image : imageList) {
+            image.setProductImage_src(QiniuUtil.getFileUrl(image.getProductImage_src(),QiniuUtil.BOOKSTORE_DOMAIN));
+        }*/
         return imageList;
     }
 

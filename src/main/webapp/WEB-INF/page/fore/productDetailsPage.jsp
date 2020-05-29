@@ -28,7 +28,7 @@
             <ul>
                 <c:forEach items="${requestScope.categoryList}" var="category" varStatus="i">
                     <li>
-                        <%-- <a href="${pageContext.request.contextPath}/product?category_id=${category.category_id}">${category.category_name}</a> --%>
+                            <%-- <a href="${pageContext.request.contextPath}/product?category_id=${category.category_id}">${category.category_name}</a> --%>
                     </li>
                 </c:forEach>
             </ul>
@@ -121,10 +121,10 @@
         </div>
         <div class="context_info_main">
             <div class="context_info_main_ad">
-                <%-- <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/context_ad.png">
+                <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/context_ad.png">
                 <span>全天猫实物商品通用</span>
                 <a href="#">去刮券<img
-                        src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/tmallItemContentB.png"></a> --%>
+                        src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/tmallItemContentB.png"></a>
             </div>
             <dl class="context_price_panel">
                 <dt>价格</dt>
@@ -141,8 +141,8 @@
             </li>
             <li>累计评价<span>${requestScope.product.product_review_count}</span></li>
             <li class="tmall_points">送积分<span><fmt:formatNumber type="number"
-                                                                  value="${requestScope.product.product_sale_price/10}"
-                                                                  maxFractionDigits="0"/></span></li>
+                                                                value="${requestScope.product.product_sale_price/10}"
+                                                                maxFractionDigits="0"/></span></li>
         </ul>
         <dl class="context_info_member">
             <dt>数量</dt>
@@ -161,20 +161,11 @@
         </dl>
         <div class="context_buy">
             <script>
-                //获取当前通信路径
-                function getRootPath() {
-                    var curPath = window.document.location.href;
-                    var pathName = window.document.location.pathname;
-                    var pos = curPath.indexOf(pathName);
-                    var localhostPath = curPath.substring(0, pos);
-                    //var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
-                    return localhostPath;
-                }
                 $(function () {
                     //点击购买按钮时
                     $(".context_buy_form").submit(function () {
                         if ('${sessionScope.userId}' === "") {
-                            location.href = getRootPath()+"/AccountingOnline/user/checkLogin?url=bookstore/getsign";
+                            location.href = "${pageContext.request.contextPath}/login";
                             return false;
                         }
                         var number = isNaN($.trim($(".context_buymember").val()));
@@ -188,7 +179,7 @@
                     //点击加入购物车按钮时
                     $(".context_buyCar_form").submit(function () {
                         if ('${sessionScope.userId}' === "") {
-                            location.href = getRootPath()+"/AccountingOnline/user/checkLogin?url=bookstore/getsign";
+                            location.href = "${pageContext.request.contextPath}/login";
                             return false;
                         }
                         var number = isNaN($.trim($(".context_buymember").val()));
@@ -232,16 +223,16 @@
             <form method="get" class="context_buy_form">
                 <input class="context_buyNow" type="submit" value="立即购买"/>
             </form>
-            <!-- <form method="get" class="context_buyCar_form">
+            <form method="get" class="context_buyCar_form">
                 <input class="context_addBuyCar" type="submit" value="加入购物车"/>
-            </form> -->
+            </form>
         </div>
-        <!-- <div class="context_clear">
+        <div class="context_clear">
             <span>服务承诺</span>
             <a href="#">正品保证</a>
             <a href="#">极速退款</a>
             <a href="#">七天无理由退换</a>
-        </div> -->
+        </div>
     </div>
     <div class="context_ul">
         <div class="context_ul_head">
