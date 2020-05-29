@@ -1,4 +1,4 @@
-package com.uzykj.mall.util;
+package com.uzykj.mall.config;
 
 import com.uzykj.mall.entity.User;
 
@@ -13,8 +13,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-public class MyFilter implements Filter{
+/**
+ * 过滤器
+ * @date  2018-10-28 晚上20：07
+ * @author gostxbh
+ */
+public class ServletFilterConfig implements Filter{
 
 	private static final String FILTERED_REQUEST = "@@session_context_filtered_request";
 
@@ -55,7 +59,7 @@ public class MyFilter implements Filter{
 	}
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
+	public void init(javax.servlet.FilterConfig filterConfig) throws ServletException {
 	}
 
 	
