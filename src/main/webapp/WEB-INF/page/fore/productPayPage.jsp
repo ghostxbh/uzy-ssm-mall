@@ -89,7 +89,7 @@
                 <!-- <a  type="submit" class=" btn btn_big" value="立即支付">立即支付</a> -->
                 <input id="hidCommonPayType" type="hidden" value="51">
             </div>
-            <input id="submit" class="btn btn_big" type="submit" value="立即支付"/>
+            <a href="${pageContext.request.contextPath}/order/0/10" class="btn btn-danger">立即支付</a>
         </div>
     </form>
     <!-- <div class="order_pay_div">

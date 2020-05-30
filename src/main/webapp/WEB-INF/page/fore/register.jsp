@@ -3,7 +3,7 @@
 <head>
     <script src="${pageContext.request.contextPath}/res/js/fore/fore_register.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/fore/fore_register.css" rel="stylesheet">
-    <title>网上注册</title>
+    <title>柚子云购 -- 用户注册</title>
     <script>
         $(function () {
             $("span.address_province").text($("#select_order_address_province").find("option:selected").text());
@@ -111,9 +111,10 @@
         </div>
     </div>
 </div>
+<%@include file="include/footer_two.jsp" %>
 <%@include file="include/footer.jsp" %>
-<link href="${pageContext.request.contextPath}/res/css/fore/fore_foot_special.css" rel="stylesheet"/>
-<div class="msg">
-    <span>注册成功，跳转到登陆页面</span>
-</div>
-</body>
+<%--<link href="${pageContext.request.contextPath}/res/css/fore/fore_foot_special.css" rel="stylesheet"/>--%>
+<%--<div class="msg">--%>
+<%--    <span>注册成功，跳转到登陆页面</span>--%>
+<%--</div>--%>
+<%--</body>--%>

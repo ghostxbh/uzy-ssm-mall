@@ -47,7 +47,7 @@
         <div class="mallSearch">
             <form action="${pageContext.request.contextPath}/product" method="get">
                 <div class="mallSearch-input">
-                    <input class="header_search_input" type="text" name="product_name" placeholder="搜索 书名"
+                    <input class="header_search_input" type="text" name="product_name" placeholder="搜索 商品名称"
                            maxlength="50">
                     <input class="header_search_button" type="submit" value="搜索">
                 </div>
@@ -70,7 +70,7 @@
 		        <div class="mallSearch">
 	            <form action="${pageContext.request.contextPath}/product" method="get">
 	                <div class="mallSearch-input">
-	                    <input class="header_search_input" type="text" name="product_name" placeholder="搜索 会计 审计/服务"
+	                    <input class="header_search_input" type="text" name="product_name" placeholder="搜索 手机 电脑 配件"
 	                           maxlength="50">
 	                    <input class="header_search_button" type="submit" value="搜索">
 	                </div>
@@ -99,47 +99,34 @@
         })
     });
 </script>
-<div class="navSidebars">
+<%--<div class="navSidebars">
     <div class="kf_chat" title="软件客服">
-      <a class="ceshi"  href="tencent://message/?uin=3465599717&Menu=yes& Service=300&sigT=42a1e5347953b64c5ff3980f8a6e644d4b31456cb0b6ac6b27663a3c4dd0f4aa14a543b1716f9d45" style="color:#000;text-decoration: none">
+      <a class="ceshi"  href="tencent://message/?uin=253323573&Menu=yes& Service=300&sigT=42a1e5347953b64c5ff3980f8a6e644d4b31456cb0b6ac6b27663a3c4dd0f4aa14a543b1716f9d45" style="color:#000;text-decoration: none">
         <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/shouye-qq.png"/>
         <br/>软件客服
-      <%--   <div class="hover-content">
-                <img class="img" src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/qq-kefu.png" style="margin-right:-15px;"/>  
-                <img class="img" src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/weixin-kefu.png"/>  
-        </div> --%>
      </a>
     </div>
-    <%-- <div class="kf-tel" title="课程在线">
-        <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/shouye-kefu.png" style="padding-left:9px"/>
-        <br/>课程在线</br>
-       <div class="hover-content">
-
-        </div>
-    </div> --%>
     <div class="add-chat" title="加群交流">
         <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/shouye-qun.png"/>
         <br/>加群交流</span>
         <div class="hover-content">
-              <img class="img" src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/qq-qun.png" style="margin-right:-15px;"/>
-              <img class="img" src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/weixin-kefu2.png"/>  
+              <img class="img" src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/QQgroup.jpg"/>
         </div>
     </div>
-    <div class="__wechat" title="关注我们">
+    &lt;%&ndash;<div class="__wechat" title="关注我们">
         <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/shouye-weixin.png"/>
         <br/>关注我们</span>
         <div class="hover-content">
               <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/guanzhu.png"/>
-             <!--  <p>，关注优账云</p> -->
         </div>
-    </div>
+    </div>&ndash;%&gt;
     <div class="right_arrow">
         <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/shouye-zhiding.png"/>
         <br/>回到顶部</span>
         <div class="hover-content">
         </div>
     </div>
-</div>
+</div>--%>
 <script>
 $(function(){
     $('.right_arrow').on('click', function (e) {

@@ -605,11 +605,7 @@ public class ForeOrderController extends BaseController {
             User user = userService.get(Integer.parseInt(userId.toString()));
             map.put("user", user);
         } else {
-            try {
-                response.sendRedirect("/mall/login");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            return "redirect:/login";
         }
 
         logger.info("获取用户购物车信息");

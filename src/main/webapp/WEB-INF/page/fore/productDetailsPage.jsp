@@ -11,7 +11,7 @@
     <%@ include file="include/navigator.jsp" %>
     <div class="header">
         <a href="${pageContext.request.contextPath}"><img
-                src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/logo-small2.png"></a>
+                src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/logo-small2.png" height="60" width="200"></a>
         <%-- <span class="shopNameHeader">贤趣${requestScope.product.product_category.category_name}官方旗舰店</span> --%>
         <input id="tid" type="hidden" value="${requestScope.product.product_category.category_id}"/>
         <%-- <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/detailsHeaderA.png"
@@ -120,12 +120,12 @@
             <span class="context_info_title">${requestScope.product.product_title}</span>
         </div>
         <div class="context_info_main">
-            <div class="context_info_main_ad">
+            <%--<div class="context_info_main_ad">
                 <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/context_ad.png">
                 <span>全天猫实物商品通用</span>
                 <a href="#">去刮券<img
                         src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/tmallItemContentB.png"></a>
-            </div>
+            </div>--%>
             <dl class="context_price_panel">
                 <dt>价格</dt>
                 <dd><em>¥</em><span>${requestScope.product.product_price}0</span></dd>

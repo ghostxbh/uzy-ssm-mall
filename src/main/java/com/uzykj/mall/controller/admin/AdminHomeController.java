@@ -51,12 +51,12 @@ public class AdminHomeController extends BaseController {
         logger.info("获取统计信息");
         Integer productTotal = productService.getTotal(null, new Byte[]{0, 2});
         Integer userTotal = userService.getTotal(null);
-        Integer orderTotal = productOrderService.getTotal(null, new Byte[]{3});
+//        Integer orderTotal = productOrderService.getTotal(null, new Byte[]{3});
         logger.info("获取图表信息");
         map.put("jsonObject", getChartData(null, null));
         map.put("productTotal", productTotal);
         map.put("userTotal", userTotal);
-        map.put("orderTotal", orderTotal);
+//        map.put("orderTotal", orderTotal);
 
         logger.info("转到后台管理-主页");
         return "admin/homePage";
@@ -77,14 +77,14 @@ public class AdminHomeController extends BaseController {
         logger.info("获取统计信息");
         Integer productTotal = productService.getTotal(null, new Byte[]{0, 2});
         Integer userTotal = userService.getTotal(null);
-        Integer orderTotal = productOrderService.getTotal(null, new Byte[]{3});
+//        Integer orderTotal = productOrderService.getTotal(null, new Byte[]{3});
         logger.info("获取图表信息");
         map.put("jsonObject", getChartData(null, null));
         logger.info("获取图表信息");
         map.put("jsonObject", getChartData(null, null));
         map.put("productTotal", productTotal);
         map.put("userTotal", userTotal);
-        map.put("orderTotal", orderTotal);
+//        map.put("orderTotal", orderTotal);
         logger.info("转到后台管理-主页-ajax方式");
         return "admin/homeManagePage";
     }

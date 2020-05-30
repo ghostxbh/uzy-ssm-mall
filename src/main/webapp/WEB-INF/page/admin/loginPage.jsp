@@ -3,7 +3,7 @@
 <head>
     <script src="${pageContext.request.contextPath}/res/js/admin/admin_login.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/admin/admin_login.css"/>
-    <title>bookstore 管理后台 - 登录</title>
+    <title>柚子云购 - 管理登录</title>
 </head>
 <body>
 <div id="div_background">

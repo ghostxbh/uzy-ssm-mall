@@ -30,7 +30,7 @@ public class AdminLoginController extends BaseController {
 
     //登陆验证-ajax
     @ResponseBody
-    @RequestMapping(value = "admin/login/doLogin",method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/login/doLogin",method = RequestMethod.POST)
     public String checkLogin(HttpSession session, @RequestParam String username, @RequestParam String password) {
         logger.info("管理员登录验证");
         Admin admin = adminService.login(username,password);
