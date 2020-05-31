@@ -12,22 +12,28 @@
     - Tomcat 7.0+
     
 ### 框架
--[x] 支撑框架
+- [x] 支撑框架
     - Spring 3.x
     - SpringMVC 3.x
--[x] ORM
+    
+- [x] ORM
     - Mybatis 3.x
--[x] 数据库连接池
+    
+- [x] 数据库连接池
     - druid
--[x] 日志
+    
+- [x] 日志
     - log4j
--[ ] 缓存
+    
+- [ ] 缓存
     - redis
--[x] oss储存
+    
+- [x] oss储存
     - qiniu
-- 支付类型
-    -[ ] 微信
-    -[x] 支付宝 
+    
+- [ ] 支付类型
+    - [ ] 微信
+    - [x] 支付宝 
 
 ### 部署
 - 修改`src/main/resources/jdbc.properties`文件中数据库连接信息
