@@ -92,7 +92,7 @@
 
             //设置样式
             $("#div_home_title").children("span").text(title);
-            document.title = "Umall管理后台 - " + title;
+            document.title = "柚子云购 - " + title;
             //ajax请求页面
             ajaxUtil.getPage(url, null, true);
         }

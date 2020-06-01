@@ -36,7 +36,7 @@
             $("#btn_order_save").click(function () {
                 var order_id = '${requestScope.order.productOrder_id}';
                 $.ajax({
-                    url: "admin/order/" + order_id,
+                    url: "./admin/order/" + order_id,
                     type: "PUT",
                     data: null,
                     success: function (data) {
@@ -67,7 +67,7 @@
         function getChildPage(obj) {
             //设置样式
             $("#div_home_title").children("span").text("产品详情");
-            document.title = "Umall管理后台 - 产品详情";
+            document.title = "柚子云购 - 产品详情";
             //ajax请求页面
             ajaxUtil.getPage("product/" + $(obj).parents("tr").find(".product_id").text(), null, true);
         }
@@ -76,7 +76,7 @@
         function getUserPage(id) {
             //设置样式
             $("#div_home_title").children("span").text("用户详情");
-            document.title = "Umall管理后台 - 用户详情";
+            document.title = "柚子云购 - 用户详情";
             //ajax请求页面
             ajaxUtil.getPage("user/" + id, null, true);
         }
