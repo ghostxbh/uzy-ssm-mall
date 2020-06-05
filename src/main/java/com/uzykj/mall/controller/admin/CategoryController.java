@@ -7,6 +7,7 @@ import com.qiniu.common.QiniuException;
 import com.uzykj.mall.controller.BaseController;
 import com.uzykj.mall.entity.*;
 import com.uzykj.mall.service.*;
+import com.uzykj.mall.util.FileIsExists;
 import com.uzykj.mall.util.PageUtil;
 import com.uzykj.mall.util.qiniu.QiniuUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -263,27 +264,42 @@ public class CategoryController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "admin/uploadCategoryImage", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public String uploadCategoryImage(@RequestParam MultipartFile file, HttpSession session) {
-        String originalFileName = file.getOriginalFilename();
-        logger.info("获取图片原始文件名:  {}", originalFileName);
-        String extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
-        String fileName = UUID.randomUUID() + extension;
-        String realPath = "D:\\idea\\IDEA_workspace\\bookstore\\src\\main\\webapp\\";
-        String filePath = realPath + "res/images/item/categoryPicture/" + fileName;
-
-        logger.info("文件上传路径：{}", filePath);
         JSONObject object = new JSONObject();
-        try {
-            logger.info("文件上传中...");
-            file.transferTo(new File(filePath));
-            logger.info("文件上传完成");
-            object.put("success", true);
-            object.put("fileName", fileName);
-        } catch (IOException e) {
-            logger.warn("文件上传失败!");
-            e.printStackTrace();
-            object.put("success", false);
+        if (!file.isEmpty()) {
+            String originalFileName = file.getOriginalFilename();
+            if (QiniuUtil.IS_ENABLE.equals("true")) {
+                try {
+                    logger.info("文件上传中...");
+                    UpResult upload = QiniuUtil.upload(file.getInputStream(), originalFileName, QiniuUtil.MALL_ZONE);
+                    if (upload != null){
+                        logger.info("七牛云路径：", upload.zoneName+upload.fileName);
+                        logger.info("文件上传完成");
+                        object.put("success", true);
+                        String fileUrl = QiniuUtil.getFileUrl(upload.fileName, QiniuUtil.MALL_DOMAIN);
+                        object.put("fileUrl", fileUrl);
+                    }else{
+                        logger.info("文件上传失败！");
+                        object.put("success", false);
+                    }
+                } catch (IOException e) {
+                    logger.warn("文件上传失败！", e);
+                    object.put("success", false);
+                }
+            } else if (QiniuUtil.IS_ENABLE.equals("false")){
+                logger.info("获取图片原始文件名：{}", originalFileName);
+                // 转存文件
+                FileIsExists.createDirectory(QiniuUtil.LOCAL_FILE_PATH);
+                try {
+                    file.transferTo(new File(QiniuUtil.LOCAL_FILE_PATH + originalFileName));
+                } catch (IOException e) {
+                    logger.warn("文件上传失败！", e);
+                    object.put("success", false);
+                }
+                object.put("success", true);
+                String fileUrl = "http://localhost:8080/mall/res/images/store/" + originalFileName;
+                object.put("fileUrl", fileUrl);
+            }
         }
-
         return object.toJSONString();
     }
 }

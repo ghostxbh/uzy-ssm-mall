@@ -39,3 +39,7 @@
 - 修改`src/main/resources/jdbc.properties`文件中数据库连接信息
 
 - 放入`tomcat`服务器，启动即可
+
+### 许可证
+
+MIT

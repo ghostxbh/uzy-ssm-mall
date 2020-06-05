@@ -19,7 +19,7 @@ $(function () {
         //设置文本
         var title = $(this).children("span").text();
         $("#div_home_title").children("span").text(title);
-        document.title = "Umall管理后台 - "+title;
+        document.title = "柚子云购 - "+title;
     });
     //点击用户昵称或下拉箭头时
     $("#txt_home_nickname,#i_nickname_slide").click(function () {

@@ -130,7 +130,7 @@
         function getChildPage(obj) {
             //设置样式
             $("#div_home_title").children("span").text("用户详情");
-            document.title = "Umall管理后台 - 用户详情";
+            document.title = "柚子云购 - 用户详情";
             //ajax请求页面
             ajaxUtil.getPage("user/" + $(obj).parents("tr").find(".user_id").text(), null, true);
         }
