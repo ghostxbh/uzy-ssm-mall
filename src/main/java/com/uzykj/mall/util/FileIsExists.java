@@ -57,4 +57,30 @@ public class FileIsExists {
 		return flag;
 	}
 
+	/**
+	 * 创建目录
+	 *
+	 * @param descDirName 目录名,包含路径
+	 * @return 如果创建成功，则返回true，否则返回false
+	 */
+	public static boolean createDirectory(String descDirName) {
+		String descDirNames = descDirName;
+		if (!descDirNames.endsWith(File.separator)) {
+			descDirNames = descDirNames + File.separator;
+		}
+		File descDir = new File(descDirNames);
+		if (descDir.exists()) {
+			logger.info("目录 " + descDirNames + " 已存在!");
+			return false;
+		}
+		// 创建目录
+		if (descDir.mkdirs()) {
+			logger.info("目录 " + descDirNames + " 创建成功!");
+			return true;
+		} else {
+			logger.info("目录 " + descDirNames + " 创建失败!");
+			return false;
+		}
+
+	}
 }

@@ -31,10 +31,15 @@ public class QiniuUtil {
     private static String SECRET_KEY = null;
 
     //存储空间名称
-    public static String BOOKSTORE_ZONE = null;
+    public static String MALL_ZONE = null;
 
     //存储空间域名
-    public static String BOOKSTORE_DOMAIN = null;
+    public static String MALL_DOMAIN = null;
+
+    // 是否启用
+    public static String IS_ENABLE = null;
+    // 本地文件地址
+    public static String LOCAL_FILE_PATH = null;
 
 
     static {
@@ -45,8 +50,10 @@ public class QiniuUtil {
             prop.load(in);
             ACCESS_KEY = prop.getProperty("qiniu_ak").toString();
             SECRET_KEY = prop.getProperty("qiniu_sk").toString();
-            BOOKSTORE_ZONE = prop.get("bookstore_zone").toString();
-            BOOKSTORE_DOMAIN = prop.get("bookstore_domain").toString();
+            MALL_ZONE = prop.get("mall_zone").toString();
+            MALL_DOMAIN = prop.get("mall_domain").toString();
+            IS_ENABLE = prop.get("is_enable").toString();
+            LOCAL_FILE_PATH = prop.get("local_file_path").toString();
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -279,7 +286,7 @@ public class QiniuUtil {
     public static void main(String args[]) throws IOException {
         long start = System.currentTimeMillis();
         String filePath = "C:\\Users\\DEV1\\Desktop\\buyCar.png";
-        String zoneName = QiniuUtil.BOOKSTORE_ZONE;
+        String zoneName = QiniuUtil.MALL_ZONE;
 
         File file = new File(filePath);
         InputStream is = new FileInputStream(file);

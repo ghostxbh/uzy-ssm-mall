@@ -7,6 +7,7 @@ import com.qiniu.common.QiniuException;
 import com.uzykj.mall.controller.BaseController;
 import com.uzykj.mall.entity.*;
 import com.uzykj.mall.service.*;
+import com.uzykj.mall.util.FileIsExists;
 import com.uzykj.mall.util.OrderUtil;
 import com.uzykj.mall.util.PageUtil;
 import com.uzykj.mall.entity.UpResult;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * 后台管理-产品页
@@ -423,7 +426,7 @@ public class ProductController extends BaseController {
                     productImage_id_list[k] = imageList.get(k).getProductImage_id();
                     try {
                         String[] split = imageList.get(k).getProductImage_src().split("/");
-                        QiniuUtil.delete(split[split.length-1],QiniuUtil.BOOKSTORE_ZONE);
+                        QiniuUtil.delete(split[split.length-1],QiniuUtil.MALL_ZONE);
                     } catch (QiniuException e) {
                         logger.info("七牛云图片资源删除失败！");
                         e.printStackTrace();
@@ -530,7 +533,7 @@ public class ProductController extends BaseController {
         Boolean yn = false;
         try {
             logger.info("删除产品图片");
-            QiniuUtil.delete(productImage.getProductImage_src(),QiniuUtil.BOOKSTORE_ZONE);
+            QiniuUtil.delete(productImage.getProductImage_src(),QiniuUtil.MALL_ZONE);
             yn = productImageService.delete(new Integer[]{productImage_id});
         } catch (QiniuException e) {
             e.printStackTrace();
@@ -551,37 +554,42 @@ public class ProductController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "admin/uploadProductImage", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public String uploadProductImage(@RequestParam MultipartFile file, @RequestParam String imageType, HttpSession session){
-        /*String originalFileName = file.getOriginalFilename();
-        logger.info("获取图片原始文件名：{}", originalFileName);
-        String extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
-        String filePath;*/
-        /*String fileName = UUID.randomUUID() + extension;
-        String realPath = "D:\\idea\\IDEA_workspace\\bookstore\\src\\main\\webapp\\";
-        if (imageType.equals("single")) {
-            filePath = realPath + "res/images/item/productSinglePicture/" + fileName;
-        } else {
-            filePath = realPath + "res/images/item/productDetailsPicture/" + fileName;
-        }*/
         JSONObject object = new JSONObject();
-        try {
-            logger.info("文件上传中...");
-            UpResult upload = QiniuUtil.upload(file.getInputStream(), file.getOriginalFilename(), QiniuUtil.BOOKSTORE_ZONE);
-            if (upload != null){
-                logger.info("七牛云路径：", upload.zoneName+upload.fileName);
-                logger.info("文件上传完成");
+        if (!file.isEmpty()) {
+            String originalFileName = file.getOriginalFilename();
+            if (QiniuUtil.IS_ENABLE.equals("true")) {
+                try {
+                    logger.info("文件上传中...");
+                    UpResult upload = QiniuUtil.upload(file.getInputStream(), originalFileName, QiniuUtil.MALL_ZONE);
+                    if (upload != null){
+                        logger.info("七牛云路径：", upload.zoneName+upload.fileName);
+                        logger.info("文件上传完成");
+                        object.put("success", true);
+                        String fileUrl = QiniuUtil.getFileUrl(upload.fileName, QiniuUtil.MALL_DOMAIN);
+                        object.put("fileUrl", fileUrl);
+                    }else{
+                        logger.info("文件上传失败！");
+                        object.put("success", false);
+                    }
+                } catch (IOException e) {
+                    logger.warn("文件上传失败！", e);
+                    object.put("success", false);
+                }
+            } else if (QiniuUtil.IS_ENABLE.equals("false")){
+                logger.info("获取图片原始文件名：{}", originalFileName);
+                // 转存文件
+                FileIsExists.createDirectory(QiniuUtil.LOCAL_FILE_PATH);
+                try {
+                    file.transferTo(new File(QiniuUtil.LOCAL_FILE_PATH + originalFileName));
+                } catch (IOException e) {
+                    logger.warn("文件上传失败！", e);
+                    object.put("success", false);
+                }
                 object.put("success", true);
-                String fileUrl = QiniuUtil.getFileUrl(upload.fileName, QiniuUtil.BOOKSTORE_DOMAIN);
+                String fileUrl = "http://localhost:8080/mall/res/images/store/" + originalFileName;
                 object.put("fileUrl", fileUrl);
-            }else{
-                logger.info("文件上传失败！");
-                object.put("success", false);
             }
-        } catch (IOException e) {
-            logger.warn("文件上传失败！");
-            e.printStackTrace();
-            object.put("success", false);
         }
-
         return object.toJSONString();
     }
 }

@@ -197,7 +197,7 @@ public class CategoryController extends BaseController {
                             productImage_id_list[k] = imageList.get(k).getProductImage_id();
                             String[] split = imageList.get(k).getProductImage_src().split("/");
                             try {
-                                QiniuUtil.delete(split[split.length - 1], QiniuUtil.BOOKSTORE_ZONE);
+                                QiniuUtil.delete(split[split.length - 1], QiniuUtil.MALL_ZONE);
                             } catch (QiniuException e) {
                                 logger.info("七牛云图片资源删除失败！");
                                 e.printStackTrace();
