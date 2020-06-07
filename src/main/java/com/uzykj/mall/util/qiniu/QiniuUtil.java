@@ -23,7 +23,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 
-
 public class QiniuUtil {
 
     //七牛云密钥

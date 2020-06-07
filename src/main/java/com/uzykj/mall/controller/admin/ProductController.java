@@ -557,6 +557,7 @@ public class ProductController extends BaseController {
         JSONObject object = new JSONObject();
         if (!file.isEmpty()) {
             String originalFileName = file.getOriginalFilename();
+            QiniuUtil qiniuUtil = new QiniuUtil();
             if (QiniuUtil.IS_ENABLE.equals("true")) {
                 try {
                     logger.info("文件上传中...");
