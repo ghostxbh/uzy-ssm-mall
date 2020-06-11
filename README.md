@@ -25,21 +25,31 @@
 - [x] 日志
     - log4j
     
-- [ ] 缓存
-    - redis
-    
 - [x] oss储存
     - qiniu
     
-- [ ] 支付类型
-    - [ ] 微信
-    - [x] 支付宝 
+- [x] 支付类型
+    - 微信
+    - 支付宝 
 
 ### 部署
+- sql文件目录`src/main/resources/sql/uzymall.sql`，添加到自己的数据库中
+
+  静态文件目前不全，`sql`文件的内容可能有一些缺失，后面会补充。
+  
 - 修改`src/main/resources/jdbc.properties`文件中数据库连接信息
 
 - 放入`tomcat`服务器，启动即可
 
+### 访问
+- 前台地址：[uzymall](http://127.0.0.1:8080/mall)
+
+- 后台管理：[admin](http://127.0.0.1:8080/mall/admin)
+
 ### 许可证
 
 MIT
+
+### 小星星
+
+来都来了，老铁给颗小星星咯。右上角`Star`一下
