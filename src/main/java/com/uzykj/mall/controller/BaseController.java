@@ -1,7 +1,5 @@
 package com.uzykj.mall.controller;
 
-import com.uzykj.mall.entity.Admin;
-import com.uzykj.mall.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
