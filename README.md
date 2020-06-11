@@ -11,14 +11,20 @@
 - 服务容器
     - Tomcat 7.0+
     
-### 框架
-- [x] 支撑框架
+### 技术要点
+- [x] 核心框架
     - Spring 3.x
     - SpringMVC 3.x
     
 - [x] ORM
     - Mybatis 3.x
     
+- [x] 页面模版样式
+    - JSP
+    - bootstrap
+    - jQuery
+    - echarts
+       
 - [x] 数据库连接池
     - druid
     
