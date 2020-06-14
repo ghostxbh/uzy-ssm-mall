@@ -118,7 +118,7 @@ public class UserController extends BaseController {
                 Product product = productService.get(productId);
                 if (product != null) {
                     logger.warn("获取产品ID为{}的第一张预览图片信息", productId);
-                    product.setSingleProductImageList(productImageService.getList(productId, (byte) 0, new PageUtil(0, 1)));
+                    product.setSingleProductImageList(productImageService.getList(productId, new PageUtil(0, 1)));
                 }
                 productOrderItem.setProductOrderItem_product(product);
             }

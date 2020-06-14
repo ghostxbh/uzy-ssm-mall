@@ -62,9 +62,6 @@
             <if test="product_id != null">
                 productimage_product_id = #{product_id}
             </if>
-            <if test="productImage_type != null">
-                and productimage_type = #{productImage_type}
-            </if>
         </where>
         <if test="pageUtil != null">
             LIMIT #{pageUtil.pageStart},#{pageUtil.count}

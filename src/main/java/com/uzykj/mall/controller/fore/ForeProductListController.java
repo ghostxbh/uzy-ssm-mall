@@ -110,7 +110,7 @@ public class ForeProductListController extends BaseController {
         }
         logger.info("获取商品列表的对应信息");
         for (Product p : productList) {
-            p.setSingleProductImageList(productImageService.getList(p.getProduct_id(), (byte) 0, null));
+            p.setSingleProductImageList(productImageService.getList(p.getProduct_id(), null));
             p.setProduct_sale_count(productOrderItemService.getSaleCountByProductId(p.getProduct_id()));
             p.setProduct_review_count(reviewService.getTotalByProductId(p.getProduct_id()));
             p.setProduct_category(categoryService.get(p.getProduct_category().getCategory_id()));
@@ -185,7 +185,7 @@ public class ForeProductListController extends BaseController {
         }
         logger.info("获取商品列表的对应信息");
         for (Product p : productList) {
-            p.setSingleProductImageList(productImageService.getList(p.getProduct_id(), (byte) 0, null));
+            p.setSingleProductImageList(productImageService.getList(p.getProduct_id(), null));
             p.setProduct_sale_count(productOrderItemService.getSaleCountByProductId(p.getProduct_id()));
             p.setProduct_review_count(reviewService.getTotalByProductId(p.getProduct_id()));
             p.setProduct_category(categoryService.get(p.getProduct_category().getCategory_id()));

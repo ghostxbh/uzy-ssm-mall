@@ -69,9 +69,9 @@
                     var productDetailsImageList = [];
                     $("#product_details_list").children("li:not(.details_picList_fileUpload)").each(function () {
                         var img = $(this).children("img");
-                        if (img.attr("name") === "new") {
-                            productDetailsImageList.push(img.attr("src"));
-                        }
+                        productDetailsImageList.push(img.attr("src"));
+                        // if (img.attr("name") === "new") {
+                        // }
                     });
 
                     //数据集

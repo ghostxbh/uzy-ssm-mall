@@ -74,7 +74,7 @@ public class ForeReviewController extends BaseController {
         logger.info("获取订单项所属产品信息和产品评论信息");
         Product product = productService.get(orderItem.getProductOrderItem_product().getProduct_id());
         product.setProduct_review_count(reviewService.getTotalByProductId(product.getProduct_id()));
-        product.setSingleProductImageList(productImageService.getList(product.getProduct_id(), (byte) 0, new PageUtil(0, 1)));
+        product.setSingleProductImageList(productImageService.getList(product.getProduct_id(), new PageUtil(0, 1)));
         orderItem.setProductOrderItem_product(product);
 
         map.put("orderItem", orderItem);

@@ -205,7 +205,7 @@ $(function(){
                     </div>
                     <a href="${pageContext.request.contextPath}/product?category_id=${category.category_id}"><img
                             class="banner_goods_show"
-                            src="res/images/fore/WebsiteImage/show/${category.category_id}.png"></a>
+                            src="${category.category_image_src}"></a>
                     <div class="banner_goods_items">
                         <c:forEach items="${category.productList}" var="product" varStatus="i">
                             <c:if test="${i.index<8}">
@@ -223,7 +223,6 @@ $(function(){
             </c:if>
         </c:forEach>
     </div>
-   <!--  <div class="endDiv"></div> -->
 </div>
 
 <%@ include file="include/footer_two.jsp" %>

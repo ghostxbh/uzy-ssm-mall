@@ -10,7 +10,6 @@ import com.uzykj.mall.service.*;
 import com.uzykj.mall.util.FileIsExists;
 import com.uzykj.mall.util.OrderUtil;
 import com.uzykj.mall.util.PageUtil;
-import com.uzykj.mall.entity.UpResult;
 import com.uzykj.mall.util.qiniu.QiniuUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
-import java.util.logging.Level;
 
 /**
  * 后台管理-产品页
@@ -83,7 +81,7 @@ public class ProductController extends BaseController {
         Product product = productService.get(pid);
         logger.info("获取产品详情-图片信息");
         Integer product_id = product.getProduct_id();
-        List<ProductImage> productImageList = productImageService.getList(product_id, null, null);
+        List<ProductImage> productImageList = productImageService.getList(product_id, null);
 
         List<ProductImage> singleProductImageList = new ArrayList<>(5);
         List<ProductImage> detailsProductImageList = new ArrayList<>(8);
@@ -366,7 +364,7 @@ public class ProductController extends BaseController {
             for (String imageName : productDetailsImageList) {
                 productImageList.add(new ProductImage()
                         .setProductImage_type((byte) 1)
-                        .setProductImage_src(imageName.substring(imageName.lastIndexOf("/") + 1))
+                        .setProductImage_src(imageName)
                         .setProductImage_product(product)
                 );
             }
@@ -419,14 +417,14 @@ public class ProductController extends BaseController {
             }
 
             //删除商品图片
-            List<ProductImage> imageList = productImageService.getList(product_id_list[i], null, null);
+            List<ProductImage> imageList = productImageService.getList(product_id_list[i], null);
             if (imageList != null && imageList.size() != 0) {
                 Integer[] productImage_id_list = new Integer[imageList.size()];
                 for (int k = 0; k < imageList.size(); k++) {
                     productImage_id_list[k] = imageList.get(k).getProductImage_id();
                     try {
                         String[] split = imageList.get(k).getProductImage_src().split("/");
-                        QiniuUtil.delete(split[split.length-1],QiniuUtil.MALL_ZONE);
+                        QiniuUtil.delete(split[split.length - 1], QiniuUtil.MALL_ZONE);
                     } catch (QiniuException e) {
                         logger.info("七牛云图片资源删除失败！");
                         e.printStackTrace();
@@ -533,7 +531,7 @@ public class ProductController extends BaseController {
         Boolean yn = false;
         try {
             logger.info("删除产品图片");
-            QiniuUtil.delete(productImage.getProductImage_src(),QiniuUtil.MALL_ZONE);
+            QiniuUtil.delete(productImage.getProductImage_src(), QiniuUtil.MALL_ZONE);
             yn = productImageService.delete(new Integer[]{productImage_id});
         } catch (QiniuException e) {
             e.printStackTrace();
@@ -553,22 +551,21 @@ public class ProductController extends BaseController {
     //上传产品图片-ajax
     @ResponseBody
     @RequestMapping(value = "admin/uploadProductImage", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-    public String uploadProductImage(@RequestParam MultipartFile file, @RequestParam String imageType, HttpSession session){
+    public String uploadProductImage(@RequestParam MultipartFile file, @RequestParam String imageType, HttpSession session) {
         JSONObject object = new JSONObject();
         if (!file.isEmpty()) {
             String originalFileName = file.getOriginalFilename();
-            QiniuUtil qiniuUtil = new QiniuUtil();
             if (QiniuUtil.IS_ENABLE.equals("true")) {
                 try {
                     logger.info("文件上传中...");
                     UpResult upload = QiniuUtil.upload(file.getInputStream(), originalFileName, QiniuUtil.MALL_ZONE);
-                    if (upload != null){
-                        logger.info("七牛云路径：", upload.zoneName+upload.fileName);
+                    if (upload != null) {
+                        logger.info("七牛云路径：", upload.zoneName + upload.fileName);
                         logger.info("文件上传完成");
                         object.put("success", true);
                         String fileUrl = QiniuUtil.getFileUrl(upload.fileName, QiniuUtil.MALL_DOMAIN);
                         object.put("fileUrl", fileUrl);
-                    }else{
+                    } else {
                         logger.info("文件上传失败！");
                         object.put("success", false);
                     }
@@ -576,7 +573,7 @@ public class ProductController extends BaseController {
                     logger.warn("文件上传失败！", e);
                     object.put("success", false);
                 }
-            } else if (QiniuUtil.IS_ENABLE.equals("false")){
+            } else if (QiniuUtil.IS_ENABLE.equals("false")) {
                 logger.info("获取图片原始文件名：{}", originalFileName);
                 // 转存文件
                 FileIsExists.createDirectory(QiniuUtil.LOCAL_FILE_PATH);
@@ -587,7 +584,7 @@ public class ProductController extends BaseController {
                     object.put("success", false);
                 }
                 object.put("success", true);
-                String fileUrl = "http://localhost:8080/mall/res/images/store/" + originalFileName;
+                String fileUrl = QiniuUtil.LOCAL_FILE_PREFIX + "res/images/fore/store/" + originalFileName;
                 object.put("fileUrl", fileUrl);
             }
         }

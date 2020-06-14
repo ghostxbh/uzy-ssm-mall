@@ -219,9 +219,8 @@
     <span class="details_title text_info">分类图片</span>
     <ul class="details_picList" id="category_list">
         <c:if test="${requestScope.category.category_image_src != null}">
-            <li><img
-                    src="${pageContext.request.contextPath}/res/images/item/categoryPicture/${requestScope.category.category_image_src}"
-                    id="pic_category" width="1190px" height="150px"/></li>
+            <li><img src="${requestScope.category.category_image_src}"
+                    id="pic_category" width="300px" height="435px"/></li>
         </c:if>
         <li class="details_picList_fileUpload">
             <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1528"

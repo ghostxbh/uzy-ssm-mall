@@ -1,17 +1,12 @@
 package com.uzykj.mall.config;
 
 import com.uzykj.mall.entity.User;
+import com.uzykj.mall.util.qiniu.QiniuUtil;
 
-import java.io.IOException;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 过滤器
@@ -60,6 +55,7 @@ public class ServletFilterConfig implements Filter{
 
 	@Override
 	public void init(javax.servlet.FilterConfig filterConfig) throws ServletException {
+		QiniuUtil.getInstance();
 	}
 
 	

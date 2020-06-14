@@ -73,7 +73,7 @@ public class ForeProductDetailsController extends BaseController {
         logger.info("获取产品子信息-分类信息");
         product.setProduct_category(categoryService.get(product.getProduct_category().getCategory_id()));
         logger.info("获取产品子信息-产品图片信息");
-        List<ProductImage> productImageList = productImageService.getList(product_id, null, null);
+        List<ProductImage> productImageList = productImageService.getList(product_id, null);
         List<ProductImage> singleProductImageList = new ArrayList<>(5);
         List<ProductImage> detailsProductImageList = new ArrayList<>(8);
         for (ProductImage productImage : productImageList) {
@@ -128,7 +128,7 @@ public class ForeProductDetailsController extends BaseController {
         if (loveProductList != null) {
             logger.info("获取产品列表的相应的一张预览图片");
             for (Product loveProduct : loveProductList) {
-                loveProduct.setSingleProductImageList(productImageService.getList(loveProduct.getProduct_id(), (byte) 0, new PageUtil(0, 1)));
+                loveProduct.setSingleProductImageList(productImageService.getList(loveProduct.getProduct_id(), new PageUtil(0, 1)));
             }
         }
         logger.info("获取分类列表");
@@ -225,7 +225,7 @@ public class ForeProductDetailsController extends BaseController {
         if (loveProductList != null) {
             logger.info("获取产品列表的相应的一张预览图片");
             for (Product loveProduct : loveProductList) {
-                loveProduct.setSingleProductImageList(productImageService.getList(loveProduct.getProduct_id(), (byte) 0, new PageUtil(0, 1)));
+                loveProduct.setSingleProductImageList(productImageService.getList(loveProduct.getProduct_id(), new PageUtil(0, 1)));
             }
         }
 

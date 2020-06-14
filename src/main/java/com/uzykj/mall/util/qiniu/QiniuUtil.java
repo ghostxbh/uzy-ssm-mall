@@ -1,15 +1,5 @@
 package com.uzykj.mall.util.qiniu;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Properties;
-
-import com.uzykj.mall.entity.UpResult;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
@@ -19,9 +9,14 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.BatchStatus;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
+import com.uzykj.mall.entity.UpResult;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
+
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.Properties;
 
 public class QiniuUtil {
 
@@ -39,28 +34,36 @@ public class QiniuUtil {
     public static String IS_ENABLE = null;
     // 本地文件地址
     public static String LOCAL_FILE_PATH = null;
+    public static String LOCAL_FILE_PREFIX = null;
 
+    public static QiniuUtil instance = null;
 
-    static {
+    //密钥配置
+    private static Auth auth = null;
+
+    public static QiniuUtil getInstance() {
         Properties prop = new Properties();
         try {
             String path = QiniuUtil.class.getClassLoader().getResource("qiniu.properties").getPath();
             InputStream in = new BufferedInputStream(new FileInputStream(path));
             prop.load(in);
-            ACCESS_KEY = prop.getProperty("qiniu_ak").toString();
-            SECRET_KEY = prop.getProperty("qiniu_sk").toString();
-            MALL_ZONE = prop.get("mall_zone").toString();
-            MALL_DOMAIN = prop.get("mall_domain").toString();
-            IS_ENABLE = prop.get("is_enable").toString();
-            LOCAL_FILE_PATH = prop.get("local_file_path").toString();
+            ACCESS_KEY = prop.getProperty("qiniu_ak");
+            SECRET_KEY = prop.getProperty("qiniu_sk");
+            MALL_ZONE = prop.getProperty("mall_zone");
+            MALL_DOMAIN = prop.getProperty("mall_domain");
+            IS_ENABLE = prop.getProperty("is_enable");
+            LOCAL_FILE_PATH = prop.getProperty("local_file_path");
+            LOCAL_FILE_PREFIX = prop.getProperty("local_file_prefix");
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if (IS_ENABLE.equals("true"))
+            auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+        if (instance == null) instance = new QiniuUtil();
+        return instance;
     }
 
-    //密钥配置
-    private static Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
 
     // zone1 ：代表华北地区
     private static Zone zone = Zone.zone1();

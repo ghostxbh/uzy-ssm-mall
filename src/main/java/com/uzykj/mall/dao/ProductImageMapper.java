@@ -15,7 +15,7 @@ public interface ProductImageMapper {
 
     Integer delete(@Param("productImage_id_list") Integer[] productImage_id_list);
 
-    List<ProductImage> select(@Param("product_id") Integer product_id, @Param("productImage_type") Byte productImage_type, @Param("pageUtil") PageUtil pageUtil);
+    List<ProductImage> select(@Param("product_id") Integer product_id, @Param("pageUtil") PageUtil pageUtil);
 
     ProductImage selectOne(@Param("productImage_id") Integer productImage_id);
 

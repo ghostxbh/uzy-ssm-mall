@@ -4,7 +4,6 @@ import com.uzykj.mall.dao.ProductImageMapper;
 import com.uzykj.mall.entity.ProductImage;
 import com.uzykj.mall.service.ProductImageService;
 import com.uzykj.mall.util.PageUtil;
-import com.uzykj.mall.util.qiniu.QiniuUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,8 +44,8 @@ public class ProductImageServiceImpl implements ProductImageService {
     }
 
     @Override
-    public List<ProductImage> getList(Integer product_id, Byte productImage_type, PageUtil pageUtil) {
-        List<ProductImage> imageList = productImageMapper.select(product_id, productImage_type, pageUtil);
+    public List<ProductImage> getList(Integer product_id, PageUtil pageUtil) {
+        List<ProductImage> imageList = productImageMapper.select(product_id, pageUtil);
         // TODO 当前未使用七牛
         /*for (ProductImage image : imageList) {
             image.setProductImage_src(QiniuUtil.getFileUrl(image.getProductImage_src(),QiniuUtil.BOOKSTORE_DOMAIN));

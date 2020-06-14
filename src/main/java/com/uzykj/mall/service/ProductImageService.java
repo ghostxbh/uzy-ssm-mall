@@ -14,7 +14,7 @@ public interface ProductImageService {
 
     boolean delete(Integer[] productImage_id_list);
 
-    List<ProductImage> getList(Integer product_id, Byte productImage_type, PageUtil pageUtil);
+    List<ProductImage> getList(Integer product_id, PageUtil pageUtil);
 
     ProductImage get(Integer productImage_id);
 

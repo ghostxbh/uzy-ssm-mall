@@ -65,7 +65,7 @@ public class ForeHomeController extends BaseController {
                 for (Product product : productList) {
                     Integer product_id = product.getProduct_id();
                     logger.info("获取产品id为{}的产品预览图片信息", product_id);
-                    product.setSingleProductImageList(productImageService.getList(product_id, (byte) 0, new PageUtil(0, 1)));
+                    product.setSingleProductImageList(productImageService.getList(product_id, new PageUtil(0, 1)));
                 }
             }
             category.setProductList(productList);

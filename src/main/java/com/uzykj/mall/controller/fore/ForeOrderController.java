@@ -90,7 +90,7 @@ public class ForeOrderController extends BaseController {
                     for (ProductOrderItem productOrderItem : productOrderItemList) {
                         Integer product_id = productOrderItem.getProductOrderItem_product().getProduct_id();
                         Product product = productService.get(product_id);
-                        product.setSingleProductImageList(productImageService.getList(product_id, (byte) 0, new PageUtil(0, 1)));
+                        product.setSingleProductImageList(productImageService.getList(product_id, new PageUtil(0, 1)));
                         productOrderItem.setProductOrderItem_product(product);
                         if (order.getProductOrder_status() == 3) {
                             productOrderItem.setIsReview(reviewService.getTotalByOrderItemId(productOrderItem.getProductOrderItem_id()) > 0);
@@ -142,7 +142,7 @@ public class ForeOrderController extends BaseController {
         }
         logger.info("获取产品的详细信息");
         product.setProduct_category(categoryService.get(product.getProduct_category().getCategory_id()));
-        product.setSingleProductImageList(productImageService.getList(product_id, (byte) 0, new PageUtil(0, 1)));
+        product.setSingleProductImageList(productImageService.getList(product_id, new PageUtil(0, 1)));
 
         logger.info("封装订单项对象");
         ProductOrderItem productOrderItem = new ProductOrderItem();
@@ -267,7 +267,7 @@ public class ForeOrderController extends BaseController {
         for (ProductOrderItem orderItem : orderItemList) {
             Product product = productService.get(orderItem.getProductOrderItem_product().getProduct_id());
             product.setProduct_category(categoryService.get(product.getProduct_category().getCategory_id()));
-            product.setSingleProductImageList(productImageService.getList(product.getProduct_id(), (byte) 0, new PageUtil(0, 1)));
+            product.setSingleProductImageList(productImageService.getList(product.getProduct_id(), new PageUtil(0, 1)));
             orderItem.setProductOrderItem_product(product);
             orderTotalPrice += orderItem.getProductOrderItem_price();
         }
@@ -512,7 +512,7 @@ public class ForeOrderController extends BaseController {
             ProductOrderItem productOrderItem = order.getProductOrderItemList().get(0);
             Integer product_id = productOrderItem.getProductOrderItem_product().getProduct_id();
             Product product = productService.get(product_id);
-            product.setSingleProductImageList(productImageService.getList(product_id, (byte) 0, new PageUtil(0, 1)));
+            product.setSingleProductImageList(productImageService.getList(product_id, new PageUtil(0, 1)));
             productOrderItem.setProductOrderItem_product(product);
             orderTotalPrice = productOrderItem.getProductOrderItem_price();
         } else {
@@ -520,7 +520,7 @@ public class ForeOrderController extends BaseController {
             for (ProductOrderItem productOrderItem : order.getProductOrderItemList()) {
                 Integer product_id = productOrderItem.getProductOrderItem_product().getProduct_id();
                 Product product = productService.get(product_id);
-                product.setSingleProductImageList(productImageService.getList(product_id, (byte) 0, new PageUtil(0, 1)));
+                product.setSingleProductImageList(productImageService.getList(product_id, new PageUtil(0, 1)));
                 productOrderItem.setProductOrderItem_product(product);
                 orderTotalPrice += productOrderItem.getProductOrderItem_price();
             }
@@ -582,7 +582,7 @@ public class ForeOrderController extends BaseController {
                     logger.info("获取订单项产品信息");
                     product = productService.get(productOrderItem.getProductOrderItem_product().getProduct_id());
                     if (product != null) {
-                        product.setSingleProductImageList(productImageService.getList(product.getProduct_id(), (byte) 0, new PageUtil(0, 1)));
+                        product.setSingleProductImageList(productImageService.getList(product.getProduct_id(), new PageUtil(0, 1)));
                     }
                 }
             }
@@ -618,7 +618,7 @@ public class ForeOrderController extends BaseController {
             for (ProductOrderItem orderItem : orderItemList) {
                 Integer product_id = orderItem.getProductOrderItem_product().getProduct_id();
                 Product product = productService.get(product_id);
-                product.setSingleProductImageList(productImageService.getList(product_id, (byte) 0, null));
+                product.setSingleProductImageList(productImageService.getList(product_id, null));
                 product.setProduct_category(categoryService.get(product.getProduct_category().getCategory_id()));
                 orderItem.setProductOrderItem_product(product);
             }

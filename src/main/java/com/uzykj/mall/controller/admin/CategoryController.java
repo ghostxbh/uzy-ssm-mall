@@ -22,7 +22,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 
 /**
@@ -191,7 +190,7 @@ public class CategoryController extends BaseController {
                     }
 
                     //删除商品图片
-                    List<ProductImage> imageList = productImageService.getList(list.get(j).getProduct_id(), null, null);
+                    List<ProductImage> imageList = productImageService.getList(list.get(j).getProduct_id(), null);
                     if (imageList != null && imageList.size() != 0) {
                         Integer[] productImage_id_list = new Integer[imageList.size()];
                         for (int k = 0; k < imageList.size(); k++) {
