@@ -6,6 +6,7 @@ import com.uzykj.mall.entity.Address;
 import com.uzykj.mall.entity.User;
 import com.uzykj.mall.service.AddressService;
 import com.uzykj.mall.service.UserService;
+import com.uzykj.mall.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,10 +67,11 @@ public class ForeRegisterController extends BaseController {
             return object.toJSONString();
         }
         logger.info("创建用户对象");
+        String encode = Md5Util.MD5Encode(user_password, "UTF-8");
         User user = new User()
                 .setUser_name(user_name)
                 .setUser_nickname(user_nickname)
-                .setUser_password(user_password)
+                .setUser_password(encode)
                 .setUser_gender(Byte.valueOf(user_gender))
                 .setUser_birthday(new SimpleDateFormat("yyyy-MM-dd").parse(user_birthday))
                 .setUser_address(new Address().setAddress_areaId(user_address))
