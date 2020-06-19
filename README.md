@@ -52,6 +52,13 @@
 
 - 后台管理：[admin](http://127.0.0.1:8080/mall/admin)
 
+### 同步代码
+
+github访问比较慢的同学，可以访问gitee，下载更新代码比较快
+
+- gitee：[uzy-ssm-mall](https://gitee.com/ghostxbh/uzy-ssm-mall)
+- github：[uzy-ssm-mall](https://github.com/ghostxbh/uzy-ssm-mall)
+
 ### 许可证
 
 MIT
