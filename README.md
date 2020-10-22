@@ -1,4 +1,4 @@
-[![Fork me on Gitee](https://gitee.com/ghostxbh/uzy-ssm-mall/widgets/widget_1.svg)](https://gitee.com/ghostxbh/uzy-ssm-mall)
+[![ghostxbh/uzy-ssm-mall](https://gitee.com/ghostxbh/uzy-ssm-mall/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/ghostxbh/uzy-ssm-mall)
 # uzy-ssm-mall 柚子云电子商城
 [![star](https://gitee.com/ghostxbh/uzy-ssm-mall/badge/star.svg?theme=gray)](https://gitee.com/ghostxbh/uzy-ssm-mall/stargazers)
 [![fork](https://gitee.com/ghostxbh/uzy-ssm-mall/badge/fork.svg?theme=gray)](https://gitee.com/ghostxbh/uzy-ssm-mall/members)
@@ -60,7 +60,9 @@
 github访问比较慢的同学，可以访问gitee，下载更新代码比较快
 
 - gitee：[uzy-ssm-mall](https://gitee.com/ghostxbh/uzy-ssm-mall)
+[![Fork me on Gitee](https://gitee.com/ghostxbh/uzy-ssm-mall/widgets/widget_3.svg)](https://gitee.com/ghostxbh/uzy-ssm-mall)
 - github：[uzy-ssm-mall](https://github.com/ghostxbh/uzy-ssm-mall)
+[![Fork me on Gitee](https://gitee.com/ghostxbh/uzy-ssm-mall/widgets/widget_3.svg)](https://github.com/ghostxbh/uzy-ssm-mall)
 
 ### 许可证
 
