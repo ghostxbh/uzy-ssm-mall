@@ -1,4 +1,7 @@
+[![Fork me on Gitee](https://gitee.com/ghostxbh/uzy-ssm-mall/widgets/widget_1.svg)](https://gitee.com/ghostxbh/uzy-ssm-mall)
 # uzy-ssm-mall 柚子云电子商城
+[![star](https://gitee.com/ghostxbh/uzy-ssm-mall/badge/star.svg?theme=gray)](https://gitee.com/ghostxbh/uzy-ssm-mall/stargazers)
+[![fork](https://gitee.com/ghostxbh/uzy-ssm-mall/badge/fork.svg?theme=gray)](https://gitee.com/ghostxbh/uzy-ssm-mall/members)
 ## 项目介绍
 基于SSM框架搭建的电子商务平台，静态资源储存可使用OSS([七牛云-对象存储](https://www.qiniu.com/products/kodo))，也可以使用本地文件
 服务器，支付渠道采用微信、支付宝支付。
