@@ -1,4 +1,3 @@
-[![ghostxbh/uzy-ssm-mall](https://gitee.com/ghostxbh/uzy-ssm-mall/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/ghostxbh/uzy-ssm-mall)
 # uzy-ssm-mall 柚子云电子商城
 [![star](https://gitee.com/ghostxbh/uzy-ssm-mall/badge/star.svg?theme=gray)](https://gitee.com/ghostxbh/uzy-ssm-mall/stargazers)
 [![fork](https://gitee.com/ghostxbh/uzy-ssm-mall/badge/fork.svg?theme=gray)](https://gitee.com/ghostxbh/uzy-ssm-mall/members)
