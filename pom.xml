@@ -20,13 +20,10 @@
     <properties>
         <lib.path>${basedir}/src/main/webapp/WEB-INF/lib</lib.path>
         <java.version>1.8</java.version>
-        <commons-io.version>2.6</commons-io.version>
-        <commons-fileupload.version>1.3.3</commons-fileupload.version>
-        <commons-logging.version>1.2</commons-logging.version>
-        <commons-pool2.version>2.4.2</commons-pool2.version>
-        <commons-configuration.version>1.10</commons-configuration.version>
-        <hutool-all.version>4.1.13</hutool-all.version>
-        <druid.version>1.1.10</druid.version>
+        <commons-fileupload.version>1.4</commons-fileupload.version>
+        <commons-lang3.version>3.8</commons-lang3.version>
+        <hutool-all.version>5.7.13</hutool-all.version>
+        <druid.version>1.2.8</druid.version>
     </properties>
 
     <dependencies>
@@ -54,9 +51,19 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jsp-api</artifactId>
         </dependency>
 
         <!-- Lombok -->
@@ -84,47 +91,33 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.5</version>
+            <version>3.5.7</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.2</version>
+            <version>3.4.3.4</version>
         </dependency>
         <!-- Mybatis end -->
 
         <!-- commons -->
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
-        </dependency>
-        <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>${commons-fileupload.version}</version>
         </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>${commons-logging.version}</version>
-        </dependency>
+        <!-- commons-lang3工具包 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-            <version>${commons-pool2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-configuration</groupId>
-            <artifactId>commons-configuration</artifactId>
-            <version>${commons-configuration.version}</version>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <!-- commons end -->
 
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
             <artifactId>jstl-api</artifactId>
-            <version>1.2</version>
+            <version>1.2-rev-1</version>
         </dependency>
 
         <dependency>
@@ -149,7 +142,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.3.6</version>
+            <version>4.5.13</version>
         </dependency>
 
         <!-- hutool工具包 -->
@@ -171,7 +164,7 @@
         <dependency>
             <groupId>com.github.liyiorg</groupId>
             <artifactId>weixin-popular</artifactId>
-            <version>2.8.16</version>
+            <version>2.8.30</version>
         </dependency>
 
         <!-- ali start-->
@@ -179,7 +172,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.46</version>
+            <version>1.2.78</version>
         </dependency>
         <!-- alipay-sdk-java -->
         <dependency>
@@ -195,7 +188,7 @@
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
-            <version>3.2.1</version>
+            <version>3.4.1</version>
         </dependency>
 
         <!--jdom -->
@@ -232,12 +225,12 @@
         <dependency>
             <groupId>com.qiniu</groupId>
             <artifactId>qiniu-java-sdk</artifactId>
-            <version>[7.2.0, 7.2.99]</version>
+            <version>7.8.0</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>3.14.2</version>
+            <version>4.9.2</version>
             <scope>compile</scope>
         </dependency>
         <!-- 七牛云存储相关 结束-->
