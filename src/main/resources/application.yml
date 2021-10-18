@@ -11,9 +11,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     #MySql配置
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/uzymall?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://101.42.109.94:3306/uzymall?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
     username: root
-    password: 123456
+    password: 1qaz@WSX3edc
   servlet:
     multipart:
       max-file-size: 2MB
