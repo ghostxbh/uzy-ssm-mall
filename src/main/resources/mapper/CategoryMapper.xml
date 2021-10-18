@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.uzykj.mall.dao.CategoryMapper">
+    <resultMap id="category" type="com.uzykj.mall.entity.Category">
+        <id property="category_id" column="category_id"/>
+        <result property="category_name" column="category_name"/>
+        <result property="category_image_src" column="category_image_src"/>
+    </resultMap>
     <insert id="insertOne" parameterType="category">
         INSERT category (category_id,category_name,category_image_src)
         VALUES (
@@ -33,7 +38,7 @@
         </where>
     </delete>
 
-    <select id="select" resultType="category">
+    <select id="select" resultMap="category">
         SELECT category_id,category_name,category_image_src FROM category
         <where>
             <if test="category_name != null">category_name LIKE concat('%',#{category_name},'%')</if>
