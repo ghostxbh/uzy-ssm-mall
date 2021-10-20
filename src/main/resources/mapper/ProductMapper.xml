@@ -11,6 +11,7 @@
         <result property="product_sale_price" column="product_sale_price"/>
         <result property="product_create_date" column="product_create_date"/>
         <result property="product_isEnabled" column="product_isEnabled"/>
+        <result property="product_category_id" column="product_category_id"/>
         <association property="product_category" javaType="com.uzykj.mall.entity.Category">
             <id property="category_id" column="product_category_id"/>
         </association>

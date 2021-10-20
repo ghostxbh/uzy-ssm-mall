@@ -71,7 +71,7 @@ public class ForeProductDetailsController extends BaseController {
             return "redirect:/404";
         }
         logger.info("获取产品子信息-分类信息");
-        product.setProduct_category(categoryService.get(product.getProduct_category().getCategory_id()));
+        product.setProduct_category(categoryService.get(product.getProduct_category_id()));
         logger.info("获取产品子信息-产品图片信息");
         List<ProductImage> productImageList = productImageService.getList(product_id, null);
         List<ProductImage> singleProductImageList = new ArrayList<>(5);
@@ -113,7 +113,7 @@ public class ForeProductDetailsController extends BaseController {
         product.setProduct_review_count(reviewService.getTotalByProductId(product_id));
 
         logger.info("获取猜你喜欢列表");
-        Integer category_id = product.getProduct_category().getCategory_id();
+        Integer category_id = product.getProduct_category_id();
         Integer total = productService.getTotal(new Product().setProduct_category(new Category().setCategory_id(category_id)), new Byte[]{0, 2});
         logger.info("分类ID为{}的产品总数为{}条", category_id, total);
         //生成随机数

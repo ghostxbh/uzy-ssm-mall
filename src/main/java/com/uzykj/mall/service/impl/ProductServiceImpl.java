@@ -1,6 +1,8 @@
 package com.uzykj.mall.service.impl;
 
+import com.uzykj.mall.dao.CategoryMapper;
 import com.uzykj.mall.dao.ProductMapper;
+import com.uzykj.mall.entity.Category;
 import com.uzykj.mall.entity.Product;
 import com.uzykj.mall.service.ProductService;
 import com.uzykj.mall.util.OrderUtil;
@@ -16,6 +18,8 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private ProductMapper productMapper;
+    private CategoryMapper categoryMapper;
+
     @Resource(name = "productMapper")
     public void setProductMapper(ProductMapper productMapper) {
         this.productMapper = productMapper;
@@ -24,19 +28,19 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public boolean add(Product product) {
-        return productMapper.insertOne(product)>0;
+        return productMapper.insertOne(product) > 0;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public boolean update(Product product) {
-        return productMapper.updateOne(product)>0;
+        return productMapper.updateOne(product) > 0;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public boolean delete(Integer[] product_id_list) {
-        return productMapper.delete(product_id_list)>0;
+        return productMapper.delete(product_id_list) > 0;
     }
 
     @Override
@@ -55,8 +59,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Integer getTotal(Product product,Byte[] product_isEnabled_array) {
-        return productMapper.selectTotal(product,product_isEnabled_array);
+    public Integer getTotal(Product product, Byte[] product_isEnabled_array) {
+        return productMapper.selectTotal(product, product_isEnabled_array);
     }
 
     @Override
