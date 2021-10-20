@@ -47,7 +47,7 @@
             LIMIT #{pageUtil.pageStart},#{pageUtil.count}
         </if>
     </select>
-    <select id="selectOne" parameterType="int" resultType="category">
+    <select id="selectOne" parameterType="int" resultMap="category">
         SELECT category_id,category_name,category_image_src FROM category
         <where>
             category_id = #{category_id}
