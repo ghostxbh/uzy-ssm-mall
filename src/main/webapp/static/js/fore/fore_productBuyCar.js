@@ -142,7 +142,7 @@ function create(obj) {
         orderItemMap[key] = $(this).find(".item_amount").children("input").val();
     });
     $.ajax({
-        url: "/mall/orderItem",
+        url: "/mall/order/orderItem",
         type: "PUT",
         data: {
             "orderItemMap": JSON.stringify(orderItemMap)
@@ -154,14 +154,14 @@ function create(obj) {
                 return true;
             } else {
                 alert("购物车商品结算异常，请稍候再试！");
-                location.href = "/mall/cart";
+                location.href = "/mall/order/cart";
             }
         },
         beforeSend: function () {
         },
         error: function () {
             alert("购物车商品结算异常，请稍候再试！");
-            location.href = "/mall/cart";
+            location.href = "/mall/order/cart";
         }
     });
 }

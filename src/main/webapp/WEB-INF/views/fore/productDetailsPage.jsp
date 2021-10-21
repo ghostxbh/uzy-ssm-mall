@@ -178,7 +178,7 @@
                     });
                     //点击加入购物车按钮时
                     $(".context_buyCar_form").submit(function () {
-                        if ('${sessionScope.userId}' === "") {
+                        if ('${sessionScope.USER_ID}' === "") {
                             location.href = "${pageContext.request.contextPath}/login";
                             return false;
                         }
@@ -187,7 +187,7 @@
                             location.reload();
                         } else {
                             $.ajax({
-                                url: "${pageContext.request.contextPath}/orderItem/create/${requestScope.product.product_id}?product_number=" + $.trim($(".context_buymember").val()),
+                                url: "${pageContext.request.contextPath}/order/orderItem/create/${requestScope.product.product_id}?product_number=" + $.trim($(".context_buymember").val()),
                                 type: "POST",
                                 data: {"product_number": number},
                                 dataType: "json",

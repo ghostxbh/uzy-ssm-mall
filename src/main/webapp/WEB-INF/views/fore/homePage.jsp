@@ -9,7 +9,7 @@
     <title>柚子云购 -- 电子商城</title>
 </head>
 <style>
-.navSidebars{width:65px;position:fixed;right:10px;top:350px;background:#fff;z-index:99999}.navSidebars div{padding-top:10px;text-align:center;cursor:pointer;position:relative;height:64px}
+.navSidebars{width:65px;position:fixed;right:10px;top:550px;background:#f8f6f6;z-index:99999}.navSidebars div{padding-top:10px;text-align:center;cursor:pointer;position:relative;height:42px}
 .navSidebars .kf_chat .hover-content{display:none;height:160px;position:absolute;right:50px;top:-12px;z-index:10;width:350px;text-align:left;}.navSidebars .kf-tel .hover-content{display:none;height:160px;position:absolute;right:50px;top:0;z-index:10;width:350px;text-align:left;}
 .navSidebars .add-chat .hover-content{display:none;height:160px;position:absolute;right:50px;top:-12px;z-index:10;width:350px;text-align:left;}.navSidebars .__wechat .hover-content{display:none;height:160px;position:absolute;right:75px;top:-12px;z-index:10;width:160px;text-align:left;}
 .kf_chat,.kf-tel,.add-chat,.__wechat,.right_arrow{padding-top:10px;margin-bottom:10px;}.navSidebars div:hover .hover-content{display:block}.navSidebars span{color:#fff}.kf_chat .hover-content,.add-chat .hover-content,.kf .hover-content{padding-left:6px}
@@ -99,34 +99,14 @@
         })
     });
 </script>
-<%--<div class="navSidebars">
-    <div class="kf_chat" title="软件客服">
-      <a class="ceshi"  href="tencent://message/?uin=253323573&Menu=yes& Service=300&sigT=42a1e5347953b64c5ff3980f8a6e644d4b31456cb0b6ac6b27663a3c4dd0f4aa14a543b1716f9d45" style="color:#000;text-decoration: none">
-        <img src="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/shouye-qq.png"/>
-        <br/>软件客服
-     </a>
-    </div>
-    <div class="add-chat" title="加群交流">
-        <img src="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/shouye-qun.png"/>
-        <br/>加群交流</span>
-        <div class="hover-content">
-              <img class="img" src="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/QQgroup.jpg"/>
-        </div>
-    </div>
-    &lt;%&ndash;<div class="__wechat" title="关注我们">
-        <img src="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/shouye-weixin.png"/>
-        <br/>关注我们</span>
-        <div class="hover-content">
-              <img src="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/guanzhu.png"/>
-        </div>
-    </div>&ndash;%&gt;
+<div class="navSidebars">
     <div class="right_arrow">
         <img src="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/shouye-zhiding.png"/>
         <br/>回到顶部</span>
         <div class="hover-content">
         </div>
     </div>
-</div>--%>
+</div>
 <script>
 $(function(){
     $('.right_arrow').on('click', function (e) {
@@ -148,27 +128,27 @@ $(function(){
                 class=""></li>
             <li data-target="#myCarousel" data-slide-to="2"
                 class=""></li>
-         <!--    <li data-target="#myCarousel" data-slide-to="3"
-                class=""></li> -->
+            <li data-target="#myCarousel" data-slide-to="3"
+                class=""></li>
         </ol>
         <!-- 轮播（Carousel）项目 -->
         <div class="carousel-inner">
             <div class="item  active">
-                <div class="carousel-image" style="background-image:url(/static/images/fore/WebsiteImage/banner/60.jpg);background-size:100% 100%;">
+                <div class="carousel-image" style="background-image:url(/mall/static/images/fore/WebsiteImage/banner/60.jpg);background-size:100% 100%;">
                     <div class="carousel-caption active"></div>
                 </div>
             </div>
 
             <div class="item">
                 <div class="carousel-image"
-                     style="background-image: url(/static/images/fore/WebsiteImage/banner/61.jpg);background-size:100% 100%;">
+                     style="background-image: url(/mall/static/images/fore/WebsiteImage/banner/61.jpg);background-size:100% 100%;">
                     <div class="carousel-caption "></div>
                 </div>
             </div>
 
             <div class="item">
                 <div class="carousel-image"
-                     style="background-image: url(/static/images/fore/WebsiteImage/banner/44.jpg);background-size:100% 100%;">
+                     style="background-image: url(/mall/static/images/fore/WebsiteImage/banner/44.jpg);background-size:100% 100%;">
                     <div class="carousel-caption "></div>
                 </div>
             </div>
@@ -177,7 +157,7 @@ $(function(){
 
             <div class="item">
                 <div class="carousel-image"
-                     style="background-image: url(/static/images/fore/WebsiteImage/banner/43.jpg);background-size:100% 100%;">
+                     style="background-image: url(/mall/static/images/fore/WebsiteImage/banner/43.jpg);background-size:100% 100%;">
                     <div class="carousel-caption "></div>
                 </div>
             </div>

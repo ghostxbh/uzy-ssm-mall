@@ -58,7 +58,7 @@
             </li>
             <li class="quick_li_cart">
                 <img src="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/buyCar.png">
-                <a href="${pageContext.request.contextPath}/cart">购物车</a>
+                <a href="${pageContext.request.contextPath}/order/cart">购物车</a>
             </li>
         </ul>
     </div>

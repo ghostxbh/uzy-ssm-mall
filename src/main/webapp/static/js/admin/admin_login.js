@@ -34,7 +34,7 @@ $(function () {
         }
     });
     //点击表单登录按钮时
-    $("#btn_login").click(async function () {
+    $("#btn_login").click(function () {
         //表单验证
         var username = $.trim($("#input_username").val());
         var password = $.trim($("#input_password").val());
@@ -42,7 +42,7 @@ $(function () {
             styleUtil.errorShow($("#txt_error_msg"),"请输入用户名和密码");
             return;
         }
-        await $.ajax({
+        $.ajax({
             url: "/mall/admin/login/doLogin",
             type:"post",
             data: {"username":username,"password":password},
@@ -50,7 +50,7 @@ $(function () {
                 $("#btn_login").val("登录");
                 if (data.success) {
                     cookieUtil.setCookie("username", username, 30);
-                    location.href = "/mall/admin";
+                    window.location.href = "/mall/admin";
                 } else {
                     styleUtil.errorShow($("#txt_error_msg"), "用户名或密码错误");
                 }

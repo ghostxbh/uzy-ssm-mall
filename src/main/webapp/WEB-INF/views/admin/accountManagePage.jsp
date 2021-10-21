@@ -191,7 +191,7 @@
     <div class="frm_div">
         <label class="frm_label text_info" id="lbl_admin_profile_picture">管理员头像</label>
         <img
-                src="${pageContext.request.contextPath}/static/images/item/adminProfilePicture/${requestScope.admin.admin_profile_picture_src}"
+                src="${pageContext.request.contextPath}/static/images/upload/adminProfilePicture/${requestScope.admin.admin_profile_picture_src}"
                 id="admin_profile_picture" width="84px" height="84px"
                 onerror="this.src='${pageContext.request.contextPath}/static/images/admin/loginPage/default_profile_picture-128x128.png'"/>
         <input type="file" onchange="uploadImage(this)" accept="image/*" id="uploadImage">
@@ -210,7 +210,7 @@
     </div>
     <div class="frm_div">
         <span class="details_value td_wait"><a id="span_admin_logout"
-                                               href="${pageContext.request.contextPath}/admin/account/logout">退出当前帐号</a></span>
+                                               href="${pageContext.request.contextPath}/admin/login/logout">退出当前帐号</a></span>
     </div>
 </div>
 <div class="details_div details_div_last modifyPwd">

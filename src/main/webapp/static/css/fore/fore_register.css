@@ -19,7 +19,7 @@ nav {
 
 #mallLogo > a {
     position: relative;
-    display: block;
+    /*display: block;*/
     height: 30px;
     overflow: hidden;
 }
@@ -27,7 +27,7 @@ nav {
 #mallLogo img {
     display: inline-block;
     width: 190px;
-    height: 28px;
+    height: 55px;
     cursor: pointer;
     vertical-align: top;
 }
@@ -36,7 +36,7 @@ nav {
     font-family: "Microsoft YaHei UI Light", serif;
     display: inline-block;
     height: 28px;
-    line-height: 28px;
+    line-height: 50px;
     font-size: 20px;
     color: #333;
     font-weight: bold;

@@ -8,7 +8,7 @@
         $(function () {
             $('#btn-ok').click(function () {
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/orderItem/" + $("#order_id_hidden").val(),
+                    url: "${pageContext.request.contextPath}/order/orderItem/" + $("#order_id_hidden").val(),
                     type: "DELETE",
                     data: null,
                     dataType: "json",
@@ -16,14 +16,14 @@
                         if (data.success !== true) {
                             alert("购物车商品删除异常，请稍候再试！");
                         }
-                        location.href = "/mall/cart";
+                        location.href = "/mall/order/cart";
                     },
                     beforeSend: function () {
 
                     },
                     error: function () {
                         alert("购物车产品删除异常，请稍后再试！");
-                        location.href = "/mall/cart";
+                        location.href = "/mall/order/cart";
                     }
                 });
             });
@@ -81,7 +81,7 @@
             <div id="J_FilterBar">
                 <ul id="J_CartSwitch">
                     <li>
-                        <a href="${pageContext.request.contextPath}/cart" class="J_MakePoint">
+                        <a href="${pageContext.request.contextPath}/order/cart" class="J_MakePoint">
                             <em>全部商品</em>
                         </a>
                     </li>

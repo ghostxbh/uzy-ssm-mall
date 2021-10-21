@@ -8,7 +8,7 @@
     <i id="i_nickname_slide"></i>
     <span id="txt_home_nickname"><c:choose><c:when test="${requestScope.admin.admin_nickname != ''}">${requestScope.admin.admin_nickname}</c:when><c:otherwise>${requestScope.admin.admin_name}</c:otherwise></c:choose></span>
     <img id="img_home_profile_picture"
-         src="${pageContext.request.contextPath}/static/images/item/adminProfilePicture/${requestScope.admin.admin_profile_picture_src}"
+         src="${pageContext.request.contextPath}/static/images/upload/adminProfilePicture/${requestScope.admin.admin_profile_picture_src}"
          onerror="this.src='${pageContext.request.contextPath}/static/images/admin/homePage/default_profile_picture-32x32.png'"
          alt="头像" title="头像" width="32px" height="32px">
     <input id="admin_id" type="hidden" value="${requestScope.admin.admin_id}"/>

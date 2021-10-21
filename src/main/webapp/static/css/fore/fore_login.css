@@ -5,14 +5,13 @@
     margin-bottom: 40px;
     background-color: rgb(241, 220, 165);
     font-family: "Microsoft YaHei UI", serif;
-    margin-top:30px;
     background:url(../../images/fore/WebsiteImage/bz.jpg) no-repeat;
 }
 
 .content > .contentMain {
     position: relative;
     width: 1190px;
-    height: 900px;
+    height: 750px;
     margin: auto;
     
 }
@@ -22,7 +21,7 @@
     height: 400px;
     position: absolute;
     top: 91px;
-    right: 425px;
+    right: 200px;
     background: #ffffff;
     color: #404040;
 }

@@ -33,11 +33,11 @@
 </head>
 <body>
 <%@ include file="include/navigator.jsp" %>
-<nav id="baseNavigator">
+<%--<nav id="baseNavigator">
    <a href="${pageContext.request.contextPath}" target="_self">
         <img src="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/logo.png" style="margin-top:-30px;"/>
   </a>
-</nav>
+</nav>--%>
 <div class="content">
     <div class="contentMain"></div>
     <div class="loginDiv">

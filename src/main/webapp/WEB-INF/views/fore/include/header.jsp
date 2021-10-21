@@ -11,7 +11,7 @@
     <meta name="renderer" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <meta name="viewport" content="width=device-width">
- <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
  	<link href="${pageContext.request.contextPath}/static/images/fore/WebsiteImage/favicon.ico" rel="SHORTCUT ICON">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap-select.min.css"/>

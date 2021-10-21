@@ -105,7 +105,7 @@
         <c:forEach items="${requestScope.user.productOrderItemList}" var="item" varStatus="i">
             <tr>
                 <td title="产品图片"><img
-                        src="${pageContext.request.contextPath}/static/images/item/productSinglePicture/${item.productOrderItem_product.singleProductImageList[0].productImage_src}"
+                        src="${item.productOrderItem_product.singleProductImageList[0].productImage_src}"
                         id="pic_single_${item.productOrderItem_product.singleProductImageList[0].productImage_id}"
                         width="42px" height="42px"
                         name="${item.productOrderItem_product.singleProductImageList[0].productImage_id}"/></td>
