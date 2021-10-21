@@ -7,27 +7,30 @@
         <id property="productImage_id" column="productimage_id"/>
         <result property="productImage_type" column="productimage_type"/>
         <result property="productImage_src" column="productimage_src"/>
+        <result property="productimage_store" column="productimage_store"/>
         <association property="productImage_product" javaType="com.uzykj.mall.entity.Product">
             <id property="product_id" column="productimage_product_id"/>
         </association>
     </resultMap>
 
     <insert id="insertOne" parameterType="productImage">
-        INSERT productimage (productimage_id,productimage_type,productimage_src,productimage_product_id)
+        INSERT productimage (productimage_id,productimage_type,productimage_src,productimage_store,productimage_product_id)
         VALUES (
         null,
         #{productImage.productImage_type},
         #{productImage.productImage_src},
+        #{productImage.productimage_store},
         #{productImage.productImage_product.product_id})
     </insert>
 
     <insert id="insertList" parameterType="list">
-        INSERT productimage (productimage_id,productimage_type,productimage_src,productimage_product_id)
+        INSERT productimage (productimage_id,productimage_type,productimage_src,productimage_store,productimage_product_id)
         VALUES
         <foreach collection="productImage_list" item="productImage" index="index" separator=",">
             (null,
             #{productImage.productImage_type},
             #{productImage.productImage_src},
+            #{productImage.productimage_store},
             #{productImage.productImage_product.product_id})
         </foreach>
     </insert>
@@ -35,9 +38,9 @@
     <update id="updateOne" parameterType="productImage">
         UPDATE productimage
         <set>
-            <if test="productImage.productImage_type != null">productimage_type = #{productImage.productImage_type},
-            </if>
-            <if test="productImage.productImage_src != null">productimage_src = #{productImage.productImage_src}</if>
+            <if test="productImage.productImage_type != null">productimage_type = #{productImage.productImage_type},</if>
+            <if test="productImage.productImage_src != null">productimage_src = #{productImage.productImage_src},</if>
+            <if test="productImage.productimage_store != null">productimage_store = #{productImage.productimage_store}</if>
         </set>
         <where>
             productimage_id = #{productImage.productImage_id}
@@ -57,7 +60,7 @@
     </delete>
 
     <select id="select" resultMap="imageMap">
-        SELECT productimage_id,productimage_type,productimage_src,productimage_product_id FROM productimage
+        SELECT productimage_id,productimage_type,productimage_src,productimage_store,productimage_product_id FROM productimage
         <where>
             <if test="product_id != null">
                 productimage_product_id = #{product_id}
@@ -68,7 +71,7 @@
         </if>
     </select>
     <select id="selectOne" resultMap="imageMap" parameterType="int">
-        SELECT productimage_id,productimage_type,productimage_src,productimage_product_id FROM productimage
+        SELECT productimage_id,productimage_type,productimage_src,productimage_store,productimage_product_id FROM productimage
         <where>
             productimage_id = #{productImage_id}
         </where>
@@ -81,6 +84,9 @@
             </if>
             <if test="productImage_type != null">
                 and productimage_type = #{productImage_type}
+            </if>
+            <if test="productimage_store != null">
+                and productimage_store = #{productimage_store}
             </if>
         </where>
     </select>

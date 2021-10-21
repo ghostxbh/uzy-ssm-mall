@@ -3,6 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "mybatis-3-mapper.dtd">
 <mapper namespace="com.uzykj.mall.dao.AdminMapper">
+    <resultMap id="admin" type="com.uzykj.mall.entity.Admin">
+        <id property="admin_id" column="admin_id"/>
+        <result property="admin_name" column="admin_name"/>
+        <result property="admin_nickname" column="admin_nickname"/>
+        <result property="admin_password" column="admin_password"/>
+        <result property="admin_profile_picture_src" column="admin_profile_picture_src"/>
+    </resultMap>
+
     <insert id="insertOne" parameterType="com.uzykj.mall.entity.Admin">
         INSERT admin(admin_id,admin_name,admin_nickname,admin_password,admin_profile_picture_src)
         VALUES (
@@ -27,7 +35,7 @@
         </where>
     </update>
 
-    <select id="select" resultType="com.uzykj.mall.entity.Admin">
+    <select id="select" resultMap="admin">
         SELECT admin_id,admin_name,admin_nickname,admin_profile_picture_src FROM admin
         <if test="pageUtil != null">
             LIMIT #{pageUtil.index},#{pageUtil.count}
@@ -38,7 +46,7 @@
             </if>
         </where>
     </select>
-    <select id="selectOne" resultType="com.uzykj.mall.entity.Admin" parameterType="int">
+    <select id="selectOne" resultMap="admin" parameterType="int">
         SELECT admin_id,admin_name,admin_nickname,admin_profile_picture_src FROM admin
         <where>
             <if test="admin_id != null">
@@ -49,8 +57,8 @@
             </if>
         </where>
     </select>
-    <select id="selectByLogin" resultType="com.uzykj.mall.entity.Admin">
-        SELECT admin_id FROM admin
+    <select id="selectByLogin" resultMap="admin">
+        SELECT admin_id,admin_name,admin_nickname,admin_profile_picture_src FROM admin
         <where>
             admin_name = #{admin_name} and admin_password = #{admin_password}
         </where>
