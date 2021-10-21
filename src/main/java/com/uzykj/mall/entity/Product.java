@@ -12,6 +12,7 @@ public class Product {
     private Double product_price;
     private Double product_sale_price;
     private Date product_create_date;
+    private Integer product_category_id;
     private Category product_category;
     private Byte product_isEnabled;
     private List<PropertyValue> propertyValueList;
@@ -131,6 +132,15 @@ public class Product {
 
     public Product setProduct_create_date(Date product_create_date) {
         this.product_create_date = product_create_date;
+        return this;
+    }
+
+    public Integer getProduct_category_id() {
+        return product_category_id;
+    }
+
+    public Product setProduct_category_id(Integer product_category_id) {
+        this.product_category_id = product_category_id;
         return this;
     }
 

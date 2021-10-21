@@ -10,12 +10,12 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
         </Console>
     </appenders>
-    <!-- 然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
-    <loggers>
-        <!-- 定义logger的日志级别 -->
+    <!-- 然后定义log，只有定义了log并引入的appender，appender才会生效 -->
+    <logs>
+        <!-- 定义log的日志级别 -->
         <root level="trace">
             <!-- 定义对日志信息如何处理 -->
             <appender-ref ref="Console"/>
         </root>
-    </loggers>
+    </logs>
 </configuration>
