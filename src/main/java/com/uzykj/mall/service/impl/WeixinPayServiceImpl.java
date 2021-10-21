@@ -1,7 +1,7 @@
 package com.uzykj.mall.service.impl;
 
 import com.uzykj.mall.service.IWeixinPayService;
-import com.uzykj.mall.util.FileIsExists;
+import com.uzykj.mall.util.FileUtil;
 import com.uzykj.mall.util.HttpUtil;
 import com.uzykj.mall.util.pay.wx.ClientCustomSSL;
 import com.uzykj.mall.util.pay.wx.Constants;
@@ -39,7 +39,7 @@ public class WeixinPayServiceImpl implements IWeixinPayService {
 
             logger.info("图片存放路径{}", product.getAttach());
             String imgPath = product.getAttach() + product.getOutTradeNo() + ".png";
-            if (FileIsExists.judeDirExists(new File(product.getAttach()))) {
+            if (FileUtil.judeDirExists(new File(product.getAttach()))) {
                 logger.info("图片路径{}", imgPath);
             } else {
                 throw new RuntimeException("图片路径异常");

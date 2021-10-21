@@ -1,24 +1,23 @@
-package com.uzykj.mall.controller.fore.pay;
+package com.uzykj.mall.controller;
 
 
 import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradeCloseRequest;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.AlipayTradeCloseResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.alipay.api.response.AlipayTradeRefundResponse;
-import com.uzykj.mall.controller.BaseController;
 import com.uzykj.mall.entity.ProductOrder;
 import com.uzykj.mall.entity.User;
 import com.uzykj.mall.service.ProductOrderService;
 import com.uzykj.mall.util.pay.ali.AlipayConfig;
-import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.request.AlipayTradePagePayRequest;
-
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,9 +34,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+@Slf4j
 @Controller
 @RequestMapping("/alipay")
-public class AliPayController extends BaseController {
+public class ForeAliPayController {
 
     @Autowired
     private ProductOrderService orderService;
@@ -66,13 +66,13 @@ public class AliPayController extends BaseController {
         bizContent.put("qr_pay_mode", "2");
         String biz = bizContent.toString().replaceAll("\"", "'");
         alipayRequest.setBizContent(biz);
-        logger.info("业务参数:" + alipayRequest.getBizContent());
+        log.info("业务参数:" + alipayRequest.getBizContent());
         String form = "fail";
         try {
             form = AlipayConfig.getAlipayClient().pageExecute(alipayRequest).getBody();
             bizContent.put("from", form);
         } catch (AlipayApiException e) {
-            logger.error("支付宝构造表单失败", e);
+            log.error("支付宝构造表单失败", e);
         }
         return bizContent.toString();
     }
@@ -116,7 +116,7 @@ public class AliPayController extends BaseController {
                 + "\"out_request_no\":\"" + aliRequestNo + "\"}");
         AlipayClient alipayClient = AlipayConfig.getAlipayClient();
         AlipayTradeRefundResponse execute = alipayClient.execute(alipayRequest);
-        logger.info(execute.getBody().toString());
+        log.info(execute.getBody().toString());
         return execute.getBody();
     }
 
@@ -124,7 +124,7 @@ public class AliPayController extends BaseController {
     public void aliNotify(Map<String, Object> map, HttpSession session, HttpServletRequest request,
                           HttpServletResponse response) throws Exception {
         String message = "success";
-        logger.info("获取用户信息");
+        log.info("获取用户信息");
         User user = (User) session.getAttribute("user");
         Map<String, String> params = new HashMap<String, String>();
         Map<String, String[]> requestParams = request.getParameterMap();
@@ -153,20 +153,20 @@ public class AliPayController extends BaseController {
             // 交易状态
             String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"), "UTF-8");
 
-            logger.info("------验证订单支付信息------");
+            log.info("------验证订单支付信息------");
             if (trade_status.equals("TRADE_FINISHED")) {
-                logger.info("支付失败");
+                log.info("支付失败");
                 message = "failed";
             } else if (trade_status.equals("TRADE_SUCCESS")) {
-                logger.info("支付成功");
-                logger.info("查询订单是否存在");
+                log.info("支付成功");
+                log.info("查询订单是否存在");
 				/*ProductOrder order = productOrderService.getByCode(out_trade_no);
 				order.setProductOrderItemList(
 						productOrderItemService.getListByOrderId(order.getProductOrder_id(), null));
 
 				double orderTotalPrice = 0.00;
 				if (order.getProductOrderItemList().size() == 1) {
-					logger.info("获取单订单项的产品信息");
+					log.info("获取单订单项的产品信息");
 					ProductOrderItem productOrderItem = order.getProductOrderItemList().get(0);
 					orderTotalPrice = productOrderItem.getProductOrderItem_price();
 				} else {
@@ -174,7 +174,7 @@ public class AliPayController extends BaseController {
 						orderTotalPrice += productOrderItem.getProductOrderItem_price();
 					}
 				}
-				logger.info("订单总金额为：{}元" + orderTotalPrice);
+				log.info("订单总金额为：{}元" + orderTotalPrice);
 				map.put("status", true);
 				map.put("productOrder", order);
 				map.put("orderTotalPrice", orderTotalPrice);
@@ -182,18 +182,18 @@ public class AliPayController extends BaseController {
 				order.setProductOrder_status(i);
 				boolean update = productOrderService.update(order);
 				if (update) {
-					logger.info("交易成功");
+					log.info("交易成功");
 				} else {
 					message = "failed";
 					throw new RuntimeException("交易失败");
 				}*/
             }
-            logger.info("success");
-            logger.info("商户订单号" + out_trade_no);
-            logger.info("支付宝交易号" + trade_no);
+            log.info("success");
+            log.info("商户订单号" + out_trade_no);
+            log.info("支付宝交易号" + trade_no);
         } else {// 验证失败
             response.getWriter().print("failure");
-            logger.info("验证失败！");
+            log.info("验证失败！");
         }
         BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
         out.write(message.getBytes());
@@ -246,34 +246,34 @@ public class AliPayController extends BaseController {
                 String status = queryResponse.getTradeStatus().toString();
                 switch (status) {
                     case "WAIT_BUYER_PAY":
-                        logger.info("交易创建，等待买家付款");
+                        log.info("交易创建，等待买家付款");
                         return "redirect:/page/index";
                     case "TRADE_CLOSED":
-                        logger.info("未付款交易超时关闭，或支付完成后全额退款");
+                        log.info("未付款交易超时关闭，或支付完成后全额退款");
                         return "redirect:/page/index";
                     case "TRADE_SUCCESS":
-                        logger.info("交易支付成功");
+                        log.info("交易支付成功");
                         ProductOrder byCode = orderService.getByCode(out_trade_no);
                         byCode.setProductOrder_status((byte) 5);
                         boolean yn = orderService.update(byCode);
                         if (yn) {
-                            logger.info("订单状态--支付成功");
+                            log.info("订单状态--支付成功");
                             return "redirect:/filecenter/index";
                         } else {
                             throw new RuntimeException("订单异常");
                         }
                     case "TRADE_FINISHED":
-                        logger.info("交易结束，不可退款");
+                        log.info("交易结束，不可退款");
                         return "redirect:/page/index";
                 }
             } else {
                 throw new RuntimeException("支付查询异常");
             }
-            logger.info(
+            log.info(
                     "trade_no:" + trade_no + "<br/>out_trade_no:" + out_trade_no + "<br/>total_amount:" + total_amount);
         } else {
             request.setAttribute("status", false);
-            logger.info("验签失败");
+            log.info("验签失败");
             throw new RuntimeException("验签失败");
         }
         return "redirect:/page/index";

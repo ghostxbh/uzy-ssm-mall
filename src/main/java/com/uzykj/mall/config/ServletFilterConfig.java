@@ -28,9 +28,8 @@ public class ServletFilterConfig implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpRespose = (HttpServletResponse) response;
-		User user = (User) httpRequest.getSession().getAttribute("user");
-		//Renter currentRenter = (Renter) httpRequest.getSession().getAttribute("CurrentRenter");
-		
+		User user = (User) httpRequest.getSession().getAttribute("USER_SESSION");
+
 		HttpServletResponse _response = (HttpServletResponse) response;
 		_response.setHeader("Content-type", "text/html;charset=UTF-8");
 		

@@ -4,9 +4,10 @@ public class ProductImage {
     private Integer productImage_id;
     private Byte productImage_type;
     private String productImage_src;
+    private String productimage_store;
     private Product productImage_product;
 
-    public ProductImage(){
+    public ProductImage() {
 
     }
 
@@ -51,6 +52,15 @@ public class ProductImage {
 
     public ProductImage setProductImage_src(String productImage_src) {
         this.productImage_src = productImage_src;
+        return this;
+    }
+
+    public String getProductimage_store() {
+        return productimage_store;
+    }
+
+    public ProductImage setProductimage_store(String productimage_store) {
+        this.productimage_store = productimage_store;
         return this;
     }
 
