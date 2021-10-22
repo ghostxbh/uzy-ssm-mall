@@ -46,11 +46,11 @@ public class AdminProductController {
     @Autowired
     private LastIDService lastIDService;
 
-    @Value("${file_store.use}")
+    @Value("${storeService.use}")
     public String storeUse;
-    @Value("${file_store.local.local_file_path}")
+    @Value("${storeService.local.local_file_path}")
     public String localFilePath;
-    @Value("${file_store.local.local_file_prefix}")
+    @Value("${storeService.local.local_file_prefix}")
     public String localFileUrl;
 
     //转到后台管理-产品页-ajax

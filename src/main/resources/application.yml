@@ -58,3 +58,54 @@ logging:
       springframework:
         boot:
           autoconfigure: error
+
+storeService:
+  # 是否启用
+  use: local
+  qiniu:
+    qiniu_ak:
+    qiniu_sk:
+    #资源储存中心
+    mall_zone:
+    #七牛存储空间域名
+    mall_domain:
+  local:
+    # 本地存放地址
+    local_file_path: /work/resource/mall/
+    local_file_prefix: http://127.0.0.1:8080/mall/
+
+payService:
+  wxpay:
+    #服务号的应用ID
+    APP_ID:
+    #服务号的应用密钥
+    APP_SECRET:
+    #服务号的配置token
+    TOKEN:
+    #商户号
+    MCH_ID:
+    #API密钥
+    API_KEY:
+    #签名加密方式
+    SIGN_TYPE: MD5
+    #微信支付证书名称
+    CERT_PATH: apiclient_cert.p12
+    #通知地址
+    SM_NOTIFYURL:
+    H5_NOTIFYURL:
+
+  alipay:
+    # 支付宝配置 （沙盒测试)
+    pid:
+    app_id: 2016091300503327
+    # 商户RSA私钥、公钥
+    merchant_private_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgjzbVog74fZ5FpqsG+1EVdfV1OkHr/CvSVaTPJ0FNAA/26iJmigRf+gm78GixBqkUJM2jpVA1I2F1uhfil1f2dPaz794H6gJteiFOQVQxEHaTUOVYSTBcBNQL1KscsG6ZDS67xGfSwTBX2Otde7GhI6NWPALgi8qHImPgRRhqIjyC2Q4UKo8xY+iApWwRb7v8ASXhB/R7qQPB8LzgGdjhvIlbXBcyPrlRYQo6JiL0bdl+DX7kulV2D8kKRaYnvNrG1tv1UpmIuTPZOj+oxfeQoa3LW+gIdUjUW6mZUzulqOO/TQfp8s31GaZqipwvdcsOqjHpIWW6aj0i6m4FTz1EwIDAQAB
+    merchant_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqu00Yjdw5/5N7NtSay8TuS2X6pCehbgqKQJtBs5o1Bkttn0xU6iAzWR5QFq9t8hd1zaUKR304Rv0yISLVunchtSem8hktvwAZcenbzdfFhY7apMmcPBM+jpyNuO7zm9bdj5PSVxBe7z2qpXXNZVhrTTEUXQyT3Y1LGRKAtEL42vT80QORaE59quqbtcWi8vHr3mu0hl3CgK0YOhBEiNKyHipD9F9rLOgxycV9/BZlzheK8iKKl1DAUy0vwzLZmqazx7BlC/hJlXwfDUYF3XS9SFRKxqBvYPzl8L37PyRWQBdWtVveY8Vuv0tm7L3qXULCMFIqII4+FYMPutM9AFz2wIDAQAB
+    #支付宝公钥
+    alipay_public_key:
+    #支付宝网关
+    alipay_gateway: https://openapi.alipaydev.com/gateway.do
+    #请求notify_url
+    notify_url:
+    #回调return_url
+    return_url:

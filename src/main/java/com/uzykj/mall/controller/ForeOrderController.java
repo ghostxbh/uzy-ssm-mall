@@ -643,7 +643,7 @@ public class ForeOrderController {
     @ResponseBody
     @PutMapping("/orderItem")
     public String updateOrderItem(HttpSession session, Map<String, Object> map,
-                                  @RequestParam String orderItemMap) {
+                                  @RequestBody() String orderItemMap) {
         User user = (User) session.getAttribute("USER_SESSION");
         Integer userId = (Integer) session.getAttribute("USER_ID");
         map.put("user", user);

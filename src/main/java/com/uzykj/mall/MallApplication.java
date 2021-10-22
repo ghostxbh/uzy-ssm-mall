@@ -20,6 +20,7 @@ public class MallApplication {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(MallApplication.class, args);
         String serverPort = context.getEnvironment().getProperty("server.port");
-        log.info("This project is started! http://localhost:" + serverPort);
+        String path = context.getEnvironment().getProperty("server.servlet.context-path");
+        log.info("This project is started! http://localhost:" + serverPort + path);
     }
 }

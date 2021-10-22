@@ -94,9 +94,9 @@
             <tbody>
             <c:forEach items="${requestScope.orderItemList}" var="orderItem" varStatus="i">
                 <tr class="tr_shop">
-                    <%-- <td><span class="span_shopTitle">店铺：</span><span
-                            class="span_shopName">贤趣${orderItem.productOrderItem_product.product_category.category_name}旗舰店</span>
-                    </td> --%>
+                        <%-- <td><span class="span_shopTitle">店铺：</span><span
+                                class="span_shopName">贤趣${orderItem.productOrderItem_product.product_category.category_name}旗舰店</span>
+                        </td> --%>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -115,9 +115,9 @@
                 </tr>
                 <tr class="tr_userMessage">
                     <td><label for="input_userMessage_${i.count}">备注：</label><textarea maxlength="500"
-                                                                                          id="input_userMessage_${i.count}"
-                                                                                          placeholder="选填:填写内容已和卖家协商确认"
-                                                                                          class="input_userMessage"></textarea>
+                                                                                       id="input_userMessage_${i.count}"
+                                                                                       placeholder="选填:填写内容已和卖家协商确认"
+                                                                                       class="input_userMessage"></textarea>
                     </td>
                     <td></td>
                     <td></td>
@@ -153,7 +153,7 @@
             </div>
         </div>
     </div>
-    <script>	    
+    <script>
         function payOne() {
             var addressId = $("#select_order_address_province").val();
             var cityAddressId = $("#select_order_address_city").val();
@@ -206,6 +206,7 @@
                 },
                 dataType: "json",
                 success: function (data) {
+                    data = typeof data === "string" ? JSON.parse(data) : data;
                     if (data.success) {
                         location.href = "/mall" + data.url;
                     } else {

@@ -144,11 +144,11 @@ function create(obj) {
     $.ajax({
         url: "/mall/order/orderItem",
         type: "PUT",
-        data: {
-            "orderItemMap": JSON.stringify(orderItemMap)
-        },
+        data: JSON.stringify(orderItemMap),
         traditional: true,
         success: function (data) {
+            debugger
+            data = typeof data === "string" ? JSON.parse(data) : data;
             if (data.success) {
                 location.href = "/mall/order/create/byCart?order_item_list=" + data.orderItemIDArray;
                 return true;

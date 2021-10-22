@@ -37,11 +37,11 @@ public class ForeUserController {
     @Autowired
     private UserService userService;
 
-    @Value("${file_store.use}")
+    @Value("${storeService.use}")
     private String storeUse;
-    @Value("${file_store.local.local_file_path}")
+    @Value("${storeService.local.local_file_path}")
     private String localFilePath;
-    @Value("${file_store.local.local_file_prefix}")
+    @Value("${storeService.local.local_file_prefix}")
     private String localFileUrl;
 
     //转到前台-用户详情页
