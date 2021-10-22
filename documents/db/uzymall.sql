@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : 腾讯云101.42.109.94
  Source Server Type    : MySQL
- Source Server Version : 50725
- Source Host           : 127.0.0.1:3306
+ Source Server Version : 50735
+ Source Host           : 101.42.109.94:3306
  Source Schema         : uzymall
 
  Target Server Type    : MySQL
- Target Server Version : 50725
+ Target Server Version : 50735
  File Encoding         : 65001
 
- Date: 11/06/2020 14:18:58
+ Date: 22/10/2021 09:47:45
 */
 
 SET NAMES utf8mb4;
@@ -21,19 +21,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- Table structure for address
 -- ----------------------------
 DROP TABLE IF EXISTS `address`;
-CREATE TABLE `address` (
-  `address_areaId` char(6) NOT NULL,
-  `address_name` varchar(50) NOT NULL,
-  `address_regionId` char(6) NOT NULL,
-  PRIMARY KEY (`address_areaId`),
-  KEY `address_regionId` (`address_regionId`),
-  CONSTRAINT `address_ibfk_1` FOREIGN KEY (`address_regionId`) REFERENCES `address` (`address_areaId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `address`  (
+  `address_areaId` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `address_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `address_regionId` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`address_areaId`) USING BTREE,
+  INDEX `address_regionId`(`address_regionId`) USING BTREE,
+  CONSTRAINT `address_ibfk_1` FOREIGN KEY (`address_regionId`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of address
 -- ----------------------------
-BEGIN;
 INSERT INTO `address` VALUES ('110000', '北京', '110000');
 INSERT INTO `address` VALUES ('110100', '北京市', '110000');
 INSERT INTO `address` VALUES ('110101', '东城区', '110100');
@@ -3782,98 +3781,93 @@ INSERT INTO `address` VALUES ('820200', '氹仔岛', '820000');
 INSERT INTO `address` VALUES ('820201', '嘉模堂区', '820200');
 INSERT INTO `address` VALUES ('820300', '路环岛', '820000');
 INSERT INTO `address` VALUES ('820301', '圣方济各堂区', '820300');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for admin
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `admin` (
+CREATE TABLE `admin`  (
   `admin_id` int(10) NOT NULL AUTO_INCREMENT,
   `admin_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `admin_nickname` varchar(50) NOT NULL DEFAULT '',
+  `admin_nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   `admin_password` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `admin_profile_picture_src` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`admin_id`),
-  UNIQUE KEY `un_admin_name` (`admin_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `admin_profile_picture_src` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`admin_id`) USING BTREE,
+  UNIQUE INDEX `un_admin_name`(`admin_name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-BEGIN;
-INSERT INTO `admin` VALUES (1, 'zxc123', 'zxc', 'zxc123', NULL);
-COMMIT;
+INSERT INTO `admin` VALUES (1, 'zxc123', 'zxc', 'zxc123', '0675df50-7e0b-4158-8a74-0f4c65fabeb6.jpg');
 
 -- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
+CREATE TABLE `category`  (
   `category_id` int(10) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(20) NOT NULL,
-  `category_image_src` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=314 DEFAULT CHARSET=utf8;
+  `category_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `category_image_src` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`category_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 314 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-BEGIN;
-INSERT INTO `category` VALUES (151, '手机', '');
-INSERT INTO `category` VALUES (155, '畅呼吸', '');
-INSERT INTO `category` VALUES (185, '官方配件', '');
-INSERT INTO `category` VALUES (218, 'TNT显示屏', '');
-INSERT INTO `category` VALUES (311, '精选好物', '');
-INSERT INTO `category` VALUES (313, '扫地机器人', '');
-COMMIT;
+INSERT INTO `category` VALUES (145, '书籍', 'https://img14.360buyimg.com/n1/jfs/t1/178330/18/3438/37171/60996bf9Ef4de5e9b/896ec76d166b892c.jpg');
+INSERT INTO `category` VALUES (151, '手机', 'https://resource.smartisan.com/resource/84366aa98fd0659d7809e1b9eed62cb4.png');
+INSERT INTO `category` VALUES (155, '畅呼吸', 'https://resource.smartisan.com/resource/71432ad30288fb860a4389881069b874.png');
+INSERT INTO `category` VALUES (185, '官方配件', 'https://resource.smartisan.com/resource/3899737bb15dae97d261a080d3b9894d.jpg');
+INSERT INTO `category` VALUES (218, 'TNT显示屏', 'https://resource.smartisan.com/resource/df8c296ccf8f78af57901d213c24d5a7.jpg');
+INSERT INTO `category` VALUES (311, '精选好物', 'https://resource.smartisan.com/resource/64b8c657d5a532cf4f159aaab0173220.jpg');
+INSERT INTO `category` VALUES (313, '扫地机器人', 'https://resource.smartisan.com/resource/df94938d10ce86465e33e8c28b5ab8d8.jpg');
 
 -- ----------------------------
 -- Table structure for product
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
-CREATE TABLE `product` (
+CREATE TABLE `product`  (
   `product_id` int(10) NOT NULL AUTO_INCREMENT,
-  `product_name` varchar(100) NOT NULL,
-  `product_title` varchar(100) DEFAULT NULL,
-  `product_price` decimal(10,2) DEFAULT NULL,
-  `product_sale_price` decimal(10,2) NOT NULL,
+  `product_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `product_title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `product_price` decimal(10, 2) NULL DEFAULT NULL,
+  `product_sale_price` decimal(10, 2) NOT NULL,
   `product_create_date` datetime NOT NULL,
   `product_category_id` int(10) NOT NULL,
-  `product_isEnabled` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`product_id`),
-  KEY `product_ibfk_1` (`product_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000839 DEFAULT CHARSET=utf8;
+  `product_isEnabled` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`product_id`) USING BTREE,
+  INDEX `product_ibfk_1`(`product_category_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1000839 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-BEGIN;
-INSERT INTO `product` VALUES (183, '会计主管从入门到精通', '会计职场之路的必备专业指南书！', 67.00, 32.00, '2018-09-28 15:12:03', 21, 0);
-INSERT INTO `product` VALUES (184, '实账实战演练：跟我学查账', '将查账知识由浅入深，循序渐进的展现。', 67.00, 31.00, '2018-09-28 15:13:41', 21, 0);
-INSERT INTO `product` VALUES (185, '玩转财务大数据：金税三期纳税实务', '为纳税人提供做好税务风险管控的方式方法。', 77.00, 52.00, '2018-09-28 15:15:23', 21, 0);
-INSERT INTO `product` VALUES (186, '用生活常识学懂成本会计', '手把手教你做好成本会计', 72.00, 48.00, '2018-09-28 15:16:41', 21, 0);
-INSERT INTO `product` VALUES (187, '增值税实务政策解析与操作指南', '增值税全行业营改增政策深度分析。', 88.00, 52.00, '2018-09-28 15:17:53', 21, 0);
-INSERT INTO `product` VALUES (188, '中小企业税务与会计实务', '从中小企业日常经营经常遇到的现实业务入手，按实际业务划分不同的节，有针对性的提供解决方案。', 48.00, 20.00, '2018-09-28 15:22:18', 21, 0);
-INSERT INTO `product` VALUES (189, '《世界上最简单的会计书》', '创新的诠释方法让你快速了解财务知识。', 50.00, 25.00, '2018-09-28 15:30:41', 22, 0);
-INSERT INTO `product` VALUES (190, '手把手教你做优秀出纳', '手把手指点出纳应知应会的业务技能技巧。', 55.00, 25.00, '2018-09-28 15:33:14', 22, 0);
-INSERT INTO `product` VALUES (191, '《财务报表解读-教你快速学会分析一家公司》', '教你轻松读出公司报表隐含的秘密。', 58.00, 19.00, '2018-09-28 15:35:11', 23, 0);
-INSERT INTO `product` VALUES (192, '《财务报表涉税分析》', '内容全面，实用性强，税务稽查，纳税评估，企业税收管理的必备书', 57.00, 21.00, '2018-09-28 15:37:03', 23, 0);
-INSERT INTO `product` VALUES (193, '《环境保护政策和征管百问百答》', '《环境保护税法》及其实施条例学习应用范本。', 62.00, 23.00, '2018-09-28 15:38:30', 23, 0);
-INSERT INTO `product` VALUES (194, '《全面预算之美：联通战略和经营的利器》', '帮助决策者提升四个阶段的管理成效，为利润持续增长保驾护航。', 61.00, 31.00, '2018-09-28 15:41:56', 23, 0);
-INSERT INTO `product` VALUES (195, '《营改增后增值税会计处理和税会差异调整操作实务》', '最新增值税会计处理操作实务。', 72.00, 28.00, '2018-09-28 15:43:26', 23, 0);
-INSERT INTO `product` VALUES (196, '《中华人民共和国个人所得税法》', '诠释最全最新的书籍《中华人民共和国个人所得税法释义》', 68.00, 28.00, '2018-09-28 15:45:16', 23, 0);
-INSERT INTO `product` VALUES (197, '会计准则与会计制度应用指南大全', '内容全面，清晰分明，是会计人员不可或缺的指南大全。', 101.00, 66.00, '2018-09-28 15:47:54', 23, 0);
-INSERT INTO `product` VALUES (198, '金税三期管控下增值税会计核算及纳税风险实务', '内容贴切，实用性强根据最新税收政策编辑，实力分析通俗易懂', 89.00, 66.00, '2018-09-28 15:49:49', 23, 0);
-INSERT INTO `product` VALUES (199, '精益成本管理攻略', '管理会计创新探索的力作。', 52.00, 18.00, '2018-09-28 15:51:02', 23, 0);
-INSERT INTO `product` VALUES (200, '税务稽查明争与暗战', '帮助企业全方位洞察税务稽查的奥秘', 55.00, 19.00, '2018-09-28 15:53:49', 23, 0);
-INSERT INTO `product` VALUES (201, '会计学', '本教材是会计的入门教材，它不仅可以作为经济管理类专业学生的学习教材，也可以作为 经济管理工作人员和非', 90.00, 40.00, '2018-09-28 16:02:07', 22, 0);
-INSERT INTO `product` VALUES (202, '财务管理案例', '本书围绕财务管理的基本内容及最新前沿，共涉及公司治理、企业筹资、投资决策、盈余 管理、公司并购和企业', 87.00, 38.00, '2018-09-28 16:03:02', 22, 0);
-INSERT INTO `product` VALUES (203, '资产评估学', '思路清晰，重点突出，便于学生从总体上把握理解。', 38.00, 15.00, '2018-09-28 16:04:29', 22, 0);
-INSERT INTO `product` VALUES (204, '财务管理案例精析（第二版）', '——最新最详实真实案例深度剖析——◆9大专题', 58.00, 50.00, '2018-09-28 16:06:33', 22, 0);
-INSERT INTO `product` VALUES (205, '土地增值税实战与案例精解 （第二版）', '是一本涵盖土地增值税操作全过程的实战性著作。', 67.00, 19.00, '2018-09-28 16:08:15', 22, 0);
-INSERT INTO `product` VALUES (206, '企业所得税政策与实践深度分析 （2015）', '根据每年所得税政策的变 化进行修改，时效性、权威性、影响力得到广泛认可。', 66.00, 27.00, '2018-09-28 16:10:02', 22, 0);
-INSERT INTO `product` VALUES (207, '会计新手成长手记(第二版)', '是掌握诸多会计理论却苦于找不到实践“门口”的人的一盏指路“小桔灯”！', 69.00, 48.80, '2018-09-28 16:20:57', 21, 0);
+INSERT INTO `product` VALUES (183, '会计主管从入门到精通', '会计职场之路的必备专业指南书！', 67.00, 32.00, '2018-09-28 15:12:03', 145, 0);
+INSERT INTO `product` VALUES (184, '实账实战演练：跟我学查账', '将查账知识由浅入深，循序渐进的展现。', 67.00, 31.00, '2018-09-28 15:13:41', 145, 0);
+INSERT INTO `product` VALUES (185, '玩转财务大数据：金税三期纳税实务', '为纳税人提供做好税务风险管控的方式方法。', 77.00, 52.00, '2018-09-28 15:15:23', 145, 0);
+INSERT INTO `product` VALUES (186, '用生活常识学懂成本会计', '手把手教你做好成本会计', 72.00, 48.00, '2018-09-28 15:16:41', 145, 0);
+INSERT INTO `product` VALUES (187, '增值税实务政策解析与操作指南', '增值税全行业营改增政策深度分析。', 88.00, 52.00, '2018-09-28 15:17:53', 145, 0);
+INSERT INTO `product` VALUES (188, '中小企业税务与会计实务', '从中小企业日常经营经常遇到的现实业务入手，按实际业务划分不同的节，有针对性的提供解决方案。', 48.00, 20.00, '2018-09-28 15:22:18', 145, 0);
+INSERT INTO `product` VALUES (189, '《世界上最简单的会计书》', '创新的诠释方法让你快速了解财务知识。', 50.00, 25.00, '2018-09-28 15:30:41', 145, 0);
+INSERT INTO `product` VALUES (190, '手把手教你做优秀出纳', '手把手指点出纳应知应会的业务技能技巧。', 55.00, 25.00, '2018-09-28 15:33:14', 145, 0);
+INSERT INTO `product` VALUES (191, '《财务报表解读-教你快速学会分析一家公司》', '教你轻松读出公司报表隐含的秘密。', 58.00, 19.00, '2018-09-28 15:35:11', 145, 0);
+INSERT INTO `product` VALUES (192, '《财务报表涉税分析》', '内容全面，实用性强，税务稽查，纳税评估，企业税收管理的必备书', 57.00, 21.00, '2018-09-28 15:37:03', 145, 0);
+INSERT INTO `product` VALUES (193, '《环境保护政策和征管百问百答》', '《环境保护税法》及其实施条例学习应用范本。', 62.00, 23.00, '2018-09-28 15:38:30', 145, 0);
+INSERT INTO `product` VALUES (194, '《全面预算之美：联通战略和经营的利器》', '帮助决策者提升四个阶段的管理成效，为利润持续增长保驾护航。', 61.00, 31.00, '2018-09-28 15:41:56', 145, 0);
+INSERT INTO `product` VALUES (195, '《营改增后增值税会计处理和税会差异调整操作实务》', '最新增值税会计处理操作实务。', 72.00, 28.00, '2018-09-28 15:43:26', 145, 0);
+INSERT INTO `product` VALUES (196, '《中华人民共和国个人所得税法》', '诠释最全最新的书籍《中华人民共和国个人所得税法释义》', 68.00, 28.00, '2018-09-28 15:45:16', 145, 0);
+INSERT INTO `product` VALUES (197, '会计准则与会计制度应用指南大全', '内容全面，清晰分明，是会计人员不可或缺的指南大全。', 101.00, 66.00, '2018-09-28 15:47:54', 145, 0);
+INSERT INTO `product` VALUES (198, '金税三期管控下增值税会计核算及纳税风险实务', '内容贴切，实用性强根据最新税收政策编辑，实力分析通俗易懂', 89.00, 66.00, '2018-09-28 15:49:49', 145, 0);
+INSERT INTO `product` VALUES (199, '精益成本管理攻略', '管理会计创新探索的力作。', 52.00, 18.00, '2018-09-28 15:51:02', 145, 0);
+INSERT INTO `product` VALUES (200, '税务稽查明争与暗战', '帮助企业全方位洞察税务稽查的奥秘', 55.00, 19.00, '2018-09-28 15:53:49', 145, 0);
+INSERT INTO `product` VALUES (201, '会计学', '本教材是会计的入门教材，它不仅可以作为经济管理类专业学生的学习教材，也可以作为 经济管理工作人员和非', 90.00, 40.00, '2018-09-28 16:02:07', 145, 0);
+INSERT INTO `product` VALUES (202, '财务管理案例', '本书围绕财务管理的基本内容及最新前沿，共涉及公司治理、企业筹资、投资决策、盈余 管理、公司并购和企业', 87.00, 38.00, '2018-09-28 16:03:02', 145, 0);
+INSERT INTO `product` VALUES (203, '资产评估学', '思路清晰，重点突出，便于学生从总体上把握理解。', 38.00, 15.00, '2018-09-28 16:04:29', 145, 0);
+INSERT INTO `product` VALUES (204, '财务管理案例精析（第二版）', '——最新最详实真实案例深度剖析——◆9大专题', 58.00, 50.00, '2018-09-28 16:06:33', 145, 0);
+INSERT INTO `product` VALUES (205, '土地增值税实战与案例精解 （第二版）', '是一本涵盖土地增值税操作全过程的实战性著作。', 67.00, 19.00, '2018-09-28 16:08:15', 145, 0);
+INSERT INTO `product` VALUES (206, '企业所得税政策与实践深度分析 （2015）', '根据每年所得税政策的变 化进行修改，时效性、权威性、影响力得到广泛认可。', 66.00, 27.00, '2018-09-28 16:10:02', 145, 0);
+INSERT INTO `product` VALUES (207, '会计新手成长手记(第二版)', '是掌握诸多会计理论却苦于找不到实践“门口”的人的一盏指路“小桔灯”！', 69.00, 48.80, '2018-09-28 16:20:57', 145, 0);
 INSERT INTO `product` VALUES (1000235, 'Smartisan 双口 & 快充车载充电器', '【】 Smartisan 双口 & 快充车载充电器', 79.00, 0.00, '2020-05-29 19:16:04', 185, 0);
 INSERT INTO `product` VALUES (1000267, 'Smartisan 原装快充充电器 18W', '【精选配件 限时直降】 Smartisan 原装快充充电器 18W', 49.00, 39.00, '2020-05-29 19:16:04', 185, 0);
 INSERT INTO `product` VALUES (1000268, 'Smartisan 耳机转接头', '【精选配件 限时直降】 Smartisan 耳机转接头', 19.00, 18.00, '2020-05-29 19:16:04', 185, 0);
@@ -4082,453 +4076,433 @@ INSERT INTO `product` VALUES (1000835, '迪乐贝尔 吸管塑料杯', '【新�
 INSERT INTO `product` VALUES (1000836, 'Remax 如意挂脖风扇', '【新品特惠】 Remax 如意挂脖风扇', 69.00, 59.00, '2020-05-29 19:16:04', 311, 0);
 INSERT INTO `product` VALUES (1000837, 'REMAX 致美系列弹盖保温杯', '【新品特惠】 REMAX 致美系列弹盖保温杯', 68.00, 58.00, '2020-05-29 19:16:04', 311, 0);
 INSERT INTO `product` VALUES (1000838, 'APIYOO 皮卡丘声波儿童牙刷', '【新品特惠】 APIYOO 皮卡丘声波儿童牙刷', 299.00, 289.00, '2020-05-29 19:16:04', 311, 0);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for productimage
 -- ----------------------------
 DROP TABLE IF EXISTS `productimage`;
-CREATE TABLE `productimage` (
+CREATE TABLE `productimage`  (
   `productimage_id` int(10) NOT NULL AUTO_INCREMENT,
-  `productimage_type` tinyint(1) unsigned NOT NULL,
-  `productimage_src` varchar(255) NOT NULL,
+  `productimage_type` tinyint(1) UNSIGNED NOT NULL,
+  `productimage_src` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `productimage_product_id` int(10) NOT NULL,
-  PRIMARY KEY (`productimage_id`),
-  KEY `productimage_product_id` (`productimage_product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4326 DEFAULT CHARSET=utf8;
+  `productimage_store` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`productimage_id`) USING BTREE,
+  INDEX `productimage_product_id`(`productimage_product_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4326 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of productimage
 -- ----------------------------
-BEGIN;
-INSERT INTO `productimage` VALUES (4057, 0, 'https://resource.smartisan.com/resource/0a02fc909c27f9a6e1d8971662486d5c.jpg', 1000698);
-INSERT INTO `productimage` VALUES (4058, 0, 'https://resource.smartisan.com/resource/80c763e64f087676c15394effc8b8136.jpg', 1000697);
-INSERT INTO `productimage` VALUES (4059, 0, 'https://resource.smartisan.com/resource/9ebb2d47c412d8ff7618b89ab42ae715.jpg', 1000696);
-INSERT INTO `productimage` VALUES (4060, 0, 'https://resource.smartisan.com/resource/4a5ed736d31b820d2c04709717a59d54.jpg', 1000693);
-INSERT INTO `productimage` VALUES (4061, 0, 'https://resource.smartisan.com/resource/00159a7c85a87aec976139a43d248404.jpg', 1000692);
-INSERT INTO `productimage` VALUES (4062, 0, 'https://resource.smartisan.com/resource/1604c12617d2848900d8cee362dfef6d.jpg', 1000691);
-INSERT INTO `productimage` VALUES (4063, 0, 'https://resource.smartisan.com/resource/648b92d51a7b03d753f7256150fc9771.jpg', 1000690);
-INSERT INTO `productimage` VALUES (4064, 0, 'https://resource.smartisan.com/resource/4242d80ec7ded50e0ab106a946f166b8.jpg', 1000689);
-INSERT INTO `productimage` VALUES (4065, 0, 'https://resource.smartisan.com/resource/13a288f1e8c53a011e152710b21cbca4.jpg', 1000688);
-INSERT INTO `productimage` VALUES (4066, 0, 'https://resource.smartisan.com/resource/7316f0e4de692e7d89f77c89f44bf651.jpg', 1000687);
-INSERT INTO `productimage` VALUES (4067, 0, 'https://resource.smartisan.com/resource/7aaa33d100cad98bba19e8b4cf5f5ad6.jpg', 1000684);
-INSERT INTO `productimage` VALUES (4068, 0, 'https://resource.smartisan.com/resource/63cea2eeec303c66e62fbd94499868b9.jpg', 1000683);
-INSERT INTO `productimage` VALUES (4069, 0, 'https://resource.smartisan.com/resource/1e0e88810b1b8dc237120e2d8f8a0d95.jpg', 1000682);
-INSERT INTO `productimage` VALUES (4070, 0, 'https://resource.smartisan.com/resource/6706a69f16c387a7cbf080b74c5af708.jpg', 1000675);
-INSERT INTO `productimage` VALUES (4071, 0, 'https://resource.smartisan.com/resource/7c1113db4946be95f1099c202f25b855.jpg', 1000674);
-INSERT INTO `productimage` VALUES (4072, 0, 'https://resource.smartisan.com/resource/861d2aeb257a0b2e14fde26f7857a09d.jpg', 1000673);
-INSERT INTO `productimage` VALUES (4073, 0, 'https://resource.smartisan.com/resource/473b6b76cb3bc8bf6bfef8f7b85d97cb.jpg', 1000672);
-INSERT INTO `productimage` VALUES (4074, 0, 'https://resource.smartisan.com/resource/2f86b3e1943e82e0e0585a07bb590e2d.jpg', 1000671);
-INSERT INTO `productimage` VALUES (4075, 0, 'https://resource.smartisan.com/resource/47dc3937ec6d0840dd9afccc969dd4ea.png', 1000670);
-INSERT INTO `productimage` VALUES (4076, 0, 'https://resource.smartisan.com/resource/e6949831332de91f7bf6e74bd9543516.jpg', 1000669);
-INSERT INTO `productimage` VALUES (4077, 0, 'https://resource.smartisan.com/resource/d573426eb87480afe932607d2c2871f9.jpg', 1000668);
-INSERT INTO `productimage` VALUES (4078, 0, 'https://resource.smartisan.com/resource/385f2aba1f33834830d952f5b98d6573.jpg', 1000667);
-INSERT INTO `productimage` VALUES (4079, 0, 'https://resource.smartisan.com/resource/cb41026572b4a684de22427d90cdbeec.jpg', 1000666);
-INSERT INTO `productimage` VALUES (4080, 0, 'https://resource.smartisan.com/resource/7da5a7c9750b38ff606c2e414419e398.jpg', 1000665);
-INSERT INTO `productimage` VALUES (4081, 0, 'https://resource.smartisan.com/resource/85a255926d2b499f8c6856999d29e740.jpg', 1000664);
-INSERT INTO `productimage` VALUES (4082, 0, 'https://resource.smartisan.com/resource/7df76ec4859f6d5ab46084e7704fb53e.jpg', 1000663);
-INSERT INTO `productimage` VALUES (4083, 0, 'https://resource.smartisan.com/resource/ea72bed35470fb6f9be99036320ccf95.jpg', 1000662);
-INSERT INTO `productimage` VALUES (4084, 0, 'https://resource.smartisan.com/resource/cc4795f2b5062e1ad5970e3a5fe43f63.png', 1000661);
-INSERT INTO `productimage` VALUES (4085, 0, 'https://resource.smartisan.com/resource/56660184c230799408597d60592735d0.jpg', 1000660);
-INSERT INTO `productimage` VALUES (4086, 0, 'https://resource.smartisan.com/resource/d983106a45b56034060740e80264cf09.png', 1000659);
-INSERT INTO `productimage` VALUES (4087, 0, 'https://resource.smartisan.com/resource/caab276f073e3aba0e5b2567b5ecf19b.png', 1000654);
-INSERT INTO `productimage` VALUES (4088, 0, 'https://resource.smartisan.com/resource/fb539f4433f6b7c3e078510a942add1c.png', 1000653);
-INSERT INTO `productimage` VALUES (4089, 0, 'https://resource.smartisan.com/resource/df8c296ccf8f78af57901d213c24d5a7.jpg', 1000650);
-INSERT INTO `productimage` VALUES (4090, 0, 'https://resource.smartisan.com/resource/84b472956d7facb9d7134f7569d3bd84.jpg', 1000648);
-INSERT INTO `productimage` VALUES (4091, 0, 'https://resource.smartisan.com/resource/f90eb5c8dd0b6221cfdc0b0c3bdd1b87.jpg', 1000649);
-INSERT INTO `productimage` VALUES (4092, 0, 'https://resource.smartisan.com/resource/b1ea23314be6d08474d8d3e9c7ba6e15.jpg', 1000645);
-INSERT INTO `productimage` VALUES (4093, 0, 'https://resource.smartisan.com/resource/df94938d10ce86465e33e8c28b5ab8d8.jpg', 1000644);
-INSERT INTO `productimage` VALUES (4094, 0, 'https://resource.smartisan.com/resource/69376ec9945e7cafa1fa393439c8835d.jpg', 1000643);
-INSERT INTO `productimage` VALUES (4095, 0, 'https://resource.smartisan.com/resource/b6db8976d3fe9a04b0a58dc82099838b.jpg', 1000642);
-INSERT INTO `productimage` VALUES (4096, 0, 'https://resource.smartisan.com/resource/59fbbab676144fc8a374048361a4ec11.jpg', 1000633);
-INSERT INTO `productimage` VALUES (4097, 0, 'https://resource.smartisan.com/resource/42770d47670a19158b1bbf8a343de50b.jpg', 1000631);
-INSERT INTO `productimage` VALUES (4098, 0, 'https://resource.smartisan.com/resource/299bda5febce10f92d2a4b1552700c90.jpg', 1000630);
-INSERT INTO `productimage` VALUES (4099, 0, 'https://resource.smartisan.com/resource/02bb8971d96334724e7ac2fce00885e5.jpg', 1000626);
-INSERT INTO `productimage` VALUES (4100, 0, 'https://resource.smartisan.com/resource/ec9a9682eea336ad1151c7e332e4a957.jpg', 1000625);
-INSERT INTO `productimage` VALUES (4101, 0, 'https://resource.smartisan.com/resource/1024da4333d7f2bfcfae23cbb9ab7d24.jpg', 1000624);
-INSERT INTO `productimage` VALUES (4102, 0, 'https://resource.smartisan.com/resource/22a6f7f927dd45134c9d2794037354f5.jpg', 1000623);
-INSERT INTO `productimage` VALUES (4103, 0, 'https://resource.smartisan.com/resource/6921edba9842f86b651c60e3735c5993.jpg', 1000622);
-INSERT INTO `productimage` VALUES (4104, 0, 'https://resource.smartisan.com/resource/b8d357a7507b1337c75298fd67086b2a.jpg', 1000621);
-INSERT INTO `productimage` VALUES (4105, 0, 'https://resource.smartisan.com/resource/80a42145fc45837d303fa0a6e9fd837f.jpg', 1000620);
-INSERT INTO `productimage` VALUES (4106, 0, 'https://resource.smartisan.com/resource/6c16a22a47233b58ab315e1da3e376e8.jpg', 1000619);
-INSERT INTO `productimage` VALUES (4107, 0, 'https://resource.smartisan.com/resource/7e0dd2572ecfedfd412e00cd82a4a64b.jpg', 1000603);
-INSERT INTO `productimage` VALUES (4108, 0, 'https://resource.smartisan.com/resource/834e8388b0017c457c98baa6545cdfb2.jpg', 1000591);
-INSERT INTO `productimage` VALUES (4109, 0, 'https://resource.smartisan.com/resource/9bffe702b1f0aea221b1f18ddf886958.jpg', 1000556);
-INSERT INTO `productimage` VALUES (4110, 0, 'https://resource.smartisan.com/resource/df8c296ccf8f78af57901d213c24d5a7.jpg', 1000650);
-INSERT INTO `productimage` VALUES (4111, 0, 'https://resource.smartisan.com/resource/f90eb5c8dd0b6221cfdc0b0c3bdd1b87.jpg', 1000649);
-INSERT INTO `productimage` VALUES (4112, 0, 'https://resource.smartisan.com/resource/84b472956d7facb9d7134f7569d3bd84.jpg', 1000648);
-INSERT INTO `productimage` VALUES (4113, 0, 'https://resource.smartisan.com/resource/b1ea23314be6d08474d8d3e9c7ba6e15.jpg', 1000645);
-INSERT INTO `productimage` VALUES (4114, 0, 'https://resource.smartisan.com/resource/df94938d10ce86465e33e8c28b5ab8d8.jpg', 1000644);
-INSERT INTO `productimage` VALUES (4115, 0, 'https://resource.smartisan.com/resource/69376ec9945e7cafa1fa393439c8835d.jpg', 1000643);
-INSERT INTO `productimage` VALUES (4116, 0, 'https://resource.smartisan.com/resource/b6db8976d3fe9a04b0a58dc82099838b.jpg', 1000642);
-INSERT INTO `productimage` VALUES (4117, 0, 'https://resource.smartisan.com/resource/f195e666e089d4e3775ce67d8e9523ce.png', 1000602);
-INSERT INTO `productimage` VALUES (4118, 0, 'https://resource.smartisan.com/resource/b07b9765e272f866da6acda4ee107d88.png', 1000517);
-INSERT INTO `productimage` VALUES (4119, 0, 'https://resource.smartisan.com/resource/84366aa98fd0659d7809e1b9eed62cb4.png', 1000479);
-INSERT INTO `productimage` VALUES (4120, 0, 'https://resource.smartisan.com/resource/06c2253354096f5e9ebf0616f1af2086.png', 1000464);
-INSERT INTO `productimage` VALUES (4121, 0, 'https://resource.smartisan.com/resource/8d58e1ea15e893647cb789478cb86627.jpg', 1000618);
-INSERT INTO `productimage` VALUES (4122, 0, 'https://resource.smartisan.com/resource/e4085f0d2c84bfe1963b1290b9699c33.jpg', 1000558);
-INSERT INTO `productimage` VALUES (4123, 0, 'https://resource.smartisan.com/resource/71432ad30288fb860a4389881069b874.png', 1000405);
-INSERT INTO `productimage` VALUES (4124, 0, 'https://resource.smartisan.com/resource/00eee903962f17d75950397843117e6e.jpg', 1000365);
-INSERT INTO `productimage` VALUES (4125, 0, 'https://resource.smartisan.com/resource/4d83d72c5ecc288e8d5ddd9d06b80f99.jpg', 1000364);
-INSERT INTO `productimage` VALUES (4126, 0, 'https://resource.smartisan.com/resource/6ff92d05a3bfab4fad489ca04d3eea5a.png', 1000338);
-INSERT INTO `productimage` VALUES (4127, 0, 'https://resource.smartisan.com/resource/de1274f4c70fe3768417bb0454320089.png', 1000655);
-INSERT INTO `productimage` VALUES (4128, 0, 'https://resource.smartisan.com/resource/bd3372047d251502348a16a533e866e0.jpg', 1000638);
-INSERT INTO `productimage` VALUES (4129, 0, 'https://resource.smartisan.com/resource/e991f946530a7cfab3d9670dd8b1371b.png', 1000637);
-INSERT INTO `productimage` VALUES (4130, 0, 'https://resource.smartisan.com/resource/5888f9b53cd1184ac32f2ae778cd7804.jpg', 1000615);
-INSERT INTO `productimage` VALUES (4131, 0, 'https://resource.smartisan.com/resource/f060313b58a72053a89e1309bac4c3ab.jpg', 1000614);
-INSERT INTO `productimage` VALUES (4132, 0, 'https://resource.smartisan.com/resource/5bcb5d70f8c17efb0a2b4f9852a03128.jpg', 1000613);
-INSERT INTO `productimage` VALUES (4133, 0, 'https://resource.smartisan.com/resource/b466c9c2f8948309a8d9e4a9d1a437ef.jpg', 1000612);
-INSERT INTO `productimage` VALUES (4134, 0, 'https://resource.smartisan.com/resource/3899737bb15dae97d261a080d3b9894d.jpg', 1000611);
-INSERT INTO `productimage` VALUES (4135, 0, 'https://resource.smartisan.com/resource/d159521e479b26f3c97a1e4f00a5aefd.jpg', 1000610);
-INSERT INTO `productimage` VALUES (4136, 0, 'https://resource.smartisan.com/resource/8e822aa7cbab24fec7eacf0bbb2f6526.jpg', 1000609);
-INSERT INTO `productimage` VALUES (4137, 0, 'https://resource.smartisan.com/resource/31c8be42fbbabad10490835d953be356.jpg', 1000608);
-INSERT INTO `productimage` VALUES (4138, 0, 'https://resource.smartisan.com/resource/b93f8e0265cf372e774d0a76e32f2c0f.png', 1000607);
-INSERT INTO `productimage` VALUES (4139, 0, 'https://resource.smartisan.com/resource/b69694515f503e9c5be2a056314a569e.jpeg', 1000606);
-INSERT INTO `productimage` VALUES (4140, 0, 'https://resource.smartisan.com/resource/db1f9c8eadd0164a34e73465a34776a3.jpg', 1000605);
-INSERT INTO `productimage` VALUES (4141, 0, 'https://resource.smartisan.com/resource/9368c948ea81a5b8bc2efa165488ccc6.jpg', 1000604);
-INSERT INTO `productimage` VALUES (4142, 0, 'https://resource.smartisan.com/resource/834e8388b0017c457c98baa6545cdfb2.jpg', 1000591);
-INSERT INTO `productimage` VALUES (4143, 0, 'https://resource.smartisan.com/resource/2d106f8a751539abba6f446d3cda7818.jpg', 1000590);
-INSERT INTO `productimage` VALUES (4144, 0, 'https://resource.smartisan.com/resource/82aab62886740f165a3631ce6cffe895.jpg', 1000530);
-INSERT INTO `productimage` VALUES (4145, 0, 'https://resource.smartisan.com/resource/f55641e23f35f6dd82226b6c4a043f00.jpg', 1000529);
-INSERT INTO `productimage` VALUES (4146, 0, 'https://resource.smartisan.com/resource/6e96ccea3bd56bdd2243eb20330cec30.jpg', 1000528);
-INSERT INTO `productimage` VALUES (4147, 0, 'https://resource.smartisan.com/resource/8635cb91f2cdbbc5576e069c52b99412.jpg', 1000471);
-INSERT INTO `productimage` VALUES (4148, 0, 'https://resource.smartisan.com/resource/a668d1a5f41b04ece82d76ded1e94d3a.jpg', 1000470);
-INSERT INTO `productimage` VALUES (4149, 0, 'https://resource.smartisan.com/resource/ce632bd67465027861707ec221b37c2d.jpg', 1000428);
-INSERT INTO `productimage` VALUES (4150, 0, 'https://resource.smartisan.com/resource/33954b3f6a2f1614c5482ef130af9cc8.jpg', 1000422);
-INSERT INTO `productimage` VALUES (4151, 0, 'https://resource.smartisan.com/resource/45312fb748d54aa2e58a8f4d637e9e65.jpg', 1000268);
-INSERT INTO `productimage` VALUES (4152, 0, 'https://resource.smartisan.com/resource/dc53bd870ee64d2053ecc51750ece43a.jpg', 1000267);
-INSERT INTO `productimage` VALUES (4153, 0, 'https://resource.smartisan.com/resource/d4480234a2f24b0ff5acd98288fd902d.jpg', 1000235);
-INSERT INTO `productimage` VALUES (4154, 0, 'https://resource.smartisan.com/resource/fa6e26d738d64a3ecfdae3286e28aeb8.jpg', 1000838);
-INSERT INTO `productimage` VALUES (4155, 0, 'https://resource.smartisan.com/resource/a00c68f89915c9f21fae62173a75eb31.jpg', 1000837);
-INSERT INTO `productimage` VALUES (4156, 0, 'https://resource.smartisan.com/resource/f8e55b37a656c9745e27b27339a00e6f.jpg', 1000836);
-INSERT INTO `productimage` VALUES (4157, 0, 'https://resource.smartisan.com/resource/64b8c657d5a532cf4f159aaab0173220.jpg', 1000835);
-INSERT INTO `productimage` VALUES (4158, 0, 'https://resource.smartisan.com/resource/8e6e161e7d0c7ba68e27f61b5ce2754e.jpg', 1000834);
-INSERT INTO `productimage` VALUES (4159, 0, 'https://resource.smartisan.com/resource/c1ef7117ee8b0c0956006c1911bb2b75.jpg', 1000833);
-INSERT INTO `productimage` VALUES (4160, 0, 'https://resource.smartisan.com/resource/6b0c13dc3a470ec9fd4839e4cb55b4ec.jpg', 1000832);
-INSERT INTO `productimage` VALUES (4161, 0, 'https://resource.smartisan.com/resource/4b665ad8b0b76295a91d67579da5a3a5.jpg', 1000831);
-INSERT INTO `productimage` VALUES (4162, 0, 'https://resource.smartisan.com/resource/37ab6b55615fb1b17d734de137648f2f.jpg', 1000830);
-INSERT INTO `productimage` VALUES (4163, 0, 'https://resource.smartisan.com/resource/de1cf4d70f17b59958009f525fa0ccd7.jpg', 1000829);
-INSERT INTO `productimage` VALUES (4164, 0, 'https://resource.smartisan.com/resource/37e89b8c0159d93c706cd335cdbfcc40.jpg', 1000828);
-INSERT INTO `productimage` VALUES (4165, 0, 'https://resource.smartisan.com/resource/74a1d5bd9956bd0b4f232ec9044c54b8.jpg', 1000819);
-INSERT INTO `productimage` VALUES (4166, 0, 'https://resource.smartisan.com/resource/36925ab92246a2721b033e26590f25e8.jpg', 1000818);
-INSERT INTO `productimage` VALUES (4167, 0, 'https://resource.smartisan.com/resource/e1370f6ae0c9bc24770c4972a254db8d.jpg', 1000817);
-INSERT INTO `productimage` VALUES (4168, 0, 'https://resource.smartisan.com/resource/f2a9b0e3400f4f17e197ff8db107cffe.jpg', 1000816);
-INSERT INTO `productimage` VALUES (4169, 0, 'https://resource.smartisan.com/resource/e88c1006de01133ea1426a9ad9ad6568.jpg', 1000815);
-INSERT INTO `productimage` VALUES (4170, 0, 'https://resource.smartisan.com/resource/8040f6da2e04b0f292635195e0c5f78b.jpg', 1000814);
-INSERT INTO `productimage` VALUES (4171, 0, 'https://resource.smartisan.com/resource/5f4d210f2819864cdb2a806d178e9460.jpg', 1000813);
-INSERT INTO `productimage` VALUES (4172, 0, 'https://resource.smartisan.com/resource/6764e27fd56cc4ef4de18e4863dd0f8a.jpg', 1000812);
-INSERT INTO `productimage` VALUES (4173, 0, 'https://resource.smartisan.com/resource/cff8097e1265ff1eea45c33c263239d0.jpg', 1000811);
-INSERT INTO `productimage` VALUES (4174, 0, 'https://resource.smartisan.com/resource/447e0bb8bd99eaed9126bda8908cb99e.jpg', 1000810);
-INSERT INTO `productimage` VALUES (4175, 0, 'https://resource.smartisan.com/resource/2b31fe2885aa274b8606682a672eb1ff.jpg', 1000809);
-INSERT INTO `productimage` VALUES (4176, 0, 'https://resource.smartisan.com/resource/187c9240773cb2594ef4d93d61faf406.jpg', 1000807);
-INSERT INTO `productimage` VALUES (4177, 0, 'https://resource.smartisan.com/resource/fb027634e618a3526eec73e7b3f28579.jpg', 1000806);
-INSERT INTO `productimage` VALUES (4178, 0, 'https://resource.smartisan.com/resource/ce610bce5eb6f1f1123d177f58aa0def.jpg', 1000803);
-INSERT INTO `productimage` VALUES (4179, 0, 'https://resource.smartisan.com/resource/ce647c60e2f8d23a2ecc3a575a3182e6.jpg', 1000802);
-INSERT INTO `productimage` VALUES (4180, 0, 'https://resource.smartisan.com/resource/8f3248bf7ab1e5fdabdc1df50e57bfb1.jpg', 1000801);
-INSERT INTO `productimage` VALUES (4181, 0, 'https://resource.smartisan.com/resource/8834c109d97d1e554a4f86c6c7b711a0.jpg', 1000800);
-INSERT INTO `productimage` VALUES (4182, 0, 'https://resource.smartisan.com/resource/7f4dbe2b4bad6218417a503ea245d7fc.jpg', 1000799);
-INSERT INTO `productimage` VALUES (4183, 0, 'https://resource.smartisan.com/resource/1c6efb8539794a4cf8490f34c1b5c642.jpg', 1000798);
-INSERT INTO `productimage` VALUES (4184, 0, 'https://resource.smartisan.com/resource/3e4bc67b30c200b7fe7baae8acf960bc.jpg', 1000795);
-INSERT INTO `productimage` VALUES (4185, 0, 'https://resource.smartisan.com/resource/9a2b10915753aaf1bb3941eec3550490.jpg', 1000794);
-INSERT INTO `productimage` VALUES (4186, 0, 'https://resource.smartisan.com/resource/755510e3cbd320c9eaeed94574c3c171.jpg', 1000791);
-INSERT INTO `productimage` VALUES (4187, 0, 'https://resource.smartisan.com/resource/a201ded035feb212f5a750f6a465762f.jpg', 1000788);
-INSERT INTO `productimage` VALUES (4188, 0, 'https://resource.smartisan.com/resource/924ac44abb99df7c17c9a3cc580bc6e1.jpg', 1000786);
-INSERT INTO `productimage` VALUES (4189, 0, 'https://resource.smartisan.com/resource/cc39143ee8b120f1500e09ccdde41f8c.jpg', 1000785);
-INSERT INTO `productimage` VALUES (4190, 0, 'https://resource.smartisan.com/resource/7cc8bd4b053e5bd613643bfc9faef3ef.jpg', 1000784);
-INSERT INTO `productimage` VALUES (4191, 0, 'https://resource.smartisan.com/resource/9f4d0af22203bff4df7470a5e3657336.jpg', 1000783);
-INSERT INTO `productimage` VALUES (4192, 0, 'https://resource.smartisan.com/resource/a0a6a36bf42659c454d87e780f0973ce.jpg', 1000782);
-INSERT INTO `productimage` VALUES (4193, 0, 'https://resource.smartisan.com/resource/9c5e977faf7439a46ba6a1464ba696ee.jpg', 1000781);
-INSERT INTO `productimage` VALUES (4194, 0, 'https://resource.smartisan.com/resource/24a4b2b3333ac41d3605cdc447f035b7.jpeg', 1000780);
-INSERT INTO `productimage` VALUES (4195, 0, 'https://resource.smartisan.com/resource/1f4959d8d826060e8ce3aaded2b7ad49.jpg', 1000779);
-INSERT INTO `productimage` VALUES (4196, 0, 'https://resource.smartisan.com/resource/e8312168c9368a3c52d658e48267a524.jpg', 1000778);
-INSERT INTO `productimage` VALUES (4197, 0, 'https://resource.smartisan.com/resource/42904e0976b6335ac11d7bc834c59d38.jpg', 1000777);
-INSERT INTO `productimage` VALUES (4198, 0, 'https://resource.smartisan.com/resource/1206be560dc919d54bfedd4e8854e161.jpg', 1000776);
-INSERT INTO `productimage` VALUES (4199, 0, 'https://resource.smartisan.com/resource/bbabca321058b580ce77d6df547c8911.jpg', 1000775);
-INSERT INTO `productimage` VALUES (4200, 0, 'https://resource.smartisan.com/resource/2b92d2362fae4dc69431d5f89dd85e84.jpg', 1000773);
-INSERT INTO `productimage` VALUES (4201, 0, 'https://resource.smartisan.com/resource/fba6a16e4c0846255bc5033b68ad5a39.jpg', 1000772);
-INSERT INTO `productimage` VALUES (4202, 0, 'https://resource.smartisan.com/resource/086238c9eb68dffea7ab37260e5b0982.jpg', 1000771);
-INSERT INTO `productimage` VALUES (4203, 0, 'https://resource.smartisan.com/resource/9064581e930dce1cb746aab03a99f250.jpg', 1000770);
-INSERT INTO `productimage` VALUES (4204, 0, 'https://resource.smartisan.com/resource/e6fd16c68e9ebbd2cfd2598c41b94a64.jpg', 1000769);
-INSERT INTO `productimage` VALUES (4205, 0, 'https://resource.smartisan.com/resource/fdc480f95eac0c7eb51f4da528476d2f.jpg', 1000768);
-INSERT INTO `productimage` VALUES (4206, 0, 'https://resource.smartisan.com/resource/e690f88ee35c5c650c696662d0ae74d3.jpg', 1000767);
-INSERT INTO `productimage` VALUES (4207, 0, 'https://resource.smartisan.com/resource/93ba6051d9864b6905e9ace9ea186773.jpg', 1000766);
-INSERT INTO `productimage` VALUES (4208, 0, 'https://resource.smartisan.com/resource/72693f961c0887eb40faf9c6368c905c.jpg', 1000765);
-INSERT INTO `productimage` VALUES (4209, 0, 'https://resource.smartisan.com/resource/1a3e6b69df9d2e69723eb1df7681122f.jpg', 1000764);
-INSERT INTO `productimage` VALUES (4210, 0, 'https://resource.smartisan.com/resource/889abc2884d22f395b56e6a4d90db6f1.jpg', 1000763);
-INSERT INTO `productimage` VALUES (4211, 0, 'https://resource.smartisan.com/resource/a57a3be79521a4e49bb066f24e664afa.jpg', 1000762);
-INSERT INTO `productimage` VALUES (4212, 0, 'https://resource.smartisan.com/resource/3e80ab516ee3583ee1c238aaca275fe3.jpg', 1000761);
-INSERT INTO `productimage` VALUES (4213, 0, 'https://resource.smartisan.com/resource/46f9bb5f04926a50cff702703bde901e.jpg', 1000760);
-INSERT INTO `productimage` VALUES (4214, 0, 'https://resource.smartisan.com/resource/0b3e9709b4a2674ac33b6d098535d74b.jpg', 1000759);
-INSERT INTO `productimage` VALUES (4215, 0, 'https://resource.smartisan.com/resource/d110b54cec19e9ac9d0be4d6ad97a0ed.jpg', 1000758);
-INSERT INTO `productimage` VALUES (4216, 0, 'https://resource.smartisan.com/resource/f6eeb08b08ddd2c9c3552b610a084aa8.jpg', 1000757);
-INSERT INTO `productimage` VALUES (4217, 0, 'https://resource.smartisan.com/resource/31fa1604d7bf6c1dc21cfd85bf4e4c6e.jpg', 1000756);
-INSERT INTO `productimage` VALUES (4218, 0, 'https://resource.smartisan.com/resource/1af92134b0c79effeac68a142fee8172.jpg', 1000755);
-INSERT INTO `productimage` VALUES (4219, 0, 'https://resource.smartisan.com/resource/80b9791435c3bddfcdfce0a830b87c27.jpg', 1000754);
-INSERT INTO `productimage` VALUES (4220, 0, 'https://resource.smartisan.com/resource/340dd0a7725b35c9286a69103ea17319.jpg', 1000753);
-INSERT INTO `productimage` VALUES (4221, 0, 'https://resource.smartisan.com/resource/9b1dbc1ab44bc9fd2b3703faaee90257.jpg', 1000752);
-INSERT INTO `productimage` VALUES (4222, 0, 'https://resource.smartisan.com/resource/24acac0d91ea3a08f85943df60660ffe.jpg', 1000751);
-INSERT INTO `productimage` VALUES (4223, 0, 'https://resource.smartisan.com/resource/c2bfa13def9b4edb8120315b636883ae.jpg', 1000750);
-INSERT INTO `productimage` VALUES (4224, 0, 'https://resource.smartisan.com/resource/3fbd344982dd8083e2903c306db234d9.jpg', 1000749);
-INSERT INTO `productimage` VALUES (4225, 0, 'https://resource.smartisan.com/resource/bb6e5946ba2a3658955f2a8de1bff42a.jpg', 1000748);
-INSERT INTO `productimage` VALUES (4226, 0, 'https://resource.smartisan.com/resource/df0b9a606418ce66436fefdafd85d481.jpg', 1000747);
-INSERT INTO `productimage` VALUES (4227, 0, 'https://resource.smartisan.com/resource/9cf5b7fdc7dc96a1d2678e0dfccceb97.jpg', 1000746);
-INSERT INTO `productimage` VALUES (4228, 0, 'https://resource.smartisan.com/resource/3ffdc7b94cd645558d443b1f2bd8b817.jpg', 1000745);
-INSERT INTO `productimage` VALUES (4229, 0, 'https://resource.smartisan.com/resource/456b707e5c9f2524ad0f063150182fdc.jpg', 1000744);
-INSERT INTO `productimage` VALUES (4230, 0, 'https://resource.smartisan.com/resource/15d0ee0615b496b9c455498e6385dce6.jpg', 1000743);
-INSERT INTO `productimage` VALUES (4231, 0, 'https://resource.smartisan.com/resource/ca3128bd2b71028187a52c276219df4c.jpg', 1000742);
-INSERT INTO `productimage` VALUES (4232, 0, 'https://resource.smartisan.com/resource/3936729cbd3489ab3e1ca7fb0c01b53c.jpg', 1000741);
-INSERT INTO `productimage` VALUES (4233, 0, 'https://resource.smartisan.com/resource/313e68ca7b72eee27d150d63117b69a7.jpg', 1000740);
-INSERT INTO `productimage` VALUES (4234, 0, 'https://resource.smartisan.com/resource/38232016fb2c7f6972081cec98a8b8ef.jpg', 1000739);
-INSERT INTO `productimage` VALUES (4235, 0, 'https://resource.smartisan.com/resource/7aff6aa72a5b9a8222adbd036fbb3578.jpg', 1000738);
-INSERT INTO `productimage` VALUES (4236, 0, 'https://resource.smartisan.com/resource/933fba8ebdbd88d3e2573fb4b1a20fb4.jpg', 1000737);
-INSERT INTO `productimage` VALUES (4237, 0, 'https://resource.smartisan.com/resource/e2a52e5f5cbf8dcad59446581a50a7d9.jpg', 1000736);
-INSERT INTO `productimage` VALUES (4238, 0, 'https://resource.smartisan.com/resource/5da4337752437f5ffe5e6c35a87cda0c.jpg', 1000735);
-INSERT INTO `productimage` VALUES (4239, 0, 'https://resource.smartisan.com/resource/35f07b2b63d56ec75ff19b38242befbc.jpg', 1000734);
-INSERT INTO `productimage` VALUES (4240, 0, 'https://resource.smartisan.com/resource/c5e62667e692d0682cf5d3b1aa4626c7.jpg', 1000733);
-INSERT INTO `productimage` VALUES (4241, 0, 'https://resource.smartisan.com/resource/1d1a702cffb982eff83f49a5a68bba6e.jpg', 1000732);
-INSERT INTO `productimage` VALUES (4242, 0, 'https://resource.smartisan.com/resource/2a22f645ce0da7993fbf29104a137ecb.jpg', 1000731);
-INSERT INTO `productimage` VALUES (4243, 0, 'https://resource.smartisan.com/resource/ba5270ea5ecd726ff15fba30680d2703.jpg', 1000730);
-INSERT INTO `productimage` VALUES (4244, 0, 'https://resource.smartisan.com/resource/fc6d1bc2594160a79aae9523130e63b2.jpg', 1000729);
-INSERT INTO `productimage` VALUES (4245, 0, 'https://resource.smartisan.com/resource/82a5231bf84d000ee7904a1f8b35488e.jpg', 1000728);
-INSERT INTO `productimage` VALUES (4246, 0, 'https://resource.smartisan.com/resource/16d8eba01d66f6d203e72891d9be2c3f.jpg', 1000727);
-INSERT INTO `productimage` VALUES (4247, 0, 'https://resource.smartisan.com/resource/2db4c4184cb101140b7cf776489473a9.jpg', 1000726);
-INSERT INTO `productimage` VALUES (4248, 0, 'https://resource.smartisan.com/resource/062468126259c1c7d3fb04581b7c3d0d.jpg', 1000725);
-INSERT INTO `productimage` VALUES (4249, 0, 'https://resource.smartisan.com/resource/6e46e9cdf2499fa208e9db3710e30845.jpg', 1000724);
-INSERT INTO `productimage` VALUES (4250, 0, 'https://resource.smartisan.com/resource/37555e2dbc1866fa7d5dbbb74a1be95e.jpg', 1000722);
-INSERT INTO `productimage` VALUES (4251, 0, 'https://resource.smartisan.com/resource/9d7d23409f3c73e886fe0b67b2bdfcac.jpg', 1000721);
-INSERT INTO `productimage` VALUES (4252, 0, 'https://resource.smartisan.com/resource/edd04f6f813b9f5224ccc132afc6ddf3.jpg', 1000720);
-INSERT INTO `productimage` VALUES (4253, 0, 'https://resource.smartisan.com/resource/e53a3374039c1b25674522a57a0af342.jpg', 1000719);
-INSERT INTO `productimage` VALUES (4254, 0, 'https://resource.smartisan.com/resource/7cbff8aebc598d69b6f5e12ac4650871.jpg', 1000718);
-INSERT INTO `productimage` VALUES (4255, 0, 'https://resource.smartisan.com/resource/dab835e6c357d658cfed4f6f17489539.jpg', 1000717);
-INSERT INTO `productimage` VALUES (4256, 0, 'https://resource.smartisan.com/resource/01b5ed34207dc3790af2f2b3959f48f2.jpg', 1000716);
-INSERT INTO `productimage` VALUES (4257, 0, 'https://resource.smartisan.com/resource/9a79777847a515d7f270821ff7e02645.jpg', 1000715);
-INSERT INTO `productimage` VALUES (4258, 0, 'https://resource.smartisan.com/resource/bb220d29a399975cfab83f75ea288e87.jpg', 1000714);
-INSERT INTO `productimage` VALUES (4259, 0, 'https://resource.smartisan.com/resource/fe9ee324ab7be1208514c1632899ff93.jpg', 1000713);
-INSERT INTO `productimage` VALUES (4260, 0, 'https://resource.smartisan.com/resource/1ded3f72cadc0c154e096d2a7139d706.jpg', 1000712);
-INSERT INTO `productimage` VALUES (4261, 0, 'https://resource.smartisan.com/resource/d25709cef1410ee39fe768715977346d.jpg', 1000711);
-INSERT INTO `productimage` VALUES (4262, 0, 'https://resource.smartisan.com/resource/2fb76e058a566dfccc42801a64602f5b.jpg', 1000710);
-INSERT INTO `productimage` VALUES (4263, 0, 'https://resource.smartisan.com/resource/e5ee30157d0030db6351277538db6a26.jpg', 1000709);
-INSERT INTO `productimage` VALUES (4264, 0, 'https://resource.smartisan.com/resource/e4438c22af81158f0cc2fc0d769ab2ba.jpg', 1000708);
-INSERT INTO `productimage` VALUES (4265, 0, 'https://resource.smartisan.com/resource/c1a2cc7af99568c922cffcdb8f7e2ce2.jpg', 1000707);
-INSERT INTO `productimage` VALUES (4266, 0, 'https://resource.smartisan.com/resource/f1d306dd96bb4a776119bc546035116f.jpg', 1000706);
-INSERT INTO `productimage` VALUES (4267, 0, 'https://resource.smartisan.com/resource/3f3ce1befb984611c4be0fc921c7c575.jpg', 1000705);
-INSERT INTO `productimage` VALUES (4268, 0, 'https://resource.smartisan.com/resource/6e296d514d7dcd043f8ee86d5eccb69a.jpg', 1000704);
-INSERT INTO `productimage` VALUES (4269, 0, 'https://resource.smartisan.com/resource/e9a77e9810951bd0cfb7b1c1d3c76491.jpg', 1000703);
-INSERT INTO `productimage` VALUES (4270, 0, 'https://resource.smartisan.com/resource/947809cbd15484d0a9304e1968eb48e4.jpg', 1000701);
-INSERT INTO `productimage` VALUES (4271, 0, 'https://resource.smartisan.com/resource/25dd557ac22df57683e12898688da535.jpg', 1000700);
-INSERT INTO `productimage` VALUES (4272, 0, 'https://resource.smartisan.com/resource/638a5247347a9379dd2c83f93e01bd8f.jpg', 1000699);
-INSERT INTO `productimage` VALUES (4273, 0, 'https://resource.smartisan.com/resource/0a02fc909c27f9a6e1d8971662486d5c.jpg', 1000698);
-INSERT INTO `productimage` VALUES (4274, 0, 'https://resource.smartisan.com/resource/80c763e64f087676c15394effc8b8136.jpg', 1000697);
-INSERT INTO `productimage` VALUES (4275, 0, 'https://resource.smartisan.com/resource/9ebb2d47c412d8ff7618b89ab42ae715.jpg', 1000696);
-INSERT INTO `productimage` VALUES (4276, 0, 'https://resource.smartisan.com/resource/4a5ed736d31b820d2c04709717a59d54.jpg', 1000693);
-INSERT INTO `productimage` VALUES (4277, 0, 'https://resource.smartisan.com/resource/00159a7c85a87aec976139a43d248404.jpg', 1000692);
-INSERT INTO `productimage` VALUES (4278, 0, 'https://resource.smartisan.com/resource/1604c12617d2848900d8cee362dfef6d.jpg', 1000691);
-INSERT INTO `productimage` VALUES (4279, 0, 'https://resource.smartisan.com/resource/648b92d51a7b03d753f7256150fc9771.jpg', 1000690);
-INSERT INTO `productimage` VALUES (4280, 0, 'https://resource.smartisan.com/resource/4242d80ec7ded50e0ab106a946f166b8.jpg', 1000689);
-INSERT INTO `productimage` VALUES (4281, 0, 'https://resource.smartisan.com/resource/13a288f1e8c53a011e152710b21cbca4.jpg', 1000688);
-INSERT INTO `productimage` VALUES (4282, 0, 'https://resource.smartisan.com/resource/7316f0e4de692e7d89f77c89f44bf651.jpg', 1000687);
-INSERT INTO `productimage` VALUES (4283, 0, 'https://resource.smartisan.com/resource/7aaa33d100cad98bba19e8b4cf5f5ad6.jpg', 1000684);
-INSERT INTO `productimage` VALUES (4284, 0, 'https://resource.smartisan.com/resource/63cea2eeec303c66e62fbd94499868b9.jpg', 1000683);
-INSERT INTO `productimage` VALUES (4285, 0, 'https://resource.smartisan.com/resource/1e0e88810b1b8dc237120e2d8f8a0d95.jpg', 1000682);
-INSERT INTO `productimage` VALUES (4286, 0, 'https://resource.smartisan.com/resource/6706a69f16c387a7cbf080b74c5af708.jpg', 1000675);
-INSERT INTO `productimage` VALUES (4287, 0, 'https://resource.smartisan.com/resource/7c1113db4946be95f1099c202f25b855.jpg', 1000674);
-INSERT INTO `productimage` VALUES (4288, 0, 'https://resource.smartisan.com/resource/861d2aeb257a0b2e14fde26f7857a09d.jpg', 1000673);
-INSERT INTO `productimage` VALUES (4289, 0, 'https://resource.smartisan.com/resource/473b6b76cb3bc8bf6bfef8f7b85d97cb.jpg', 1000672);
-INSERT INTO `productimage` VALUES (4290, 0, 'https://resource.smartisan.com/resource/2f86b3e1943e82e0e0585a07bb590e2d.jpg', 1000671);
-INSERT INTO `productimage` VALUES (4291, 0, 'https://resource.smartisan.com/resource/47dc3937ec6d0840dd9afccc969dd4ea.png', 1000670);
-INSERT INTO `productimage` VALUES (4292, 0, 'https://resource.smartisan.com/resource/e6949831332de91f7bf6e74bd9543516.jpg', 1000669);
-INSERT INTO `productimage` VALUES (4293, 0, 'https://resource.smartisan.com/resource/d573426eb87480afe932607d2c2871f9.jpg', 1000668);
-INSERT INTO `productimage` VALUES (4294, 0, 'https://resource.smartisan.com/resource/385f2aba1f33834830d952f5b98d6573.jpg', 1000667);
-INSERT INTO `productimage` VALUES (4295, 0, 'https://resource.smartisan.com/resource/cb41026572b4a684de22427d90cdbeec.jpg', 1000666);
-INSERT INTO `productimage` VALUES (4296, 0, 'https://resource.smartisan.com/resource/7da5a7c9750b38ff606c2e414419e398.jpg', 1000665);
-INSERT INTO `productimage` VALUES (4297, 0, 'https://resource.smartisan.com/resource/85a255926d2b499f8c6856999d29e740.jpg', 1000664);
-INSERT INTO `productimage` VALUES (4298, 0, 'https://resource.smartisan.com/resource/7df76ec4859f6d5ab46084e7704fb53e.jpg', 1000663);
-INSERT INTO `productimage` VALUES (4299, 0, 'https://resource.smartisan.com/resource/ea72bed35470fb6f9be99036320ccf95.jpg', 1000662);
-INSERT INTO `productimage` VALUES (4300, 0, 'https://resource.smartisan.com/resource/cc4795f2b5062e1ad5970e3a5fe43f63.png', 1000661);
-INSERT INTO `productimage` VALUES (4301, 0, 'https://resource.smartisan.com/resource/56660184c230799408597d60592735d0.jpg', 1000660);
-INSERT INTO `productimage` VALUES (4302, 0, 'https://resource.smartisan.com/resource/d983106a45b56034060740e80264cf09.png', 1000659);
-INSERT INTO `productimage` VALUES (4303, 0, 'https://resource.smartisan.com/resource/caab276f073e3aba0e5b2567b5ecf19b.png', 1000654);
-INSERT INTO `productimage` VALUES (4304, 0, 'https://resource.smartisan.com/resource/fb539f4433f6b7c3e078510a942add1c.png', 1000653);
-INSERT INTO `productimage` VALUES (4305, 0, 'https://resource.smartisan.com/resource/df8c296ccf8f78af57901d213c24d5a7.jpg', 1000650);
-INSERT INTO `productimage` VALUES (4306, 0, 'https://resource.smartisan.com/resource/f90eb5c8dd0b6221cfdc0b0c3bdd1b87.jpg', 1000649);
-INSERT INTO `productimage` VALUES (4307, 0, 'https://resource.smartisan.com/resource/84b472956d7facb9d7134f7569d3bd84.jpg', 1000648);
-INSERT INTO `productimage` VALUES (4308, 0, 'https://resource.smartisan.com/resource/b1ea23314be6d08474d8d3e9c7ba6e15.jpg', 1000645);
-INSERT INTO `productimage` VALUES (4309, 0, 'https://resource.smartisan.com/resource/df94938d10ce86465e33e8c28b5ab8d8.jpg', 1000644);
-INSERT INTO `productimage` VALUES (4310, 0, 'https://resource.smartisan.com/resource/69376ec9945e7cafa1fa393439c8835d.jpg', 1000643);
-INSERT INTO `productimage` VALUES (4311, 0, 'https://resource.smartisan.com/resource/b6db8976d3fe9a04b0a58dc82099838b.jpg', 1000642);
-INSERT INTO `productimage` VALUES (4312, 0, 'https://resource.smartisan.com/resource/59fbbab676144fc8a374048361a4ec11.jpg', 1000633);
-INSERT INTO `productimage` VALUES (4313, 0, 'https://resource.smartisan.com/resource/42770d47670a19158b1bbf8a343de50b.jpg', 1000631);
-INSERT INTO `productimage` VALUES (4314, 0, 'https://resource.smartisan.com/resource/299bda5febce10f92d2a4b1552700c90.jpg', 1000630);
-INSERT INTO `productimage` VALUES (4315, 0, 'https://resource.smartisan.com/resource/02bb8971d96334724e7ac2fce00885e5.jpg', 1000626);
-INSERT INTO `productimage` VALUES (4316, 0, 'https://resource.smartisan.com/resource/ec9a9682eea336ad1151c7e332e4a957.jpg', 1000625);
-INSERT INTO `productimage` VALUES (4317, 0, 'https://resource.smartisan.com/resource/1024da4333d7f2bfcfae23cbb9ab7d24.jpg', 1000624);
-INSERT INTO `productimage` VALUES (4318, 0, 'https://resource.smartisan.com/resource/22a6f7f927dd45134c9d2794037354f5.jpg', 1000623);
-INSERT INTO `productimage` VALUES (4319, 0, 'https://resource.smartisan.com/resource/6921edba9842f86b651c60e3735c5993.jpg', 1000622);
-INSERT INTO `productimage` VALUES (4320, 0, 'https://resource.smartisan.com/resource/b8d357a7507b1337c75298fd67086b2a.jpg', 1000621);
-INSERT INTO `productimage` VALUES (4321, 0, 'https://resource.smartisan.com/resource/80a42145fc45837d303fa0a6e9fd837f.jpg', 1000620);
-INSERT INTO `productimage` VALUES (4322, 0, 'https://resource.smartisan.com/resource/6c16a22a47233b58ab315e1da3e376e8.jpg', 1000619);
-INSERT INTO `productimage` VALUES (4323, 0, 'https://resource.smartisan.com/resource/7e0dd2572ecfedfd412e00cd82a4a64b.jpg', 1000603);
-INSERT INTO `productimage` VALUES (4324, 0, 'https://resource.smartisan.com/resource/834e8388b0017c457c98baa6545cdfb2.jpg', 1000591);
-INSERT INTO `productimage` VALUES (4325, 0, 'https://resource.smartisan.com/resource/9bffe702b1f0aea221b1f18ddf886958.jpg', 1000556);
-COMMIT;
+INSERT INTO `productimage` VALUES (4057, 0, 'https://resource.smartisan.com/resource/0a02fc909c27f9a6e1d8971662486d5c.jpg', 1000698, '');
+INSERT INTO `productimage` VALUES (4058, 0, 'https://resource.smartisan.com/resource/80c763e64f087676c15394effc8b8136.jpg', 1000697, '');
+INSERT INTO `productimage` VALUES (4059, 0, 'https://resource.smartisan.com/resource/9ebb2d47c412d8ff7618b89ab42ae715.jpg', 1000696, '');
+INSERT INTO `productimage` VALUES (4060, 0, 'https://resource.smartisan.com/resource/4a5ed736d31b820d2c04709717a59d54.jpg', 1000693, '');
+INSERT INTO `productimage` VALUES (4061, 0, 'https://resource.smartisan.com/resource/00159a7c85a87aec976139a43d248404.jpg', 1000692, '');
+INSERT INTO `productimage` VALUES (4062, 0, 'https://resource.smartisan.com/resource/1604c12617d2848900d8cee362dfef6d.jpg', 1000691, '');
+INSERT INTO `productimage` VALUES (4063, 0, 'https://resource.smartisan.com/resource/648b92d51a7b03d753f7256150fc9771.jpg', 1000690, '');
+INSERT INTO `productimage` VALUES (4064, 0, 'https://resource.smartisan.com/resource/4242d80ec7ded50e0ab106a946f166b8.jpg', 1000689, '');
+INSERT INTO `productimage` VALUES (4065, 0, 'https://resource.smartisan.com/resource/13a288f1e8c53a011e152710b21cbca4.jpg', 1000688, '');
+INSERT INTO `productimage` VALUES (4066, 0, 'https://resource.smartisan.com/resource/7316f0e4de692e7d89f77c89f44bf651.jpg', 1000687, '');
+INSERT INTO `productimage` VALUES (4067, 0, 'https://resource.smartisan.com/resource/7aaa33d100cad98bba19e8b4cf5f5ad6.jpg', 1000684, '');
+INSERT INTO `productimage` VALUES (4068, 0, 'https://resource.smartisan.com/resource/63cea2eeec303c66e62fbd94499868b9.jpg', 1000683, '');
+INSERT INTO `productimage` VALUES (4069, 0, 'https://resource.smartisan.com/resource/1e0e88810b1b8dc237120e2d8f8a0d95.jpg', 1000682, '');
+INSERT INTO `productimage` VALUES (4070, 0, 'https://resource.smartisan.com/resource/6706a69f16c387a7cbf080b74c5af708.jpg', 1000675, '');
+INSERT INTO `productimage` VALUES (4071, 0, 'https://resource.smartisan.com/resource/7c1113db4946be95f1099c202f25b855.jpg', 1000674, '');
+INSERT INTO `productimage` VALUES (4072, 0, 'https://resource.smartisan.com/resource/861d2aeb257a0b2e14fde26f7857a09d.jpg', 1000673, '');
+INSERT INTO `productimage` VALUES (4073, 0, 'https://resource.smartisan.com/resource/473b6b76cb3bc8bf6bfef8f7b85d97cb.jpg', 1000672, '');
+INSERT INTO `productimage` VALUES (4074, 0, 'https://resource.smartisan.com/resource/2f86b3e1943e82e0e0585a07bb590e2d.jpg', 1000671, '');
+INSERT INTO `productimage` VALUES (4075, 0, 'https://resource.smartisan.com/resource/47dc3937ec6d0840dd9afccc969dd4ea.png', 1000670, '');
+INSERT INTO `productimage` VALUES (4076, 0, 'https://resource.smartisan.com/resource/e6949831332de91f7bf6e74bd9543516.jpg', 1000669, '');
+INSERT INTO `productimage` VALUES (4077, 0, 'https://resource.smartisan.com/resource/d573426eb87480afe932607d2c2871f9.jpg', 1000668, '');
+INSERT INTO `productimage` VALUES (4078, 0, 'https://resource.smartisan.com/resource/385f2aba1f33834830d952f5b98d6573.jpg', 1000667, '');
+INSERT INTO `productimage` VALUES (4079, 0, 'https://resource.smartisan.com/resource/cb41026572b4a684de22427d90cdbeec.jpg', 1000666, '');
+INSERT INTO `productimage` VALUES (4080, 0, 'https://resource.smartisan.com/resource/7da5a7c9750b38ff606c2e414419e398.jpg', 1000665, '');
+INSERT INTO `productimage` VALUES (4081, 0, 'https://resource.smartisan.com/resource/85a255926d2b499f8c6856999d29e740.jpg', 1000664, '');
+INSERT INTO `productimage` VALUES (4082, 0, 'https://resource.smartisan.com/resource/7df76ec4859f6d5ab46084e7704fb53e.jpg', 1000663, '');
+INSERT INTO `productimage` VALUES (4083, 0, 'https://resource.smartisan.com/resource/ea72bed35470fb6f9be99036320ccf95.jpg', 1000662, '');
+INSERT INTO `productimage` VALUES (4084, 0, 'https://resource.smartisan.com/resource/cc4795f2b5062e1ad5970e3a5fe43f63.png', 1000661, '');
+INSERT INTO `productimage` VALUES (4085, 0, 'https://resource.smartisan.com/resource/56660184c230799408597d60592735d0.jpg', 1000660, '');
+INSERT INTO `productimage` VALUES (4086, 0, 'https://resource.smartisan.com/resource/d983106a45b56034060740e80264cf09.png', 1000659, '');
+INSERT INTO `productimage` VALUES (4087, 0, 'https://resource.smartisan.com/resource/caab276f073e3aba0e5b2567b5ecf19b.png', 1000654, '');
+INSERT INTO `productimage` VALUES (4088, 0, 'https://resource.smartisan.com/resource/fb539f4433f6b7c3e078510a942add1c.png', 1000653, '');
+INSERT INTO `productimage` VALUES (4089, 0, 'https://resource.smartisan.com/resource/df8c296ccf8f78af57901d213c24d5a7.jpg', 1000650, '');
+INSERT INTO `productimage` VALUES (4090, 0, 'https://resource.smartisan.com/resource/84b472956d7facb9d7134f7569d3bd84.jpg', 1000648, '');
+INSERT INTO `productimage` VALUES (4091, 0, 'https://resource.smartisan.com/resource/f90eb5c8dd0b6221cfdc0b0c3bdd1b87.jpg', 1000649, '');
+INSERT INTO `productimage` VALUES (4092, 0, 'https://resource.smartisan.com/resource/b1ea23314be6d08474d8d3e9c7ba6e15.jpg', 1000645, '');
+INSERT INTO `productimage` VALUES (4093, 0, 'https://resource.smartisan.com/resource/df94938d10ce86465e33e8c28b5ab8d8.jpg', 1000644, '');
+INSERT INTO `productimage` VALUES (4094, 0, 'https://resource.smartisan.com/resource/69376ec9945e7cafa1fa393439c8835d.jpg', 1000643, '');
+INSERT INTO `productimage` VALUES (4095, 0, 'https://resource.smartisan.com/resource/b6db8976d3fe9a04b0a58dc82099838b.jpg', 1000642, '');
+INSERT INTO `productimage` VALUES (4096, 0, 'https://resource.smartisan.com/resource/59fbbab676144fc8a374048361a4ec11.jpg', 1000633, '');
+INSERT INTO `productimage` VALUES (4097, 0, 'https://resource.smartisan.com/resource/42770d47670a19158b1bbf8a343de50b.jpg', 1000631, '');
+INSERT INTO `productimage` VALUES (4098, 0, 'https://resource.smartisan.com/resource/299bda5febce10f92d2a4b1552700c90.jpg', 1000630, '');
+INSERT INTO `productimage` VALUES (4099, 0, 'https://resource.smartisan.com/resource/02bb8971d96334724e7ac2fce00885e5.jpg', 1000626, '');
+INSERT INTO `productimage` VALUES (4100, 0, 'https://resource.smartisan.com/resource/ec9a9682eea336ad1151c7e332e4a957.jpg', 1000625, '');
+INSERT INTO `productimage` VALUES (4101, 0, 'https://resource.smartisan.com/resource/1024da4333d7f2bfcfae23cbb9ab7d24.jpg', 1000624, '');
+INSERT INTO `productimage` VALUES (4102, 0, 'https://resource.smartisan.com/resource/22a6f7f927dd45134c9d2794037354f5.jpg', 1000623, '');
+INSERT INTO `productimage` VALUES (4103, 0, 'https://resource.smartisan.com/resource/6921edba9842f86b651c60e3735c5993.jpg', 1000622, '');
+INSERT INTO `productimage` VALUES (4104, 0, 'https://resource.smartisan.com/resource/b8d357a7507b1337c75298fd67086b2a.jpg', 1000621, '');
+INSERT INTO `productimage` VALUES (4105, 0, 'https://resource.smartisan.com/resource/80a42145fc45837d303fa0a6e9fd837f.jpg', 1000620, '');
+INSERT INTO `productimage` VALUES (4106, 0, 'https://resource.smartisan.com/resource/6c16a22a47233b58ab315e1da3e376e8.jpg', 1000619, '');
+INSERT INTO `productimage` VALUES (4107, 0, 'https://resource.smartisan.com/resource/7e0dd2572ecfedfd412e00cd82a4a64b.jpg', 1000603, '');
+INSERT INTO `productimage` VALUES (4108, 0, 'https://resource.smartisan.com/resource/834e8388b0017c457c98baa6545cdfb2.jpg', 1000591, '');
+INSERT INTO `productimage` VALUES (4109, 0, 'https://resource.smartisan.com/resource/9bffe702b1f0aea221b1f18ddf886958.jpg', 1000556, '');
+INSERT INTO `productimage` VALUES (4110, 0, 'https://resource.smartisan.com/resource/df8c296ccf8f78af57901d213c24d5a7.jpg', 1000650, '');
+INSERT INTO `productimage` VALUES (4111, 0, 'https://resource.smartisan.com/resource/f90eb5c8dd0b6221cfdc0b0c3bdd1b87.jpg', 1000649, '');
+INSERT INTO `productimage` VALUES (4112, 0, 'https://resource.smartisan.com/resource/84b472956d7facb9d7134f7569d3bd84.jpg', 1000648, '');
+INSERT INTO `productimage` VALUES (4113, 0, 'https://resource.smartisan.com/resource/b1ea23314be6d08474d8d3e9c7ba6e15.jpg', 1000645, '');
+INSERT INTO `productimage` VALUES (4114, 0, 'https://resource.smartisan.com/resource/df94938d10ce86465e33e8c28b5ab8d8.jpg', 1000644, '');
+INSERT INTO `productimage` VALUES (4115, 0, 'https://resource.smartisan.com/resource/69376ec9945e7cafa1fa393439c8835d.jpg', 1000643, '');
+INSERT INTO `productimage` VALUES (4116, 0, 'https://resource.smartisan.com/resource/b6db8976d3fe9a04b0a58dc82099838b.jpg', 1000642, '');
+INSERT INTO `productimage` VALUES (4117, 0, 'https://resource.smartisan.com/resource/f195e666e089d4e3775ce67d8e9523ce.png', 1000602, '');
+INSERT INTO `productimage` VALUES (4118, 0, 'https://resource.smartisan.com/resource/b07b9765e272f866da6acda4ee107d88.png', 1000517, '');
+INSERT INTO `productimage` VALUES (4119, 0, 'https://resource.smartisan.com/resource/84366aa98fd0659d7809e1b9eed62cb4.png', 1000479, '');
+INSERT INTO `productimage` VALUES (4120, 0, 'https://resource.smartisan.com/resource/06c2253354096f5e9ebf0616f1af2086.png', 1000464, '');
+INSERT INTO `productimage` VALUES (4121, 0, 'https://resource.smartisan.com/resource/8d58e1ea15e893647cb789478cb86627.jpg', 1000618, '');
+INSERT INTO `productimage` VALUES (4122, 0, 'https://resource.smartisan.com/resource/e4085f0d2c84bfe1963b1290b9699c33.jpg', 1000558, '');
+INSERT INTO `productimage` VALUES (4123, 0, 'https://resource.smartisan.com/resource/71432ad30288fb860a4389881069b874.png', 1000405, '');
+INSERT INTO `productimage` VALUES (4124, 0, 'https://resource.smartisan.com/resource/00eee903962f17d75950397843117e6e.jpg', 1000365, '');
+INSERT INTO `productimage` VALUES (4125, 0, 'https://resource.smartisan.com/resource/4d83d72c5ecc288e8d5ddd9d06b80f99.jpg', 1000364, '');
+INSERT INTO `productimage` VALUES (4126, 0, 'https://resource.smartisan.com/resource/6ff92d05a3bfab4fad489ca04d3eea5a.png', 1000338, '');
+INSERT INTO `productimage` VALUES (4127, 0, 'https://resource.smartisan.com/resource/de1274f4c70fe3768417bb0454320089.png', 1000655, '');
+INSERT INTO `productimage` VALUES (4128, 0, 'https://resource.smartisan.com/resource/bd3372047d251502348a16a533e866e0.jpg', 1000638, '');
+INSERT INTO `productimage` VALUES (4129, 0, 'https://resource.smartisan.com/resource/e991f946530a7cfab3d9670dd8b1371b.png', 1000637, '');
+INSERT INTO `productimage` VALUES (4130, 0, 'https://resource.smartisan.com/resource/5888f9b53cd1184ac32f2ae778cd7804.jpg', 1000615, '');
+INSERT INTO `productimage` VALUES (4131, 0, 'https://resource.smartisan.com/resource/f060313b58a72053a89e1309bac4c3ab.jpg', 1000614, '');
+INSERT INTO `productimage` VALUES (4132, 0, 'https://resource.smartisan.com/resource/5bcb5d70f8c17efb0a2b4f9852a03128.jpg', 1000613, '');
+INSERT INTO `productimage` VALUES (4133, 0, 'https://resource.smartisan.com/resource/b466c9c2f8948309a8d9e4a9d1a437ef.jpg', 1000612, '');
+INSERT INTO `productimage` VALUES (4134, 0, 'https://resource.smartisan.com/resource/3899737bb15dae97d261a080d3b9894d.jpg', 1000611, '');
+INSERT INTO `productimage` VALUES (4135, 0, 'https://resource.smartisan.com/resource/d159521e479b26f3c97a1e4f00a5aefd.jpg', 1000610, '');
+INSERT INTO `productimage` VALUES (4136, 0, 'https://resource.smartisan.com/resource/8e822aa7cbab24fec7eacf0bbb2f6526.jpg', 1000609, '');
+INSERT INTO `productimage` VALUES (4137, 0, 'https://resource.smartisan.com/resource/31c8be42fbbabad10490835d953be356.jpg', 1000608, '');
+INSERT INTO `productimage` VALUES (4138, 0, 'https://resource.smartisan.com/resource/b93f8e0265cf372e774d0a76e32f2c0f.png', 1000607, '');
+INSERT INTO `productimage` VALUES (4139, 0, 'https://resource.smartisan.com/resource/b69694515f503e9c5be2a056314a569e.jpeg', 1000606, '');
+INSERT INTO `productimage` VALUES (4140, 0, 'https://resource.smartisan.com/resource/db1f9c8eadd0164a34e73465a34776a3.jpg', 1000605, '');
+INSERT INTO `productimage` VALUES (4141, 0, 'https://resource.smartisan.com/resource/9368c948ea81a5b8bc2efa165488ccc6.jpg', 1000604, '');
+INSERT INTO `productimage` VALUES (4142, 0, 'https://resource.smartisan.com/resource/834e8388b0017c457c98baa6545cdfb2.jpg', 1000591, '');
+INSERT INTO `productimage` VALUES (4143, 0, 'https://resource.smartisan.com/resource/2d106f8a751539abba6f446d3cda7818.jpg', 1000590, '');
+INSERT INTO `productimage` VALUES (4144, 0, 'https://resource.smartisan.com/resource/82aab62886740f165a3631ce6cffe895.jpg', 1000530, '');
+INSERT INTO `productimage` VALUES (4145, 0, 'https://resource.smartisan.com/resource/f55641e23f35f6dd82226b6c4a043f00.jpg', 1000529, '');
+INSERT INTO `productimage` VALUES (4146, 0, 'https://resource.smartisan.com/resource/6e96ccea3bd56bdd2243eb20330cec30.jpg', 1000528, '');
+INSERT INTO `productimage` VALUES (4147, 0, 'https://resource.smartisan.com/resource/8635cb91f2cdbbc5576e069c52b99412.jpg', 1000471, '');
+INSERT INTO `productimage` VALUES (4148, 0, 'https://resource.smartisan.com/resource/a668d1a5f41b04ece82d76ded1e94d3a.jpg', 1000470, '');
+INSERT INTO `productimage` VALUES (4149, 0, 'https://resource.smartisan.com/resource/ce632bd67465027861707ec221b37c2d.jpg', 1000428, '');
+INSERT INTO `productimage` VALUES (4150, 0, 'https://resource.smartisan.com/resource/33954b3f6a2f1614c5482ef130af9cc8.jpg', 1000422, '');
+INSERT INTO `productimage` VALUES (4151, 0, 'https://resource.smartisan.com/resource/45312fb748d54aa2e58a8f4d637e9e65.jpg', 1000268, '');
+INSERT INTO `productimage` VALUES (4152, 0, 'https://resource.smartisan.com/resource/dc53bd870ee64d2053ecc51750ece43a.jpg', 1000267, '');
+INSERT INTO `productimage` VALUES (4153, 0, 'https://resource.smartisan.com/resource/d4480234a2f24b0ff5acd98288fd902d.jpg', 1000235, '');
+INSERT INTO `productimage` VALUES (4154, 0, 'https://resource.smartisan.com/resource/fa6e26d738d64a3ecfdae3286e28aeb8.jpg', 1000838, '');
+INSERT INTO `productimage` VALUES (4155, 0, 'https://resource.smartisan.com/resource/a00c68f89915c9f21fae62173a75eb31.jpg', 1000837, '');
+INSERT INTO `productimage` VALUES (4156, 0, 'https://resource.smartisan.com/resource/f8e55b37a656c9745e27b27339a00e6f.jpg', 1000836, '');
+INSERT INTO `productimage` VALUES (4157, 0, 'https://resource.smartisan.com/resource/64b8c657d5a532cf4f159aaab0173220.jpg', 1000835, '');
+INSERT INTO `productimage` VALUES (4158, 0, 'https://resource.smartisan.com/resource/8e6e161e7d0c7ba68e27f61b5ce2754e.jpg', 1000834, '');
+INSERT INTO `productimage` VALUES (4159, 0, 'https://resource.smartisan.com/resource/c1ef7117ee8b0c0956006c1911bb2b75.jpg', 1000833, '');
+INSERT INTO `productimage` VALUES (4160, 0, 'https://resource.smartisan.com/resource/6b0c13dc3a470ec9fd4839e4cb55b4ec.jpg', 1000832, '');
+INSERT INTO `productimage` VALUES (4161, 0, 'https://resource.smartisan.com/resource/4b665ad8b0b76295a91d67579da5a3a5.jpg', 1000831, '');
+INSERT INTO `productimage` VALUES (4162, 0, 'https://resource.smartisan.com/resource/37ab6b55615fb1b17d734de137648f2f.jpg', 1000830, '');
+INSERT INTO `productimage` VALUES (4163, 0, 'https://resource.smartisan.com/resource/de1cf4d70f17b59958009f525fa0ccd7.jpg', 1000829, '');
+INSERT INTO `productimage` VALUES (4164, 0, 'https://resource.smartisan.com/resource/37e89b8c0159d93c706cd335cdbfcc40.jpg', 1000828, '');
+INSERT INTO `productimage` VALUES (4165, 0, 'https://resource.smartisan.com/resource/74a1d5bd9956bd0b4f232ec9044c54b8.jpg', 1000819, '');
+INSERT INTO `productimage` VALUES (4166, 0, 'https://resource.smartisan.com/resource/36925ab92246a2721b033e26590f25e8.jpg', 1000818, '');
+INSERT INTO `productimage` VALUES (4167, 0, 'https://resource.smartisan.com/resource/e1370f6ae0c9bc24770c4972a254db8d.jpg', 1000817, '');
+INSERT INTO `productimage` VALUES (4168, 0, 'https://resource.smartisan.com/resource/f2a9b0e3400f4f17e197ff8db107cffe.jpg', 1000816, '');
+INSERT INTO `productimage` VALUES (4169, 0, 'https://resource.smartisan.com/resource/e88c1006de01133ea1426a9ad9ad6568.jpg', 1000815, '');
+INSERT INTO `productimage` VALUES (4170, 0, 'https://resource.smartisan.com/resource/8040f6da2e04b0f292635195e0c5f78b.jpg', 1000814, '');
+INSERT INTO `productimage` VALUES (4171, 0, 'https://resource.smartisan.com/resource/5f4d210f2819864cdb2a806d178e9460.jpg', 1000813, '');
+INSERT INTO `productimage` VALUES (4172, 0, 'https://resource.smartisan.com/resource/6764e27fd56cc4ef4de18e4863dd0f8a.jpg', 1000812, '');
+INSERT INTO `productimage` VALUES (4173, 0, 'https://resource.smartisan.com/resource/cff8097e1265ff1eea45c33c263239d0.jpg', 1000811, '');
+INSERT INTO `productimage` VALUES (4174, 0, 'https://resource.smartisan.com/resource/447e0bb8bd99eaed9126bda8908cb99e.jpg', 1000810, '');
+INSERT INTO `productimage` VALUES (4175, 0, 'https://resource.smartisan.com/resource/2b31fe2885aa274b8606682a672eb1ff.jpg', 1000809, '');
+INSERT INTO `productimage` VALUES (4176, 0, 'https://resource.smartisan.com/resource/187c9240773cb2594ef4d93d61faf406.jpg', 1000807, '');
+INSERT INTO `productimage` VALUES (4177, 0, 'https://resource.smartisan.com/resource/fb027634e618a3526eec73e7b3f28579.jpg', 1000806, '');
+INSERT INTO `productimage` VALUES (4178, 0, 'https://resource.smartisan.com/resource/ce610bce5eb6f1f1123d177f58aa0def.jpg', 1000803, '');
+INSERT INTO `productimage` VALUES (4179, 0, 'https://resource.smartisan.com/resource/ce647c60e2f8d23a2ecc3a575a3182e6.jpg', 1000802, '');
+INSERT INTO `productimage` VALUES (4180, 0, 'https://resource.smartisan.com/resource/8f3248bf7ab1e5fdabdc1df50e57bfb1.jpg', 1000801, '');
+INSERT INTO `productimage` VALUES (4181, 0, 'https://resource.smartisan.com/resource/8834c109d97d1e554a4f86c6c7b711a0.jpg', 1000800, '');
+INSERT INTO `productimage` VALUES (4182, 0, 'https://resource.smartisan.com/resource/7f4dbe2b4bad6218417a503ea245d7fc.jpg', 1000799, '');
+INSERT INTO `productimage` VALUES (4183, 0, 'https://resource.smartisan.com/resource/1c6efb8539794a4cf8490f34c1b5c642.jpg', 1000798, '');
+INSERT INTO `productimage` VALUES (4184, 0, 'https://resource.smartisan.com/resource/3e4bc67b30c200b7fe7baae8acf960bc.jpg', 1000795, '');
+INSERT INTO `productimage` VALUES (4185, 0, 'https://resource.smartisan.com/resource/9a2b10915753aaf1bb3941eec3550490.jpg', 1000794, '');
+INSERT INTO `productimage` VALUES (4186, 0, 'https://resource.smartisan.com/resource/755510e3cbd320c9eaeed94574c3c171.jpg', 1000791, '');
+INSERT INTO `productimage` VALUES (4187, 0, 'https://resource.smartisan.com/resource/a201ded035feb212f5a750f6a465762f.jpg', 1000788, '');
+INSERT INTO `productimage` VALUES (4188, 0, 'https://resource.smartisan.com/resource/924ac44abb99df7c17c9a3cc580bc6e1.jpg', 1000786, '');
+INSERT INTO `productimage` VALUES (4189, 0, 'https://resource.smartisan.com/resource/cc39143ee8b120f1500e09ccdde41f8c.jpg', 1000785, '');
+INSERT INTO `productimage` VALUES (4190, 0, 'https://resource.smartisan.com/resource/7cc8bd4b053e5bd613643bfc9faef3ef.jpg', 1000784, '');
+INSERT INTO `productimage` VALUES (4191, 0, 'https://resource.smartisan.com/resource/9f4d0af22203bff4df7470a5e3657336.jpg', 1000783, '');
+INSERT INTO `productimage` VALUES (4192, 0, 'https://resource.smartisan.com/resource/a0a6a36bf42659c454d87e780f0973ce.jpg', 1000782, '');
+INSERT INTO `productimage` VALUES (4193, 0, 'https://resource.smartisan.com/resource/9c5e977faf7439a46ba6a1464ba696ee.jpg', 1000781, '');
+INSERT INTO `productimage` VALUES (4194, 0, 'https://resource.smartisan.com/resource/24a4b2b3333ac41d3605cdc447f035b7.jpeg', 1000780, '');
+INSERT INTO `productimage` VALUES (4195, 0, 'https://resource.smartisan.com/resource/1f4959d8d826060e8ce3aaded2b7ad49.jpg', 1000779, '');
+INSERT INTO `productimage` VALUES (4196, 0, 'https://resource.smartisan.com/resource/e8312168c9368a3c52d658e48267a524.jpg', 1000778, '');
+INSERT INTO `productimage` VALUES (4197, 0, 'https://resource.smartisan.com/resource/42904e0976b6335ac11d7bc834c59d38.jpg', 1000777, '');
+INSERT INTO `productimage` VALUES (4198, 0, 'https://resource.smartisan.com/resource/1206be560dc919d54bfedd4e8854e161.jpg', 1000776, '');
+INSERT INTO `productimage` VALUES (4199, 0, 'https://resource.smartisan.com/resource/bbabca321058b580ce77d6df547c8911.jpg', 1000775, '');
+INSERT INTO `productimage` VALUES (4200, 0, 'https://resource.smartisan.com/resource/2b92d2362fae4dc69431d5f89dd85e84.jpg', 1000773, '');
+INSERT INTO `productimage` VALUES (4201, 0, 'https://resource.smartisan.com/resource/fba6a16e4c0846255bc5033b68ad5a39.jpg', 1000772, '');
+INSERT INTO `productimage` VALUES (4202, 0, 'https://resource.smartisan.com/resource/086238c9eb68dffea7ab37260e5b0982.jpg', 1000771, '');
+INSERT INTO `productimage` VALUES (4203, 0, 'https://resource.smartisan.com/resource/9064581e930dce1cb746aab03a99f250.jpg', 1000770, '');
+INSERT INTO `productimage` VALUES (4204, 0, 'https://resource.smartisan.com/resource/e6fd16c68e9ebbd2cfd2598c41b94a64.jpg', 1000769, '');
+INSERT INTO `productimage` VALUES (4205, 0, 'https://resource.smartisan.com/resource/fdc480f95eac0c7eb51f4da528476d2f.jpg', 1000768, '');
+INSERT INTO `productimage` VALUES (4206, 0, 'https://resource.smartisan.com/resource/e690f88ee35c5c650c696662d0ae74d3.jpg', 1000767, '');
+INSERT INTO `productimage` VALUES (4207, 0, 'https://resource.smartisan.com/resource/93ba6051d9864b6905e9ace9ea186773.jpg', 1000766, '');
+INSERT INTO `productimage` VALUES (4208, 0, 'https://resource.smartisan.com/resource/72693f961c0887eb40faf9c6368c905c.jpg', 1000765, '');
+INSERT INTO `productimage` VALUES (4209, 0, 'https://resource.smartisan.com/resource/1a3e6b69df9d2e69723eb1df7681122f.jpg', 1000764, '');
+INSERT INTO `productimage` VALUES (4210, 0, 'https://resource.smartisan.com/resource/889abc2884d22f395b56e6a4d90db6f1.jpg', 1000763, '');
+INSERT INTO `productimage` VALUES (4211, 0, 'https://resource.smartisan.com/resource/a57a3be79521a4e49bb066f24e664afa.jpg', 1000762, '');
+INSERT INTO `productimage` VALUES (4212, 0, 'https://resource.smartisan.com/resource/3e80ab516ee3583ee1c238aaca275fe3.jpg', 1000761, '');
+INSERT INTO `productimage` VALUES (4213, 0, 'https://resource.smartisan.com/resource/46f9bb5f04926a50cff702703bde901e.jpg', 1000760, '');
+INSERT INTO `productimage` VALUES (4214, 0, 'https://resource.smartisan.com/resource/0b3e9709b4a2674ac33b6d098535d74b.jpg', 1000759, '');
+INSERT INTO `productimage` VALUES (4215, 0, 'https://resource.smartisan.com/resource/d110b54cec19e9ac9d0be4d6ad97a0ed.jpg', 1000758, '');
+INSERT INTO `productimage` VALUES (4216, 0, 'https://resource.smartisan.com/resource/f6eeb08b08ddd2c9c3552b610a084aa8.jpg', 1000757, '');
+INSERT INTO `productimage` VALUES (4217, 0, 'https://resource.smartisan.com/resource/31fa1604d7bf6c1dc21cfd85bf4e4c6e.jpg', 1000756, '');
+INSERT INTO `productimage` VALUES (4218, 0, 'https://resource.smartisan.com/resource/1af92134b0c79effeac68a142fee8172.jpg', 1000755, '');
+INSERT INTO `productimage` VALUES (4219, 0, 'https://resource.smartisan.com/resource/80b9791435c3bddfcdfce0a830b87c27.jpg', 1000754, '');
+INSERT INTO `productimage` VALUES (4220, 0, 'https://resource.smartisan.com/resource/340dd0a7725b35c9286a69103ea17319.jpg', 1000753, '');
+INSERT INTO `productimage` VALUES (4221, 0, 'https://resource.smartisan.com/resource/9b1dbc1ab44bc9fd2b3703faaee90257.jpg', 1000752, '');
+INSERT INTO `productimage` VALUES (4222, 0, 'https://resource.smartisan.com/resource/24acac0d91ea3a08f85943df60660ffe.jpg', 1000751, '');
+INSERT INTO `productimage` VALUES (4223, 0, 'https://resource.smartisan.com/resource/c2bfa13def9b4edb8120315b636883ae.jpg', 1000750, '');
+INSERT INTO `productimage` VALUES (4224, 0, 'https://resource.smartisan.com/resource/3fbd344982dd8083e2903c306db234d9.jpg', 1000749, '');
+INSERT INTO `productimage` VALUES (4225, 0, 'https://resource.smartisan.com/resource/bb6e5946ba2a3658955f2a8de1bff42a.jpg', 1000748, '');
+INSERT INTO `productimage` VALUES (4226, 0, 'https://resource.smartisan.com/resource/df0b9a606418ce66436fefdafd85d481.jpg', 1000747, '');
+INSERT INTO `productimage` VALUES (4227, 0, 'https://resource.smartisan.com/resource/9cf5b7fdc7dc96a1d2678e0dfccceb97.jpg', 1000746, '');
+INSERT INTO `productimage` VALUES (4228, 0, 'https://resource.smartisan.com/resource/3ffdc7b94cd645558d443b1f2bd8b817.jpg', 1000745, '');
+INSERT INTO `productimage` VALUES (4229, 0, 'https://resource.smartisan.com/resource/456b707e5c9f2524ad0f063150182fdc.jpg', 1000744, '');
+INSERT INTO `productimage` VALUES (4230, 0, 'https://resource.smartisan.com/resource/15d0ee0615b496b9c455498e6385dce6.jpg', 1000743, '');
+INSERT INTO `productimage` VALUES (4231, 0, 'https://resource.smartisan.com/resource/ca3128bd2b71028187a52c276219df4c.jpg', 1000742, '');
+INSERT INTO `productimage` VALUES (4232, 0, 'https://resource.smartisan.com/resource/3936729cbd3489ab3e1ca7fb0c01b53c.jpg', 1000741, '');
+INSERT INTO `productimage` VALUES (4233, 0, 'https://resource.smartisan.com/resource/313e68ca7b72eee27d150d63117b69a7.jpg', 1000740, '');
+INSERT INTO `productimage` VALUES (4234, 0, 'https://resource.smartisan.com/resource/38232016fb2c7f6972081cec98a8b8ef.jpg', 1000739, '');
+INSERT INTO `productimage` VALUES (4235, 0, 'https://resource.smartisan.com/resource/7aff6aa72a5b9a8222adbd036fbb3578.jpg', 1000738, '');
+INSERT INTO `productimage` VALUES (4236, 0, 'https://resource.smartisan.com/resource/933fba8ebdbd88d3e2573fb4b1a20fb4.jpg', 1000737, '');
+INSERT INTO `productimage` VALUES (4237, 0, 'https://resource.smartisan.com/resource/e2a52e5f5cbf8dcad59446581a50a7d9.jpg', 1000736, '');
+INSERT INTO `productimage` VALUES (4238, 0, 'https://resource.smartisan.com/resource/5da4337752437f5ffe5e6c35a87cda0c.jpg', 1000735, '');
+INSERT INTO `productimage` VALUES (4239, 0, 'https://resource.smartisan.com/resource/35f07b2b63d56ec75ff19b38242befbc.jpg', 1000734, '');
+INSERT INTO `productimage` VALUES (4240, 0, 'https://resource.smartisan.com/resource/c5e62667e692d0682cf5d3b1aa4626c7.jpg', 1000733, '');
+INSERT INTO `productimage` VALUES (4241, 0, 'https://resource.smartisan.com/resource/1d1a702cffb982eff83f49a5a68bba6e.jpg', 1000732, '');
+INSERT INTO `productimage` VALUES (4242, 0, 'https://resource.smartisan.com/resource/2a22f645ce0da7993fbf29104a137ecb.jpg', 1000731, '');
+INSERT INTO `productimage` VALUES (4243, 0, 'https://resource.smartisan.com/resource/ba5270ea5ecd726ff15fba30680d2703.jpg', 1000730, '');
+INSERT INTO `productimage` VALUES (4244, 0, 'https://resource.smartisan.com/resource/fc6d1bc2594160a79aae9523130e63b2.jpg', 1000729, '');
+INSERT INTO `productimage` VALUES (4245, 0, 'https://resource.smartisan.com/resource/82a5231bf84d000ee7904a1f8b35488e.jpg', 1000728, '');
+INSERT INTO `productimage` VALUES (4246, 0, 'https://resource.smartisan.com/resource/16d8eba01d66f6d203e72891d9be2c3f.jpg', 1000727, '');
+INSERT INTO `productimage` VALUES (4247, 0, 'https://resource.smartisan.com/resource/2db4c4184cb101140b7cf776489473a9.jpg', 1000726, '');
+INSERT INTO `productimage` VALUES (4248, 0, 'https://resource.smartisan.com/resource/062468126259c1c7d3fb04581b7c3d0d.jpg', 1000725, '');
+INSERT INTO `productimage` VALUES (4249, 0, 'https://resource.smartisan.com/resource/6e46e9cdf2499fa208e9db3710e30845.jpg', 1000724, '');
+INSERT INTO `productimage` VALUES (4250, 0, 'https://resource.smartisan.com/resource/37555e2dbc1866fa7d5dbbb74a1be95e.jpg', 1000722, '');
+INSERT INTO `productimage` VALUES (4251, 0, 'https://resource.smartisan.com/resource/9d7d23409f3c73e886fe0b67b2bdfcac.jpg', 1000721, '');
+INSERT INTO `productimage` VALUES (4252, 0, 'https://resource.smartisan.com/resource/edd04f6f813b9f5224ccc132afc6ddf3.jpg', 1000720, '');
+INSERT INTO `productimage` VALUES (4253, 0, 'https://resource.smartisan.com/resource/e53a3374039c1b25674522a57a0af342.jpg', 1000719, '');
+INSERT INTO `productimage` VALUES (4254, 0, 'https://resource.smartisan.com/resource/7cbff8aebc598d69b6f5e12ac4650871.jpg', 1000718, '');
+INSERT INTO `productimage` VALUES (4255, 0, 'https://resource.smartisan.com/resource/dab835e6c357d658cfed4f6f17489539.jpg', 1000717, '');
+INSERT INTO `productimage` VALUES (4256, 0, 'https://resource.smartisan.com/resource/01b5ed34207dc3790af2f2b3959f48f2.jpg', 1000716, '');
+INSERT INTO `productimage` VALUES (4257, 0, 'https://resource.smartisan.com/resource/9a79777847a515d7f270821ff7e02645.jpg', 1000715, '');
+INSERT INTO `productimage` VALUES (4258, 0, 'https://resource.smartisan.com/resource/bb220d29a399975cfab83f75ea288e87.jpg', 1000714, '');
+INSERT INTO `productimage` VALUES (4259, 0, 'https://resource.smartisan.com/resource/fe9ee324ab7be1208514c1632899ff93.jpg', 1000713, '');
+INSERT INTO `productimage` VALUES (4260, 0, 'https://resource.smartisan.com/resource/1ded3f72cadc0c154e096d2a7139d706.jpg', 1000712, '');
+INSERT INTO `productimage` VALUES (4261, 0, 'https://resource.smartisan.com/resource/d25709cef1410ee39fe768715977346d.jpg', 1000711, '');
+INSERT INTO `productimage` VALUES (4262, 0, 'https://resource.smartisan.com/resource/2fb76e058a566dfccc42801a64602f5b.jpg', 1000710, '');
+INSERT INTO `productimage` VALUES (4263, 0, 'https://resource.smartisan.com/resource/e5ee30157d0030db6351277538db6a26.jpg', 1000709, '');
+INSERT INTO `productimage` VALUES (4264, 0, 'https://resource.smartisan.com/resource/e4438c22af81158f0cc2fc0d769ab2ba.jpg', 1000708, '');
+INSERT INTO `productimage` VALUES (4265, 0, 'https://resource.smartisan.com/resource/c1a2cc7af99568c922cffcdb8f7e2ce2.jpg', 1000707, '');
+INSERT INTO `productimage` VALUES (4266, 0, 'https://resource.smartisan.com/resource/f1d306dd96bb4a776119bc546035116f.jpg', 1000706, '');
+INSERT INTO `productimage` VALUES (4267, 0, 'https://resource.smartisan.com/resource/3f3ce1befb984611c4be0fc921c7c575.jpg', 1000705, '');
+INSERT INTO `productimage` VALUES (4268, 0, 'https://resource.smartisan.com/resource/6e296d514d7dcd043f8ee86d5eccb69a.jpg', 1000704, '');
+INSERT INTO `productimage` VALUES (4269, 0, 'https://resource.smartisan.com/resource/e9a77e9810951bd0cfb7b1c1d3c76491.jpg', 1000703, '');
+INSERT INTO `productimage` VALUES (4270, 0, 'https://resource.smartisan.com/resource/947809cbd15484d0a9304e1968eb48e4.jpg', 1000701, '');
+INSERT INTO `productimage` VALUES (4271, 0, 'https://resource.smartisan.com/resource/25dd557ac22df57683e12898688da535.jpg', 1000700, '');
+INSERT INTO `productimage` VALUES (4272, 0, 'https://resource.smartisan.com/resource/638a5247347a9379dd2c83f93e01bd8f.jpg', 1000699, '');
+INSERT INTO `productimage` VALUES (4273, 0, 'https://resource.smartisan.com/resource/0a02fc909c27f9a6e1d8971662486d5c.jpg', 1000698, '');
+INSERT INTO `productimage` VALUES (4274, 0, 'https://resource.smartisan.com/resource/80c763e64f087676c15394effc8b8136.jpg', 1000697, '');
+INSERT INTO `productimage` VALUES (4275, 0, 'https://resource.smartisan.com/resource/9ebb2d47c412d8ff7618b89ab42ae715.jpg', 1000696, '');
+INSERT INTO `productimage` VALUES (4276, 0, 'https://resource.smartisan.com/resource/4a5ed736d31b820d2c04709717a59d54.jpg', 1000693, '');
+INSERT INTO `productimage` VALUES (4277, 0, 'https://resource.smartisan.com/resource/00159a7c85a87aec976139a43d248404.jpg', 1000692, '');
+INSERT INTO `productimage` VALUES (4278, 0, 'https://resource.smartisan.com/resource/1604c12617d2848900d8cee362dfef6d.jpg', 1000691, '');
+INSERT INTO `productimage` VALUES (4279, 0, 'https://resource.smartisan.com/resource/648b92d51a7b03d753f7256150fc9771.jpg', 1000690, '');
+INSERT INTO `productimage` VALUES (4280, 0, 'https://resource.smartisan.com/resource/4242d80ec7ded50e0ab106a946f166b8.jpg', 1000689, '');
+INSERT INTO `productimage` VALUES (4281, 0, 'https://resource.smartisan.com/resource/13a288f1e8c53a011e152710b21cbca4.jpg', 1000688, '');
+INSERT INTO `productimage` VALUES (4282, 0, 'https://resource.smartisan.com/resource/7316f0e4de692e7d89f77c89f44bf651.jpg', 1000687, '');
+INSERT INTO `productimage` VALUES (4283, 0, 'https://resource.smartisan.com/resource/7aaa33d100cad98bba19e8b4cf5f5ad6.jpg', 1000684, '');
+INSERT INTO `productimage` VALUES (4284, 0, 'https://resource.smartisan.com/resource/63cea2eeec303c66e62fbd94499868b9.jpg', 1000683, '');
+INSERT INTO `productimage` VALUES (4285, 0, 'https://resource.smartisan.com/resource/1e0e88810b1b8dc237120e2d8f8a0d95.jpg', 1000682, '');
+INSERT INTO `productimage` VALUES (4286, 0, 'https://resource.smartisan.com/resource/6706a69f16c387a7cbf080b74c5af708.jpg', 1000675, '');
+INSERT INTO `productimage` VALUES (4287, 0, 'https://resource.smartisan.com/resource/7c1113db4946be95f1099c202f25b855.jpg', 1000674, '');
+INSERT INTO `productimage` VALUES (4288, 0, 'https://resource.smartisan.com/resource/861d2aeb257a0b2e14fde26f7857a09d.jpg', 1000673, '');
+INSERT INTO `productimage` VALUES (4289, 0, 'https://resource.smartisan.com/resource/473b6b76cb3bc8bf6bfef8f7b85d97cb.jpg', 1000672, '');
+INSERT INTO `productimage` VALUES (4290, 0, 'https://resource.smartisan.com/resource/2f86b3e1943e82e0e0585a07bb590e2d.jpg', 1000671, '');
+INSERT INTO `productimage` VALUES (4291, 0, 'https://resource.smartisan.com/resource/47dc3937ec6d0840dd9afccc969dd4ea.png', 1000670, '');
+INSERT INTO `productimage` VALUES (4292, 0, 'https://resource.smartisan.com/resource/e6949831332de91f7bf6e74bd9543516.jpg', 1000669, '');
+INSERT INTO `productimage` VALUES (4293, 0, 'https://resource.smartisan.com/resource/d573426eb87480afe932607d2c2871f9.jpg', 1000668, '');
+INSERT INTO `productimage` VALUES (4294, 0, 'https://resource.smartisan.com/resource/385f2aba1f33834830d952f5b98d6573.jpg', 1000667, '');
+INSERT INTO `productimage` VALUES (4295, 0, 'https://resource.smartisan.com/resource/cb41026572b4a684de22427d90cdbeec.jpg', 1000666, '');
+INSERT INTO `productimage` VALUES (4296, 0, 'https://resource.smartisan.com/resource/7da5a7c9750b38ff606c2e414419e398.jpg', 1000665, '');
+INSERT INTO `productimage` VALUES (4297, 0, 'https://resource.smartisan.com/resource/85a255926d2b499f8c6856999d29e740.jpg', 1000664, '');
+INSERT INTO `productimage` VALUES (4298, 0, 'https://resource.smartisan.com/resource/7df76ec4859f6d5ab46084e7704fb53e.jpg', 1000663, '');
+INSERT INTO `productimage` VALUES (4299, 0, 'https://resource.smartisan.com/resource/ea72bed35470fb6f9be99036320ccf95.jpg', 1000662, '');
+INSERT INTO `productimage` VALUES (4300, 0, 'https://resource.smartisan.com/resource/cc4795f2b5062e1ad5970e3a5fe43f63.png', 1000661, '');
+INSERT INTO `productimage` VALUES (4301, 0, 'https://resource.smartisan.com/resource/56660184c230799408597d60592735d0.jpg', 1000660, '');
+INSERT INTO `productimage` VALUES (4302, 0, 'https://resource.smartisan.com/resource/d983106a45b56034060740e80264cf09.png', 1000659, '');
+INSERT INTO `productimage` VALUES (4303, 0, 'https://resource.smartisan.com/resource/caab276f073e3aba0e5b2567b5ecf19b.png', 1000654, '');
+INSERT INTO `productimage` VALUES (4304, 0, 'https://resource.smartisan.com/resource/fb539f4433f6b7c3e078510a942add1c.png', 1000653, '');
+INSERT INTO `productimage` VALUES (4305, 0, 'https://resource.smartisan.com/resource/df8c296ccf8f78af57901d213c24d5a7.jpg', 1000650, '');
+INSERT INTO `productimage` VALUES (4306, 0, 'https://resource.smartisan.com/resource/f90eb5c8dd0b6221cfdc0b0c3bdd1b87.jpg', 1000649, '');
+INSERT INTO `productimage` VALUES (4307, 0, 'https://resource.smartisan.com/resource/84b472956d7facb9d7134f7569d3bd84.jpg', 1000648, '');
+INSERT INTO `productimage` VALUES (4308, 0, 'https://resource.smartisan.com/resource/b1ea23314be6d08474d8d3e9c7ba6e15.jpg', 1000645, '');
+INSERT INTO `productimage` VALUES (4309, 0, 'https://resource.smartisan.com/resource/df94938d10ce86465e33e8c28b5ab8d8.jpg', 1000644, '');
+INSERT INTO `productimage` VALUES (4310, 0, 'https://resource.smartisan.com/resource/69376ec9945e7cafa1fa393439c8835d.jpg', 1000643, '');
+INSERT INTO `productimage` VALUES (4311, 0, 'https://resource.smartisan.com/resource/b6db8976d3fe9a04b0a58dc82099838b.jpg', 1000642, '');
+INSERT INTO `productimage` VALUES (4312, 0, 'https://resource.smartisan.com/resource/59fbbab676144fc8a374048361a4ec11.jpg', 1000633, '');
+INSERT INTO `productimage` VALUES (4313, 0, 'https://resource.smartisan.com/resource/42770d47670a19158b1bbf8a343de50b.jpg', 1000631, '');
+INSERT INTO `productimage` VALUES (4314, 0, 'https://resource.smartisan.com/resource/299bda5febce10f92d2a4b1552700c90.jpg', 1000630, '');
+INSERT INTO `productimage` VALUES (4315, 0, 'https://resource.smartisan.com/resource/02bb8971d96334724e7ac2fce00885e5.jpg', 1000626, '');
+INSERT INTO `productimage` VALUES (4316, 0, 'https://resource.smartisan.com/resource/ec9a9682eea336ad1151c7e332e4a957.jpg', 1000625, '');
+INSERT INTO `productimage` VALUES (4317, 0, 'https://resource.smartisan.com/resource/1024da4333d7f2bfcfae23cbb9ab7d24.jpg', 1000624, '');
+INSERT INTO `productimage` VALUES (4318, 0, 'https://resource.smartisan.com/resource/22a6f7f927dd45134c9d2794037354f5.jpg', 1000623, '');
+INSERT INTO `productimage` VALUES (4319, 0, 'https://resource.smartisan.com/resource/6921edba9842f86b651c60e3735c5993.jpg', 1000622, '');
+INSERT INTO `productimage` VALUES (4320, 0, 'https://resource.smartisan.com/resource/b8d357a7507b1337c75298fd67086b2a.jpg', 1000621, '');
+INSERT INTO `productimage` VALUES (4321, 0, 'https://resource.smartisan.com/resource/80a42145fc45837d303fa0a6e9fd837f.jpg', 1000620, '');
+INSERT INTO `productimage` VALUES (4322, 0, 'https://resource.smartisan.com/resource/6c16a22a47233b58ab315e1da3e376e8.jpg', 1000619, '');
+INSERT INTO `productimage` VALUES (4323, 0, 'https://resource.smartisan.com/resource/7e0dd2572ecfedfd412e00cd82a4a64b.jpg', 1000603, '');
+INSERT INTO `productimage` VALUES (4324, 0, 'https://resource.smartisan.com/resource/834e8388b0017c457c98baa6545cdfb2.jpg', 1000591, '');
+INSERT INTO `productimage` VALUES (4325, 0, 'https://resource.smartisan.com/resource/9bffe702b1f0aea221b1f18ddf886958.jpg', 1000556, '');
 
 -- ----------------------------
 -- Table structure for productorder
 -- ----------------------------
 DROP TABLE IF EXISTS `productorder`;
-CREATE TABLE `productorder` (
+CREATE TABLE `productorder`  (
   `productorder_id` int(10) NOT NULL AUTO_INCREMENT,
-  `productorder_code` varchar(30) NOT NULL,
-  `productorder_address` char(6) NOT NULL,
-  `productorder_detail_address` varchar(255) NOT NULL,
-  `productorder_post` char(6) DEFAULT NULL,
-  `productorder_receiver` varchar(20) NOT NULL,
-  `productorder_mobile` char(11) NOT NULL,
+  `productorder_code` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `productorder_address` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `productorder_detail_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `productorder_post` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `productorder_receiver` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `productorder_mobile` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `productorder_pay_date` datetime NOT NULL,
-  `productorder_delivery_date` datetime DEFAULT NULL,
-  `productorder_confirm_date` datetime DEFAULT NULL,
+  `productorder_delivery_date` datetime NULL DEFAULT NULL,
+  `productorder_confirm_date` datetime NULL DEFAULT NULL,
   `productorder_status` tinyint(1) NOT NULL,
   `productorder_user_id` int(10) NOT NULL,
-  PRIMARY KEY (`productorder_id`),
-  UNIQUE KEY `un_productorder_code` (`productorder_code`),
-  KEY `productorder_address` (`productorder_address`),
-  KEY `productorder_ibfk_2` (`productorder_user_id`),
-  CONSTRAINT `productorder_ibfk_1` FOREIGN KEY (`productorder_address`) REFERENCES `address` (`address_areaId`)
-) ENGINE=InnoDB AUTO_INCREMENT=266 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`productorder_id`) USING BTREE,
+  UNIQUE INDEX `un_productorder_code`(`productorder_code`) USING BTREE,
+  INDEX `productorder_address`(`productorder_address`) USING BTREE,
+  INDEX `productorder_ibfk_2`(`productorder_user_id`) USING BTREE,
+  CONSTRAINT `productorder_ibfk_1` FOREIGN KEY (`productorder_address`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 262 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of productorder
 -- ----------------------------
-BEGIN;
-INSERT INTO `productorder` VALUES (240, '2018100820231901', '110101', 'zz', '', 'zz', '16546546546', '2018-10-08 20:23:19', NULL, NULL, 4, 1);
-INSERT INTO `productorder` VALUES (241, '2018100911021701', '110101', 'zzz', '', 'zz', '15465465465', '2018-10-09 11:02:17', NULL, NULL, 0, 1);
-INSERT INTO `productorder` VALUES (242, '2018100911031201', '110101', 'zzz', '', 'zz', '15465465465', '2018-10-09 11:03:12', NULL, NULL, 0, 1);
-INSERT INTO `productorder` VALUES (249, '20181010115951015', '110101', 'zz', '', 'zz', '15646545646', '2018-10-10 11:59:51', NULL, NULL, 0, 15);
-INSERT INTO `productorder` VALUES (250, '20181010120034015', '110101', 'zz', '', 'zz', '15646545646', '2018-10-10 12:00:34', NULL, NULL, 4, 15);
-INSERT INTO `productorder` VALUES (251, '20181010161222015', '110101', 'zz', '', 'zz', '15646546545', '2018-10-10 16:12:22', NULL, NULL, 0, 15);
-INSERT INTO `productorder` VALUES (253, '20181026193400017', '110101', 'z', '', 'z', '15646549465', '2018-10-26 19:34:00', NULL, NULL, 4, 17);
-INSERT INTO `productorder` VALUES (254, '20181105201921017', '110101', 'z', '', 'zz', '13454984654', '2018-11-05 20:19:21', NULL, NULL, 4, 17);
-INSERT INTO `productorder` VALUES (255, '20181120160440017', '110101', '大望路', '', '张三', '14523568596', '2018-11-20 16:04:40', NULL, NULL, 0, 17);
-INSERT INTO `productorder` VALUES (260, '20181204093526012', '110101', 'z', '', 'zz', '13454984654', '2018-12-04 09:35:26', NULL, NULL, 0, 12);
-INSERT INTO `productorder` VALUES (261, '2020052917420401', '130102', '1', '', '1', '15311122244', '2020-05-29 17:42:04', NULL, NULL, 0, 1);
-INSERT INTO `productorder` VALUES (262, '2020052917502901', '110101', '111', '', '1', '13566688111', '2020-05-29 17:50:29', NULL, NULL, 0, 1);
-INSERT INTO `productorder` VALUES (263, '2020052917512701', '130102', '1', '', '1', '15311122244', '2020-05-29 17:51:27', NULL, NULL, 0, 1);
-INSERT INTO `productorder` VALUES (264, '2020053012123401', '130102', '1', '', '1', '15311122244', '2020-05-30 12:12:34', NULL, NULL, 0, 1);
-INSERT INTO `productorder` VALUES (265, '2020053012125201', '130102', '1', '', '1', '15311122244', '2020-05-30 12:12:52', NULL, NULL, 0, 1);
-COMMIT;
+INSERT INTO `productorder` VALUES (261, '2021102209242001', '110101', 'zzz22', '', '升水', '13310102020', '2021-10-22 09:24:20', NULL, NULL, 0, 1);
 
 -- ----------------------------
 -- Table structure for productorderitem
 -- ----------------------------
 DROP TABLE IF EXISTS `productorderitem`;
-CREATE TABLE `productorderitem` (
+CREATE TABLE `productorderitem`  (
   `productorderitem_id` int(10) NOT NULL AUTO_INCREMENT,
-  `productorderitem_number` smallint(5) unsigned NOT NULL,
-  `productorderitem_price` decimal(10,2) NOT NULL,
+  `productorderitem_number` smallint(5) UNSIGNED NOT NULL,
+  `productorderitem_price` decimal(10, 2) NOT NULL,
   `productorderitem_product_id` int(10) NOT NULL,
-  `productorderitem_order_id` int(10) DEFAULT NULL,
+  `productorderitem_order_id` int(10) NULL DEFAULT NULL,
   `productorderitem_user_id` int(10) NOT NULL,
-  `productorderitem_userMessage` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`productorderitem_id`),
-  KEY `productorderitem_product_id` (`productorderitem_product_id`),
-  KEY `productorderitem_order_id` (`productorderitem_order_id`),
-  KEY `productorderitem_user_id` (`productorderitem_user_id`),
-  CONSTRAINT `productorderitem_ibfk_1` FOREIGN KEY (`productorderitem_product_id`) REFERENCES `product` (`product_id`),
-  CONSTRAINT `productorderitem_ibfk_2` FOREIGN KEY (`productorderitem_order_id`) REFERENCES `productorder` (`productorder_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=318 DEFAULT CHARSET=utf8;
+  `productorderitem_userMessage` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`productorderitem_id`) USING BTREE,
+  INDEX `productorderitem_product_id`(`productorderitem_product_id`) USING BTREE,
+  INDEX `productorderitem_order_id`(`productorderitem_order_id`) USING BTREE,
+  INDEX `productorderitem_user_id`(`productorderitem_user_id`) USING BTREE,
+  CONSTRAINT `productorderitem_ibfk_1` FOREIGN KEY (`productorderitem_product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `productorderitem_ibfk_2` FOREIGN KEY (`productorderitem_order_id`) REFERENCES `productorder` (`productorder_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 313 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of productorderitem
 -- ----------------------------
-BEGIN;
-INSERT INTO `productorderitem` VALUES (300, 1, 66.00, 188, 250, 15, '');
 INSERT INTO `productorderitem` VALUES (301, 1, 48.00, 207, NULL, 15, NULL);
-INSERT INTO `productorderitem` VALUES (302, 1, 66.00, 185, 251, 15, '');
-INSERT INTO `productorderitem` VALUES (304, 1, 48.00, 207, 253, 17, '');
-INSERT INTO `productorderitem` VALUES (305, 1, 0.01, 207, 254, 17, '');
-INSERT INTO `productorderitem` VALUES (306, 1, 48.00, 207, 255, 17, '');
-INSERT INTO `productorderitem` VALUES (311, 1, 48.80, 207, 260, 12, '');
-INSERT INTO `productorderitem` VALUES (313, 1, 32.00, 183, 261, 1, '');
-INSERT INTO `productorderitem` VALUES (314, 1, 52.00, 187, 262, 1, '');
-INSERT INTO `productorderitem` VALUES (315, 1, 52.00, 187, 263, 1, '');
-INSERT INTO `productorderitem` VALUES (316, 1, 0.00, 1000645, 264, 1, '');
-INSERT INTO `productorderitem` VALUES (317, 1, 0.00, 1000517, 265, 1, '');
-COMMIT;
+INSERT INTO `productorderitem` VALUES (312, 1, 599.00, 1000365, 261, 1, '');
 
 -- ----------------------------
 -- Table structure for property
 -- ----------------------------
 DROP TABLE IF EXISTS `property`;
-CREATE TABLE `property` (
+CREATE TABLE `property`  (
   `property_id` int(10) NOT NULL AUTO_INCREMENT,
-  `property_name` varchar(25) NOT NULL,
+  `property_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `property_category_id` int(10) NOT NULL,
-  PRIMARY KEY (`property_id`),
-  KEY `property_category_id` (`property_category_id`) USING HASH,
-  CONSTRAINT `property_ibfk_1` FOREIGN KEY (`property_category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`property_id`) USING BTREE,
+  INDEX `property_category_id`(`property_category_id`) USING BTREE,
+  CONSTRAINT `property_ibfk_1` FOREIGN KEY (`property_category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of property
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for propertyvalue
 -- ----------------------------
 DROP TABLE IF EXISTS `propertyvalue`;
-CREATE TABLE `propertyvalue` (
+CREATE TABLE `propertyvalue`  (
   `propertyvalue_id` int(10) NOT NULL AUTO_INCREMENT,
-  `propertyvalue_value` varchar(100) NOT NULL,
+  `propertyvalue_value` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `propertyvalue_property_id` int(10) NOT NULL,
   `propertyvalue_product_id` int(10) NOT NULL,
-  PRIMARY KEY (`propertyvalue_id`),
-  KEY `propertyvalue_property_id` (`propertyvalue_property_id`) USING HASH,
-  KEY `propertyvalue_product_id` (`propertyvalue_product_id`) USING HASH,
-  CONSTRAINT `propertyvalue_ibfk_1` FOREIGN KEY (`propertyvalue_property_id`) REFERENCES `property` (`property_id`) ON DELETE CASCADE,
-  CONSTRAINT `propertyvalue_ibfk_2` FOREIGN KEY (`propertyvalue_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`propertyvalue_id`) USING BTREE,
+  INDEX `propertyvalue_property_id`(`propertyvalue_property_id`) USING BTREE,
+  INDEX `propertyvalue_product_id`(`propertyvalue_product_id`) USING BTREE,
+  CONSTRAINT `propertyvalue_ibfk_1` FOREIGN KEY (`propertyvalue_property_id`) REFERENCES `property` (`property_id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `propertyvalue_ibfk_2` FOREIGN KEY (`propertyvalue_product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of propertyvalue
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for review
 -- ----------------------------
 DROP TABLE IF EXISTS `review`;
-CREATE TABLE `review` (
+CREATE TABLE `review`  (
   `review_id` int(10) NOT NULL AUTO_INCREMENT,
-  `review_content` mediumtext,
-  `review_createdate` datetime DEFAULT NULL,
-  `review_user_id` int(10) DEFAULT NULL,
-  `review_product_id` int(10) DEFAULT NULL,
-  `review_orderItem_id` int(10) DEFAULT NULL,
-  PRIMARY KEY (`review_id`),
-  KEY `review_user_id` (`review_user_id`),
-  KEY `review_product_id` (`review_product_id`),
-  KEY `review_orderItem_id` (`review_orderItem_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `review_content` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `review_createdate` datetime NULL DEFAULT NULL,
+  `review_user_id` int(10) NULL DEFAULT NULL,
+  `review_product_id` int(10) NULL DEFAULT NULL,
+  `review_orderItem_id` int(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`review_id`) USING BTREE,
+  INDEX `review_user_id`(`review_user_id`) USING BTREE,
+  INDEX `review_product_id`(`review_product_id`) USING BTREE,
+  INDEX `review_orderItem_id`(`review_orderItem_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of review
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+CREATE TABLE `user`  (
   `user_id` int(10) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `user_nickname` varchar(50) NOT NULL,
+  `user_nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `user_password` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `user_realname` varchar(20) DEFAULT NULL,
+  `user_realname` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `user_gender` tinyint(1) NOT NULL,
   `user_birthday` date NOT NULL,
-  `user_address` char(6) NOT NULL,
-  `user_homeplace` char(6) NOT NULL,
-  `user_profile_picture_src` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `un_user_name` (`user_name`),
-  KEY `user_address` (`user_address`),
-  KEY `user_homeplace` (`user_homeplace`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_address`) REFERENCES `address` (`address_areaId`),
-  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`user_homeplace`) REFERENCES `address` (`address_areaId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `user_address` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_homeplace` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_profile_picture_src` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`) USING BTREE,
+  UNIQUE INDEX `un_user_name`(`user_name`) USING BTREE,
+  INDEX `user_address`(`user_address`) USING BTREE,
+  INDEX `user_homeplace`(`user_homeplace`) USING BTREE,
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_address`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`user_homeplace`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-BEGIN;
 INSERT INTO `user` VALUES (1, 'zxc123', '11', 'zxc123', 'zxc123', 0, '2018-10-08', '110000', '110000', NULL);
-COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
