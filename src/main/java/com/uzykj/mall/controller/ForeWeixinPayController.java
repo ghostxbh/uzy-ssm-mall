@@ -25,8 +25,6 @@ import java.util.*;
 
 /**
  * 微信支付API
- *
- * @author xu
  * @DateTime 2018-10-27 下午15：02
  */
 @Slf4j

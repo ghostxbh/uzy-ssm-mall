@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * 过滤器
  * @date  2018-10-28 晚上20：07
- * @author gostxbh
+ * @author ghostxbh
  */
 public class ServletFilterConfig implements Filter{
 

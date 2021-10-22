@@ -9,7 +9,7 @@ import java.util.UUID;
 /**
  * 文件路径判断
  *
- * @author gostxbh
+ * @author ghostxbh
  * @DateTime 2018-10-28 晚上20：07
  */
 @Slf4j
@@ -18,7 +18,6 @@ public class FileUtil {
      * 判断文件是否存在
      *
      * @param file
-     * @author xu
      * @DateTime 2018-10-28 晚上20：07
      */
     public static boolean judeFileExists(File file) {
@@ -37,7 +36,6 @@ public class FileUtil {
      * 判断文件夹是否存在
      *
      * @param file
-     * @author xu
      * @DateTime 2018-10-28 晚上20：07
      */
     public static boolean judeDirExists(File file) {
@@ -60,7 +58,6 @@ public class FileUtil {
 
     /**
      * 创建目录
-     *
      * @param descDirName 目录名,包含路径
      * @return 如果创建成功，则返回true，否则返回false
      */

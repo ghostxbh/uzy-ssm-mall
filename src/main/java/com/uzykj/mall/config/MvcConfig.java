@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 /**
  * MVC配置
  *
- * @author gostxbh
+ * @author ghostxbh
  * @date 2021-10-12
  */
 @Slf4j

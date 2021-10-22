@@ -19,7 +19,6 @@ import java.util.TreeMap;
 /**
  * 微信参数配置类
  *
- * @author xu
  * @Date 2018-10-20
  */
 public class WxpayConfig {
