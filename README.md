@@ -6,6 +6,36 @@
 基于Springboot框架搭建的电子商务平台手脚架，静态资源储存可使用OSS ([七牛云-对象存储](https://www.qiniu.com/products/kodo)) ，
 也可以使用本地文件服务器，支付渠道采用微信、支付宝支付。
 
+### 展示
+#### 前台展示
+首页
+![首页](documents/pics/home.png)
+
+分类
+![分类](documents/pics/category.png)
+
+列表
+![列表](documents/pics/list.png)
+
+商品
+![商品](documents/pics/product.png)
+
+购物车
+![购物车](documents/pics/cart.png)
+
+订单
+![订单](documents/pics/order.png)
+
+登录
+![登录](documents/pics/login.png)
+
+#### 后台展示
+首页
+![首页](documents/pics/admin_home.png)
+
+分类
+![分类](documents/pics/admin_category.png)
+
 ### 技术介绍
 
 ### 技术要点
