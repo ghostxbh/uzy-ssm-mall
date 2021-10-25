@@ -28,15 +28,15 @@ stop_app()
 
 case $1 in
   'start')
-    start_frp
+    start_app
   ;;
   'stop')
-    stop_frp
+    stop_app
   ;;
   'restart')
-    stop_frp
+    stop_app
     sleep 1
-    start_frp
+    start_app
   ;;
   'log')
     tail -f /web/server/proxy/nohup.out
