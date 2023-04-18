@@ -2,6 +2,7 @@ package com.uzykj.mall.config.interceptor;
 
 import com.uzykj.mall.entity.Admin;
 import com.uzykj.mall.entity.User;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +23,7 @@ public class AdminInterceptor implements HandlerInterceptor {
      * 在请求处理之前进行调用（Controller方法调用之前）
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
         try {
             //统一拦截（查询当前session是否存在user）(这里user会在每次登陆成功后，写入session)
             Admin admin = (Admin) request.getSession().getAttribute("ADMIN_SESSION");

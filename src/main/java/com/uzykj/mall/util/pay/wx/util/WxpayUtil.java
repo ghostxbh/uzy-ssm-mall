@@ -9,6 +9,7 @@ import org.jdom.input.SAXBuilder;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -39,18 +40,16 @@ public class WxpayUtil {
      * 是否签名正确,规则是:按参数名称a-z排序,遇到空值的参数不参加签名。
      */
     public static boolean isTenpaySign(String characterEncoding, SortedMap<Object, Object> packageParams, String API_KEY) {
-        StringBuffer sb = new StringBuffer();
-        Set es = packageParams.entrySet();
-        Iterator it = es.iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            String k = (String) entry.getKey();
-            String v = (String) entry.getValue();
+        StringBuilder sb = new StringBuilder();
+        Set<Map.Entry<Object, Object>> es = packageParams.entrySet();
+        for (Map.Entry<Object, Object> e : es) {
+            String k = (String) ((Map.Entry<?, ?>) e).getKey();
+            String v = (String) ((Map.Entry<?, ?>) e).getValue();
             if (!"sign".equals(k) && null != v && !"".equals(v)) {
-                sb.append(k + "=" + v + "&");
+                sb.append(k).append("=").append(v).append("&");
             }
         }
-        sb.append("key=" + API_KEY);
+        sb.append("key=").append(API_KEY);
         //算出摘要
         String mysign = Md5Util.MD5Encode(sb.toString(), characterEncoding).toLowerCase();
         String tenpaySign = ((String) packageParams.get("sign")).toLowerCase();
@@ -63,20 +62,17 @@ public class WxpayUtil {
      * @return String
      */
     public static String createSign(String characterEncoding, SortedMap<Object, Object> packageParams, String api_key) {
-        StringBuffer sb = new StringBuffer();
-        Set es = packageParams.entrySet();
-        Iterator it = es.iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            String k = (String) entry.getKey();
-            String v = (String) entry.getValue();
+        StringBuilder sb = new StringBuilder();
+        Set<Map.Entry<Object, Object>> es = packageParams.entrySet();
+        for (Map.Entry<Object, Object> e : es) {
+            String k = (String) ((Map.Entry<?, ?>) e).getKey();
+            String v = (String) ((Map.Entry<?, ?>) e).getValue();
             if (null != v && !"".equals(v) && !"sign".equals(k) && !"key".equals(k)) {
-                sb.append(k + "=" + v + "&");
+                sb.append(k).append("=").append(v).append("&");
             }
         }
-        sb.append("key=" + api_key);
-        String sign = Md5Util.MD5Encode(sb.toString(), characterEncoding).toUpperCase();
-        return sign;
+        sb.append("key=").append(api_key);
+        return Md5Util.MD5Encode(sb.toString(), characterEncoding).toUpperCase();
     }
 
     /**
@@ -85,18 +81,16 @@ public class WxpayUtil {
      * @return String
      */
     public static String getRequestXml(SortedMap<Object, Object> parameters) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("<xml>");
-        Set es = parameters.entrySet();
-        Iterator it = es.iterator();
-        while (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            String k = (String) entry.getKey();
-            String v = (String) entry.getValue();
+        Set<Map.Entry<Object, Object>> es = parameters.entrySet();
+        for (Map.Entry<Object, Object> e : es) {
+            String k = (String) ((Map.Entry<?, ?>) e).getKey();
+            String v = (String) ((Map.Entry<?, ?>) e).getValue();
             if ("attach".equalsIgnoreCase(k) || "body".equalsIgnoreCase(k) || "sign".equalsIgnoreCase(k)) {
-                sb.append("<" + k + ">" + "<![CDATA[" + v + "]]></" + k + ">");
+                sb.append("<").append(k).append(">").append("<![CDATA[").append(v).append("]]></").append(k).append(">");
             } else {
-                sb.append("<" + k + ">" + v + "</" + k + ">");
+                sb.append("<").append(k).append(">").append(v).append("</").append(k).append(">");
             }
         }
         sb.append("</xml>");
@@ -112,20 +106,19 @@ public class WxpayUtil {
     public static Map doXMLParse(String strxml) throws JDOMException, IOException {
         strxml = strxml.replaceFirst("encoding=\".*\"", "encoding=\"UTF-8\"");
 
-        if (null == strxml || "".equals(strxml)) {
+        if ("".equals(strxml)) {
             return null;
         }
 
         Map m = new HashMap();
 
-        InputStream in = new ByteArrayInputStream(strxml.getBytes("UTF-8"));
+        InputStream in = new ByteArrayInputStream(strxml.getBytes(StandardCharsets.UTF_8));
         SAXBuilder builder = new SAXBuilder();
         Document doc = builder.build(in);
         Element root = doc.getRootElement();
         List list = root.getChildren();
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            Element e = (Element) it.next();
+        for (Object o : list) {
+            Element e = (Element) o;
             String k = e.getName();
             String v = "";
             List children = e.getChildren();
@@ -149,20 +142,21 @@ public class WxpayUtil {
      * @return String
      */
     public static String getChildrenText(List children) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         if (!children.isEmpty()) {
-            Iterator it = children.iterator();
-            while (it.hasNext()) {
-                Element e = (Element) it.next();
+            for (Object child : children) {
+                Element e = (Element) child;
                 String name = e.getName();
+                //获取文本内容
                 String value = e.getTextNormalize();
                 List list = e.getChildren();
-                sb.append("<" + name + ">");
+                sb.append("<").append(name).append(">");
                 if (!list.isEmpty()) {
+                    //如果子节点不为空则递归调用 getChildrenText 方法获取其子节点的文本内容，并将其拼接到当前节点的字符串中。
                     sb.append(getChildrenText(list));
                 }
                 sb.append(value);
-                sb.append("</" + name + ">");
+                sb.append("</").append(name).append(">");
             }
         }
         return sb.toString();

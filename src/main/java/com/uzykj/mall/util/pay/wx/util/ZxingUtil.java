@@ -16,7 +16,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 public class ZxingUtil {
-	private static Log log = LogFactory.getLog(ZxingUtil.class);
+	private static final Log log = LogFactory.getLog(ZxingUtil.class);
 	private static final int BLACK = -16777216;
 	private static final int WHITE = -1;
 
