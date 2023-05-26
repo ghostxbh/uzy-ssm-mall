@@ -69,3 +69,13 @@
 - 后台管理：[http://127.0.0.1:8080/mall/admin](http://127.0.0.1:8010/mall/admin)
 
 ### MIT
+
+## 贡献者们
+
+> 感谢所有的贡献者们！
+
+[![Star History Chart](https://contrib.rocks/image?repo=ghostxbh/uzy-ssm-mall)](https://github.com/ghostxbh/uzy-ssm-mall/graphs/contributors)
+
+## Star历史
+
+![Star History Chart](https://api.star-history.com/svg?repos=ghostxbh/uzy-ssm-mall&type=Date)
