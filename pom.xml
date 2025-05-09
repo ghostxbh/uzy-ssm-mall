@@ -20,10 +20,10 @@
     <properties>
         <lib.path>${basedir}/src/main/webapp/WEB-INF/lib</lib.path>
         <java.version>1.8</java.version>
-        <commons-fileupload.version>1.4</commons-fileupload.version>
+        <commons-fileupload.version>1.5</commons-fileupload.version>
         <commons-lang3.version>3.8</commons-lang3.version>
-        <hutool-all.version>5.7.13</hutool-all.version>
-        <druid.version>1.2.8</druid.version>
+        <hutool-all.version>5.8.12</hutool-all.version>
+        <druid.version>1.2.21</druid.version>
     </properties>
 
     <dependencies>
@@ -90,7 +90,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.3.4</version>
+            <version>3.5.4</version>
         </dependency>
         <!-- Mybatis end -->
 
@@ -219,12 +219,12 @@
         <dependency>
             <groupId>com.qiniu</groupId>
             <artifactId>qiniu-java-sdk</artifactId>
-            <version>7.8.0</version>
+            <version>7.12.0</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>4.9.2</version>
+            <version>4.12.0</version>
             <scope>compile</scope>
         </dependency>
         <!-- 七牛云存储相关 结束-->
