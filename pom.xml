@@ -71,7 +71,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
+            <version>2.1.5.RELEASE</version>
         </dependency>
 
         <!-- mysql -->
@@ -85,12 +85,12 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.5.7</version>
+            <version>8.0.16</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.4</version>
+            <version>3.5.8</version>
         </dependency>
         <!-- Mybatis end -->
 
@@ -98,13 +98,13 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>${commons-fileupload.version}</version>
+            <version>1.5</version>
         </dependency>
         <!-- commons-lang3工具包 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
+            <version>3.8</version>
         </dependency>
         <!-- commons end -->
 
@@ -143,7 +143,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>${hutool-all.version}</version>
+            <version>5.8.21</version>
         </dependency>
 
         <!-- 支付模块依赖 -->
@@ -196,7 +196,7 @@
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
-            <version>2.4</version>
+            <version>0.9</version>
             <!-- 部分jdk版本报错的问题 -->
             <classifier>jdk15</classifier>
         </dependency>
