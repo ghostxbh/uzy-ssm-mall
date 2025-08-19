@@ -224,7 +224,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>4.12.0</version>
+            <version>5.0.0</version>
             <scope>compile</scope>
         </dependency>
         <!-- 七牛云存储相关 结束-->
