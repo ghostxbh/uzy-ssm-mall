@@ -90,7 +90,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.4</version>
+            <version>3.5.8</version>
         </dependency>
         <!-- Mybatis end -->
 
