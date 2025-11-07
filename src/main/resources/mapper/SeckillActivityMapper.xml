@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.uzykj.mall.dao.SeckillActivityMapper">
+    <resultMap id="seckillActivityMap" type="seckillActivity">
+        <id property="seckill_id" column="seckill_id"/>
+        <result property="product_id" column="product_id"/>
+        <result property="seckill_stock" column="seckill_stock"/>
+        <result property="seckill_price" column="seckill_price"/>
+        <result property="start_time" column="start_time"/>
+        <result property="end_time" column="end_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <insert id="insertOne" parameterType="seckillActivity">
+        INSERT INTO seckill_activity(seckill_id, product_id, seckill_stock, seckill_price, start_time, end_time, status)
+        VALUES (null, #{seckillActivity.product_id}, #{seckillActivity.seckill_stock}, #{seckillActivity.seckill_price}, #{seckillActivity.start_time}, #{seckillActivity.end_time}, #{seckillActivity.status})
+    </insert>
+
+    <update id="updateOne" parameterType="seckillActivity">
+        UPDATE seckill_activity
+        <set>
+            <if test="seckillActivity.product_id != null">product_id = #{seckillActivity.product_id},</if>
+            <if test="seckillActivity.seckill_stock != null">seckill_stock = #{seckillActivity.seckill_stock},</if>
+            <if test="seckillActivity.seckill_price != null">seckill_price = #{seckillActivity.seckill_price},</if>
+            <if test="seckillActivity.start_time != null">start_time = #{seckillActivity.start_time},</if>
+            <if test="seckillActivity.end_time != null">end_time = #{seckillActivity.end_time},</if>
+            <if test="seckillActivity.status != null">status = #{seckillActivity.status},</if>
+        </set>
+        <where>
+            seckill_id = #{seckillActivity.seckill_id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        DELETE FROM seckill_activity
+        <where>
+            <if test="seckill_id_list != null">
+                seckill_id IN (
+                <foreach collection="seckill_id_list" item="item" separator=",">
+                    #{item}
+                </foreach>
+                )
+            </if>
+        </where>
+    </delete>
+
+    <select id="select" resultMap="seckillActivityMap" parameterType="seckillActivity">
+        SELECT seckill_id, product_id, seckill_stock, seckill_price, start_time, end_time, status
+        FROM seckill_activity
+        <where>
+            <if test="seckillActivity.seckill_id != null">seckill_id = #{seckillActivity.seckill_id}</if>
+            <if test="seckillActivity.product_id != null">AND product_id = #{seckillActivity.product_id}</if>
+            <if test="seckillActivity.status != null">AND status = #{seckillActivity.status}</if>
+        </where>
+    </select>
+
+    <select id="selectOne" resultMap="seckillActivityMap" parameterType="int">
+        SELECT seckill_id, product_id, seckill_stock, seckill_price, start_time, end_time, status
+        FROM seckill_activity
+        <where>
+            seckill_id = #{seckill_id}
+        </where>
+    </select>
+
+    <select id="selectByProductId" resultMap="seckillActivityMap" parameterType="int">
+        SELECT seckill_id, product_id, seckill_stock, seckill_price, start_time, end_time, status
+        FROM seckill_activity
+        <where>
+            product_id = #{product_id}
+        </where>
+    </select>
+
+    <update id="decreaseStock" parameterType="int">
+        UPDATE seckill_activity
+        SET seckill_stock = seckill_stock - 1
+        WHERE seckill_id = #{seckill_id} AND seckill_stock > 0
+    </update>
+</mapper>

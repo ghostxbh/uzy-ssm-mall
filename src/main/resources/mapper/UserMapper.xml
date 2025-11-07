@@ -108,6 +108,14 @@
             user_name = #{user_name} and user_password = #{user_password}
         </where>
     </select>
+    <select id="selectByUserName" resultMap="userMap">
+        SELECT
+        user_id,user_name,user_nickname,user_password,user_realname,user_gender,user_birthday,user_profile_picture_src,user_address,user_homeplace
+        FROM user
+        <where>
+            user_name = #{user_name}
+        </where>
+    </select>
     <select id="selectTotal" resultType="int" parameterType="string">
         SELECT COUNT(user_id) FROM user
         <if test="user != null">

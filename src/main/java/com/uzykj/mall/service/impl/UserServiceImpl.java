@@ -5,6 +5,7 @@ import com.uzykj.mall.entity.User;
 import com.uzykj.mall.service.UserService;
 import com.uzykj.mall.util.OrderUtil;
 import com.uzykj.mall.util.PageUtil;
+import com.uzykj.mall.util.SecurePasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -48,7 +49,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String user_name, String user_password) {
-        return userMapper.selectByLogin(user_name, user_password);
+        // 先根据用户名查询用户
+        User user = userMapper.selectByUserName(user_name);
+        if (user != null) {
+            // 验证密码
+            if (SecurePasswordUtil.verifySecurePassword(user_password, user.getUser_password())) {
+                return user;
+            }
+        }
+        return null;
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.uzykj.mall.entity.Address;
 import com.uzykj.mall.entity.User;
 import com.uzykj.mall.service.AddressService;
 import com.uzykj.mall.service.UserService;
-import com.uzykj.mall.util.Md5Util;
+import com.uzykj.mall.util.SecurePasswordUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,7 +63,7 @@ public class ForeRegisterController {
             return object.toJSONString();
         }
 
-        String encode = Md5Util.MD5Encode(user_password, "UTF-8");
+        String encode = SecurePasswordUtil.generateSecurePassword(user_password);
         User user = new User()
                 .setUser_name(user_name)
                 .setUser_nickname(user_nickname)
